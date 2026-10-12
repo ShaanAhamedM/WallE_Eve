@@ -1,0 +1,19 @@
+{
+    "mission_name": "Operation_Axiom",
+    "grid_size": [10, 10],
+    "eve_location": [7, 8],
+    "start_location": [0, 0],
+    "resource_budget": {
+        "battery": 100,
+        "time_steps": 50
+    },
+    "action_costs": {
+        "move": 2,
+        "scan": 5,
+        "recharge": -20
+    },
+    "clues": [
+        {"coordinates": [3, 4], "signal_strength": 0.8},
+        {"coordinates": [7, 5], "signal_strength": 0.9}
+    ]
+}
