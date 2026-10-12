@@ -1,91 +1,103 @@
-import json
+import gymnasium as gym
+from gymnasium import spaces
+import numpy as np
 import math
+import json
 
-class SimulationEnvironment:
+class WallEEnv(gym.Env):
+    """
+    Custom Environment that follows the Gymnasium interface.
+    """
+    metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 4}
+
     def __init__(self, config_path):
-        # Load the mission parameters[cite: 1]
+        super().__init__()
+        
+        # Load Config
         with open(config_path, 'r') as file:
             self.config = json.load(file)
             
         self.grid_size = self.config['grid_size']
-        self.eve_loc = self.config['eve_location']
-        self.agent_loc = self.config['start_location'].copy()
-        
-        self.battery = self.config['resource_budget']['battery']
+        self.max_x, self.max_y = self.grid_size
         self.costs = self.config['action_costs']
-        self.clues = self.config['clues']
+        self.start_battery = self.config['resource_budget']['battery']
         
-        self.mission_active = True
+        # 1. ACTION SPACE: 0: Scan, 1: North, 2: East, 3: South, 4: West
+        self.action_space = spaces.Discrete(5)
+        
+        # 2. OBSERVATION SPACE: The sensor reading (float between 0.0 and 1.0)
+        # We use a Box space for continuous numerical data
+        self.observation_space = spaces.Box(low=0.0, high=1.0, shape=(1,), dtype=np.float32)
 
-    def step(self, action, direction=None):
+    def reset(self, seed=None, options=None):
         """
-        Processes the agent's chosen action, deducts resources, and returns the result.
+        Standard RL method: Resets the environment to the starting state.
         """
-        if not self.mission_active:
-            return {"status": "Mission Over", "battery": self.battery}
+        super().reset(seed=seed)
+        
+        self.agent_loc = np.array(self.config['start_location'], dtype=np.int32)
+        self.eve_loc = np.array(self.config['eve_location'], dtype=np.int32)
+        self.battery = self.start_battery
+        self.step_count = 0
+        
+        # Return initial observation and info dict
+        return np.array([-1.0], dtype=np.float32), self._get_info()
 
-        observation = None
-        message = ""
+    def step(self, action):
+        """
+        Standard RL method: Executes one time step within the environment.
+        """
+        self.step_count += 1
+        observation = -1.0 # Default empty reading
+        reward = 0.0
+        terminated = False
+        
+        # Map integer actions back to logic
+        if action == 0:  # SCAN
+            self.battery -= self.costs['scan']
+            observation = self._generate_noisy_reading()
+        else:            # MOVE
+            self.battery -= self.costs['move']
+            self._move_agent(action)
 
-        # ACTION: MOVE
-        if action == "move" and direction:
-            if self.battery >= self.costs['move']:
-                self.battery -= self.costs['move']
-                self._update_position(direction)
-                message = f"Moved {direction}. New position: {self.agent_loc}"
-            else:
-                message = "Not enough battery to move."
-                self.mission_active = False
-
-        # ACTION: SCAN
-        elif action == "scan":
-            if self.battery >= self.costs['scan']:
-                self.battery -= self.costs['scan']
-                observation = self._generate_scan_reading()
-                message = f"Scanned area. Signal strength: {observation}"
-            else:
-                message = "Not enough battery to scan."
-                self.mission_active = False
-                
         # Check win/loss conditions
-        if self.agent_loc == self.eve_loc:
-            message = "EVE FOUND! Mission Accomplished."
-            self.mission_active = False
+        if np.array_equal(self.agent_loc, self.eve_loc):
+            reward = 100.0  # Massive reward for finding EVE
+            terminated = True
         elif self.battery <= 0:
-            message = "CRITICAL ERROR: Battery depleted."
-            self.mission_active = False
+            reward = -50.0  # Penalty for dying
+            terminated = True
+            
+        # RL requires returning: observation, reward, terminated, truncated, info dict
+        return np.array([observation], dtype=np.float32), reward, terminated, False, self._get_info()
 
-        # Return the observation dictionary for this step[cite: 1]
-        return {
-            "current_location": self.agent_loc,
-            "battery_remaining": self.battery,
-            "observation": observation,
-            "message": message,
-            "mission_active": self.mission_active
-        }
-
-    def _update_position(self, direction):
-        # Update coordinates while preventing the agent from driving off the grid boundaries
+    def _move_agent(self, action):
+        # 1: North, 2: East, 3: South, 4: West
         x, y = self.agent_loc
-        max_x, max_y = self.grid_size
-        
-        if direction == "North" and y < max_y - 1: y += 1
-        elif direction == "South" and y > 0: y -= 1
-        elif direction == "East" and x < max_x - 1: x += 1
-        elif direction == "West" and x > 0: x -= 1
-        
-        self.agent_loc = [x, y]
+        if action == 1 and y < self.max_y - 1: y += 1
+        elif action == 2 and x < self.max_x - 1: x += 1
+        elif action == 3 and y > 0: y -= 1
+        elif action == 4 and x > 0: x -= 1
+        self.agent_loc = np.array([x, y])
 
-    def _generate_scan_reading(self):
+    def _generate_noisy_reading(self):
         """
-        Calculates signal strength based on Euclidean distance to EVE.
-        Closer = higher signal (closer to 1.0).
+        Calculates exact distance, then adds Gaussian noise to simulate real hardware.
         """
-        # Distance formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
         dist_to_eve = math.dist(self.agent_loc, self.eve_loc)
+        max_dist = math.dist([0,0], self.grid_size)
         
-        # Invert the distance so closer distance equals higher signal strength
-        max_possible_dist = math.dist([0,0], self.grid_size)
-        signal_strength = max(0, 1 - (dist_to_eve / max_possible_dist))
+        true_signal = max(0.0, 1.0 - (dist_to_eve / max_dist))
         
-        return round(signal_strength, 3)
+        # Inject standard deviation noise (10% variance)
+        noise = np.random.normal(0, 0.1)
+        noisy_signal = np.clip(true_signal + noise, 0.0, 1.0)
+        
+        return round(noisy_signal, 3)
+
+    def _get_info(self):
+        # Telemetry data for debugging (hidden from the RL agent's standard observation)
+        return {
+            "location": self.agent_loc.tolist(),
+            "battery": self.battery
+        }
