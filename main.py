@@ -37,7 +37,7 @@ def run_visual_mission():
         
         # 2. Process Action Data
         if action == 0: 
-            reading = obs[0]
+            reading = obs[3]
             agent.update_belief(current_loc, reading)
             action_text = f"ACTION: SCAN | Sensor: {reading:.3f}"
         else:

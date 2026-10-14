@@ -23,7 +23,9 @@ class AutonomousAgent:
                 self.belief_state[x, y] *= likelihood
                 
         # Normalize probabilities so they always sum to 1.0
-        self.belief_state /= np.sum(self.belief_state)
+        total = np.sum(self.belief_state)
+        if total > 0:
+            self.belief_state /= total
 
     def _simulate_reading(self, agent_loc, target_loc):
         dist = math.dist(agent_loc, target_loc)
