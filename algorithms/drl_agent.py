@@ -20,9 +20,10 @@ class DRLAgent(BaseSearchAgent):
         # Look for model in root or parent
         candidates = [
             self.model_path,
+            "ppo_walle_advanced.zip",
+            "ppo_walle_model.zip",
             os.path.join("..", self.model_path),
-            os.path.join("..", "..", self.model_path),
-            "ppo_walle_model.zip"
+            os.path.join("..", "..", self.model_path)
         ]
         for p in candidates:
             if os.path.exists(p):
@@ -59,15 +60,27 @@ class DRLAgent(BaseSearchAgent):
     def choose_action(self, current_loc, battery, info=None):
         self.steps_taken += 1
         
-        # Build observation vector matching model expectations
-        # [agent_x, agent_y, battery, last_sensor_reading]
-        obs = np.array([current_loc[0], current_loc[1], battery, self.last_reading], dtype=np.float32)
+        # Adaptive observation shape detection (6-dim normalized vs 4-dim legacy)
+        expected_dim = self.model.observation_space.shape[0] if (self.model and self.model.observation_space) else 4
+
+        if expected_dim == 6:
+            norm_x = float(current_loc[0]) / max(1, self.grid_x - 1)
+            norm_y = float(current_loc[1]) / max(1, self.grid_y - 1)
+            norm_batt = float(battery) / 100.0
+            last_s = float(self.last_reading)
+            rec_dist = 1.0
+            if info and "recharge_stations" in info and info["recharge_stations"]:
+                min_d = min(math.dist(current_loc, r) for r in info["recharge_stations"])
+                rec_dist = min_d / math.dist([0, 0], [self.grid_x, self.grid_y])
+            norm_step = float(self.steps_taken) / 60.0
+            obs = np.array([norm_x, norm_y, norm_batt, last_s, rec_dist, norm_step], dtype=np.float32)
+        else:
+            obs = np.array([current_loc[0], current_loc[1], battery, self.last_reading], dtype=np.float32)
 
         if self.model is not None:
             action, _ = self.model.predict(obs, deterministic=True)
             action = int(action)
         else:
-            # Fallback heuristic if model file is missing
             action = 0 if self.steps_taken == 1 else 2
 
         action_names = {0: "SCAN", 1: "MOVE NORTH", 2: "MOVE EAST", 3: "MOVE SOUTH", 4: "MOVE WEST"}

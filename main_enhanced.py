@@ -10,7 +10,7 @@ from algorithms import (
     DRLAgent
 )
 
-def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=False):
+def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=False, headless=False):
     """
     Renders an Operations Dashboard for Operation Axiom with live telemetry,
     Shannon Entropy uncertainty curve, and tactical trajectory mapping.
@@ -36,10 +36,12 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         agent = BayesianEntropyAgent(grid_size)
 
     # Initialize Dual-Panel Tactical Visualizer
-    plt.ion()
+    if not headless:
+        plt.ion()
     plt.style.use('dark_background')
     fig, (ax_map, ax_telemetry) = plt.subplots(1, 2, figsize=(14, 7), gridspec_kw={'width_ratios': [1.2, 1]})
-    fig.canvas.manager.set_window_title(f'Operation Axiom: {agent.name}')
+    if not headless:
+        fig.canvas.manager.set_window_title(f'Operation Axiom: {agent.name}')
 
     obs, info = env.reset()
     agent.reset()
@@ -145,8 +147,9 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         ax_telemetry.text(0.5, -0.18, f"AI CoT: {reasoning_snippet}", transform=ax_telemetry.transAxes,
                           ha='center', fontsize=8, color='cyan', wrap=True)
 
-        plt.tight_layout()
-        plt.pause(speed_delay)
+        if not headless:
+            plt.tight_layout()
+            plt.pause(speed_delay)
 
     # ==========================================
     # MISSION DEBRIEF
@@ -161,14 +164,18 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
     print("\n" + "=" * 65)
     print(f"DEBRIEF: {final_title}")
     print(f"Total Steps: {step_count} | Remaining Battery: {info['battery']}%")
-    print("=" * 65)
-    plt.show()
+    if not headless:
+        plt.show()
+    else:
+        plt.close(fig)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Operation Axiom Tactical Visualizer")
     parser.add_argument("--agent", choices=["bayesian", "astar", "cot", "drl"], default="bayesian", help="AI Agent paradigm")
     parser.add_argument("--delay", type=float, default=0.15, help="Simulation step delay in seconds")
     parser.add_argument("--random", action="store_true", help="Randomize EVE starting location")
+    parser.add_argument("--headless", action="store_true", help="Run in headless terminal mode without GUI popup")
     args = parser.parse_args()
 
-    run_tactical_mission(agent_type=args.agent, speed_delay=args.delay, randomize=args.random)
+    run_tactical_mission(agent_type=args.agent, speed_delay=args.delay, randomize=args.random, headless=args.headless)
+
