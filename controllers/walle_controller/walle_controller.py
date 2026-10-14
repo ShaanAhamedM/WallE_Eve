@@ -20,12 +20,25 @@ left_motor.setVelocity(0.0)
 right_motor.setVelocity(0.0)
 
 # 3. Load the PyTorch Brain
-model_path = os.path.join('..', '..', 'ppo_walle_model.zip')
-try:
-    model = PPO.load(model_path)
-    print(">>> SUCCESS: PyTorch PPO Brain Connected!")
-except Exception as e:
-    print(f">>> CRITICAL ERROR: Could not load model from {model_path}. {e}")
+model = None
+candidate_paths = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ppo_walle_model.zip')),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ppo_walle_advanced.zip')),
+    os.path.abspath('ppo_walle_model.zip'),
+    os.path.join('..', '..', 'ppo_walle_model.zip')
+]
+
+for p in candidate_paths:
+    if os.path.exists(p):
+        try:
+            model = PPO.load(p)
+            print(f">>> SUCCESS: PyTorch PPO Brain Connected from: {p}")
+            break
+        except Exception as err:
+            print(f">>> Warning: Failed to load from {p}: {err}")
+
+if model is None:
+    print(f">>> CRITICAL ERROR: Could not load any PPO model from candidate paths.")
     sys.exit(1)
 
 # 4. Map the physical environment

@@ -1,0 +1,15 @@
+# Core Reinforcement Learning & Simulation
+gymnasium>=1.0.0
+numpy>=1.26.0
+matplotlib>=3.8.0
+stable-baselines3>=2.3.0
+torch>=2.2.0
+
+# Interactive Operations HUD & Web Deployment (Streamlit Cloud / HuggingFace)
+streamlit>=1.35.0
+plotly>=5.20.0
+pandas>=2.2.0
+scipy>=1.12.0
+
+# Test Suite & Verification
+pytest>=8.0.0

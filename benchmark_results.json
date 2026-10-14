@@ -1,0 +1,835 @@
+{
+    "trials": 25,
+    "raw_records": [
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 1,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 17,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 2,
+            "success": true,
+            "steps": 47,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 3,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 10,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 4,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 5,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 6,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 23,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 7,
+            "success": true,
+            "steps": 54,
+            "battery_remaining": 15,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 8,
+            "success": true,
+            "steps": 39,
+            "battery_remaining": 24,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 9,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 25,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 10,
+            "success": true,
+            "steps": 40,
+            "battery_remaining": 22,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 11,
+            "success": true,
+            "steps": 28,
+            "battery_remaining": 21,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 12,
+            "success": true,
+            "steps": 40,
+            "battery_remaining": 22,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 13,
+            "success": true,
+            "steps": 36,
+            "battery_remaining": 33,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 14,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 40,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 15,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 20,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 16,
+            "success": true,
+            "steps": 37,
+            "battery_remaining": 28,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 17,
+            "success": true,
+            "steps": 33,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 18,
+            "success": true,
+            "steps": 24,
+            "battery_remaining": 4,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 19,
+            "success": true,
+            "steps": 37,
+            "battery_remaining": 40,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 20,
+            "success": true,
+            "steps": 18,
+            "battery_remaining": 31,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 21,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 22,
+            "success": true,
+            "steps": 27,
+            "battery_remaining": 23,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 23,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 24,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 29,
+            "collisions": 0
+        },
+        {
+            "agent": "Bayesian Active Inference",
+            "episode": 25,
+            "success": true,
+            "steps": 27,
+            "battery_remaining": 23,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 1,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 2,
+            "success": false,
+            "steps": 37,
+            "battery_remaining": -1,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 3,
+            "success": false,
+            "steps": 41,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 4,
+            "success": false,
+            "steps": 32,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 5,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 6,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 7,
+            "success": true,
+            "steps": 16,
+            "battery_remaining": 53,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 8,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 9,
+            "success": true,
+            "steps": 32,
+            "battery_remaining": 15,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 10,
+            "success": false,
+            "steps": 26,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 11,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 12,
+            "success": false,
+            "steps": 35,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 13,
+            "success": false,
+            "steps": 26,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 14,
+            "success": true,
+            "steps": 36,
+            "battery_remaining": 50,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 15,
+            "success": false,
+            "steps": 25,
+            "battery_remaining": -1,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 16,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 17,
+            "success": true,
+            "steps": 13,
+            "battery_remaining": 56,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 18,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 19,
+            "success": false,
+            "steps": 40,
+            "battery_remaining": -1,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 20,
+            "success": true,
+            "steps": 27,
+            "battery_remaining": 22,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 21,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 22,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 23,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 24,
+            "success": false,
+            "steps": 32,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "episode": 25,
+            "success": false,
+            "steps": 23,
+            "battery_remaining": 0,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 1,
+            "success": true,
+            "steps": 27,
+            "battery_remaining": 23,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 2,
+            "success": true,
+            "steps": 53,
+            "battery_remaining": 23,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 3,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 37,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 4,
+            "success": true,
+            "steps": 12,
+            "battery_remaining": 61,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 5,
+            "success": true,
+            "steps": 53,
+            "battery_remaining": 21,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 6,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 32,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 7,
+            "success": true,
+            "steps": 21,
+            "battery_remaining": 46,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 8,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 32,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 9,
+            "success": true,
+            "steps": 21,
+            "battery_remaining": 34,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 10,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 7,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 11,
+            "success": true,
+            "steps": 40,
+            "battery_remaining": 22,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 12,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 47,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 13,
+            "success": true,
+            "steps": 31,
+            "battery_remaining": 21,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 14,
+            "success": true,
+            "steps": 16,
+            "battery_remaining": 65,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 15,
+            "success": true,
+            "steps": 29,
+            "battery_remaining": 19,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 16,
+            "success": true,
+            "steps": 29,
+            "battery_remaining": 19,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 17,
+            "success": true,
+            "steps": 55,
+            "battery_remaining": 22,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 18,
+            "success": true,
+            "steps": 44,
+            "battery_remaining": 39,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 19,
+            "success": true,
+            "steps": 22,
+            "battery_remaining": 35,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 20,
+            "success": true,
+            "steps": 13,
+            "battery_remaining": 56,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 21,
+            "success": true,
+            "steps": 44,
+            "battery_remaining": 39,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 22,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 32,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 23,
+            "success": false,
+            "steps": 60,
+            "battery_remaining": 32,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 24,
+            "success": true,
+            "steps": 43,
+            "battery_remaining": 28,
+            "collisions": 0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "episode": 25,
+            "success": true,
+            "steps": 41,
+            "battery_remaining": 20,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 1,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 2,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 3,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 4,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 5,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 6,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 7,
+            "success": true,
+            "steps": 3,
+            "battery_remaining": 94,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 8,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 9,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 10,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 11,
+            "success": true,
+            "steps": 12,
+            "battery_remaining": 76,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 12,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 13,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 14,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 15,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 16,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 17,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 18,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 19,
+            "success": true,
+            "steps": 7,
+            "battery_remaining": 86,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 20,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 21,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 22,
+            "success": true,
+            "steps": 11,
+            "battery_remaining": 78,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 23,
+            "success": true,
+            "steps": 10,
+            "battery_remaining": 80,
+            "collisions": 0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 24,
+            "success": false,
+            "steps": 34,
+            "battery_remaining": -4,
+            "collisions": 12
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "episode": 25,
+            "success": true,
+            "steps": 11,
+            "battery_remaining": 78,
+            "collisions": 0
+        }
+    ],
+    "summary": [
+        {
+            "agent": "Bayesian Active Inference",
+            "success_rate": 56.00000000000001,
+            "mean_battery": 24.96,
+            "mean_steps": 45.88,
+            "mean_collisions": 0.0
+        },
+        {
+            "agent": "Cognitive CoT Planner",
+            "success_rate": 72.0,
+            "mean_battery": 32.48,
+            "mean_steps": 40.56,
+            "mean_collisions": 0.0
+        },
+        {
+            "agent": "Information A* (IDA*)",
+            "success_rate": 20.0,
+            "mean_battery": 7.72,
+            "mean_steps": 26.84,
+            "mean_collisions": 0.0
+        },
+        {
+            "agent": "PPO Neural Policy",
+            "success_rate": 24.0,
+            "mean_battery": 16.64,
+            "mean_steps": 28.0,
+            "mean_collisions": 9.12
+        }
+    ]
+}

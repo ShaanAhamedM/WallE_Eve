@@ -1,0 +1,33 @@
+{
+    "mission_name": "Operation_Axiom_DeepSpace_Omega",
+    "grid_size": [10, 10],
+    "start_location": [0, 0],
+    "eve_location": [7, 8],
+    "target_mode": "random", 
+    "target_dynamic": false,
+    "resource_budget": {
+        "battery": 100,
+        "time_steps": 60
+    },
+    "action_costs": {
+        "move": 2,
+        "scan": 5,
+        "recharge": -25
+    },
+    "sensor_noise_std": 0.1,
+    "obstacles": [
+        [3, 3],
+        [3, 4],
+        [4, 3],
+        [6, 6],
+        [6, 7]
+    ],
+    "recharge_stations": [
+        [2, 7],
+        [7, 2]
+    ],
+    "clues": [
+        {"coordinates": [3, 4], "signal_strength": 0.8},
+        {"coordinates": [7, 5], "signal_strength": 0.9}
+    ]
+}
