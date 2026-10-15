@@ -11,7 +11,7 @@ This project is an autonomous robotics and AI framework designed for target sear
 The robot (**WALL-E**) is deployed into a 10x10 arena with obstacles and strict battery limits. WALL-E cannot directly observe where the target (**EVE**) is located. Instead, WALL-E receives noisy radio signal pings from an onboard transceiver, tracks spatial uncertainty using recursive state estimation, and plans collision-free paths to locate EVE before running out of power.
 
 This repository features:
-- **Webots 3D Physics Simulation:** A physical digital twin using an **e-puck** differential-drive mobile robot with continuous motor kinematics and PyTorch closed-loop control.
+- **Webots 3D Physics Simulation:** A physical digital twin using an **e-puck** differential-drive mobile robot with closed-loop motor kinematics, dynamic target detection, and real-time Bayesian active inference.
 - **Gymnasium POMDP Environment:** Full simulation of battery expenditure, hazard debris collisions, solar recharging pods, Gaussian sensor noise, and optional dynamic target drifting.
 - **Multi-Paradigm Benchmark Suite:** Direct empirical comparison of **4 search algorithms** (Bayesian Active Inference, Cognitive CoT Planning, Information A*, and Deep RL).
 - **Tactical Telemetry Visualizer:** Native Matplotlib dashboard plotting live probability heatmaps, robot trajectory trails, and Shannon entropy reduction curves.
@@ -26,10 +26,29 @@ The physical simulation runs in **Webots R2025a** and brings real robot physics 
 - **Supervisor Controller:** [`controllers/walle_controller/walle_controller.py`](file:///D:/Projs/VinnovateIT/WallE_Eve/controllers/walle_controller/walle_controller.py) reads continuous positions, converts physical coordinates into discrete grid indices, and commands wheel velocities ($v = 6.28\text{ rad/s}$) to step precisely from tile to tile.
 - **Dynamic Target Spawning:** EVE is an interactive physical solid box (`DEF EVE SolidBox`). You can drag or translate EVE anywhere across the 3x3 meter arena in the Webots GUI, and WALL-E's supervisor will automatically detect the new position at runtime.
 - **Real-Time Bayesian Triangulation:** 
-  1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`, establishing a distance ring around itself.
-  2. **1-Step Symmetry Breaking (Step 1):** WALL-E takes a single probe step along the axis. By measuring the signal gradient between these two points, the intersection of the two distance circles mathematically breaks radial symmetry, immediately collapsing the probability map onto EVE's true coordinates.
-  3. **Direct Shortest-Path Navigation (Steps 2+):** WALL-E proceeds directly toward EVE along the minimum Manhattan path (orthogonal stair-step) with zero unnecessary detours or looping.
-  4. **Continuous Passive Pinging:** At every tile transition, WALL-E passively samples signal strength, refining its confidence to ~100% and dynamically adjusting course if the target moves.
+  1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`. Because the sensor is omnidirectional, this single reading defines a circular distance ring $r_1$ of possible locations around the robot.
+  2. **1-Step Symmetry Breaking (Step 1):** WALL-E steps forward by 1 grid cell along the axis to `[1, 0]` and samples a second distance $r_2$. The intersection of the two circles $(x^2 + y^2 = r_1^2$ and $(x-1)^2 + y^2 = r_2^2)$ produces two symmetric solutions: $(x, +y)$ and $(x, -y)$. Since the arena grid is strictly bounded in the positive quadrant ($x \ge 0, y \ge 0$), the negative reflection is automatically discarded, resolving EVE's exact location in just one move.
+  3. **Direct Shortest-Path Navigation (Steps 2+):** Once EVE's coordinate is triangulated, WALL-E proceeds directly along the theoretical minimum Manhattan path (orthogonal stair-step) straight to the target—eliminating unnecessary detours, exploratory loops, or wasted battery.
+  4. **Continuous Passive Pinging:** At every tile transition, WALL-E passively samples signal strength, refining confidence to ~100% and dynamically adjusting course if EVE is moved during runtime.
+
+### 🎮 Webots Simulation Controls
+
+| Action | Toolbar Button | Keyboard Shortcut | Description |
+| :--- | :---: | :---: | :--- |
+| **Play** | ▶️ | `Space` | Starts the physics engine and runs the autonomous controller. |
+| **Fast-Forward** | ⏩ | `Ctrl + 4` | Accelerates simulation speed for rapid testing. |
+| **Pause** | ⏸️ | `Space` | Freezes the simulation to inspect robot coordinates and console telemetry. |
+| **Reset** | ⏮️ | `Ctrl + Shift + T` | Restores WALL-E to `[0, 0]` and resets the step clock. |
+
+### 📐 Spatial Coordinate Mapping
+
+The Webots arena is a $3.0\text{ m} \times 3.0\text{ m}$ continuous physics floor mapped to our discrete $10 \times 10$ AI grid:
+
+$$\text{grid}_x = \left\lfloor \frac{x_{\text{phys}} + 1.5}{0.3} \right\rfloor, \quad \text{grid}_y = \left\lfloor \frac{y_{\text{phys}} + 1.5}{0.3} \right\rfloor$$
+
+- **WALL-E Start:** Continuous `[-1.35, -1.35, 0.0]` $\longrightarrow$ Grid `[0, 0]`.
+- **EVE Default:** Continuous `[0.75, 1.05, 0.15]` $\longrightarrow$ Grid `[7, 8]`.
+- **Custom Placements:** Moving EVE to continuous `[0.75, -0.23, 0.15]` instantly maps to Grid `[7, 4]`.
 
 - **Simulation Video:** A full video recording of WALL-E navigating the Webots arena is available at [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4).
 
@@ -109,8 +128,14 @@ All four approaches were benchmarked under identical random seeds on a 10x10 map
 
 ### 1. Setup Virtual Environment
 ```powershell
-# In PowerShell:
+# Option A: Conda Environment (Recommended)
+conda activate pytorchCourse
+
+# Option B: Standard Python Virtual Environment
 .\venv\Scripts\Activate
+
+# Install dependencies (Gymnasium, PyTorch, Stable-Baselines3, SciPy, Matplotlib)
+pip install -r requirements.txt
 ```
 
 ### 2. Run the Webots 3D Physics Simulation
