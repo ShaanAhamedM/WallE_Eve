@@ -87,8 +87,18 @@ while robot.step(timestep) != -1:
             print(f">>> MISSION ACCOMPLISHED: Target Secured with {battery}% battery remaining at {grid_loc}!")
             break
 
-    # Build telemetry vector
-    obs = np.array([grid_loc[0], grid_loc[1], battery, last_reading], dtype=np.float32)
+    # Build telemetry vector (support both 4-dim legacy and 6-dim advanced models)
+    expected_dim = model.observation_space.shape[0] if (model and model.observation_space) else 4
+    if expected_dim == 6:
+        norm_x = float(grid_loc[0]) / 9.0
+        norm_y = float(grid_loc[1]) / 9.0
+        norm_batt = float(battery) / 100.0
+        last_s = float(last_reading)
+        rec_dist = 1.0
+        norm_step = 0.5
+        obs = np.array([norm_x, norm_y, norm_batt, last_s, rec_dist, norm_step], dtype=np.float32)
+    else:
+        obs = np.array([grid_loc[0], grid_loc[1], battery, last_reading], dtype=np.float32)
     
     # Neural Network Prediction
     action, _ = model.predict(obs, deterministic=True)

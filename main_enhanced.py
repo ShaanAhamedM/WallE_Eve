@@ -155,8 +155,15 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
     # MISSION DEBRIEF
     # ==========================================
     success = np.array_equal(info["location"], info["eve_location"])
-    final_title = "MISSION ACCOMPLISHED: TARGET SECURED" if success else "MISSION FAILED: CRITICAL DEPLETION"
-    final_color = 'lime' if success else 'crimson'
+    if success:
+        final_title = "MISSION ACCOMPLISHED: TARGET SECURED"
+        final_color = 'lime'
+    elif info["battery"] <= 0:
+        final_title = "MISSION FAILED: CRITICAL BATTERY DEPLETION"
+        final_color = 'crimson'
+    else:
+        final_title = "MISSION FAILED: TIMEOUT (STEP LIMIT REACHED)"
+        final_color = 'orange'
     fig.suptitle(f"{final_title} | Final Battery: {info['battery']}% | Steps: {step_count}",
                  fontsize=14, fontweight='bold', color=final_color)
     plt.draw()

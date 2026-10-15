@@ -205,8 +205,21 @@ if run_full_clicked:
 col1, col2, col3, col4, col5 = st.columns(5)
 
 success = np.array_equal(st.session_state.info["location"], st.session_state.info["eve_location"])
-status_text = "🎯 TARGET SECURED" if success else ("⚠️ POWER CRITICAL" if st.session_state.info["battery"] <= 0 else "🟢 MISSION ACTIVE")
-status_color = "#00ff88" if success else ("#ff3366" if st.session_state.info["battery"] <= 0 else "#00f0ff")
+if success:
+    status_text = "🎯 TARGET SECURED"
+    status_color = "#00ff88"
+elif st.session_state.info["battery"] <= 0:
+    status_text = "⚠️ POWER CRITICAL"
+    status_color = "#ff3366"
+elif st.session_state.truncated:
+    status_text = "⏱️ TIMEOUT (MAX STEPS)"
+    status_color = "#ffaa00"
+elif st.session_state.terminated:
+    status_text = "⚠️ MISSION TERMINATED"
+    status_color = "#ff3366"
+else:
+    status_text = "🟢 MISSION ACTIVE"
+    status_color = "#00f0ff"
 
 col1.markdown(f'<div class="metric-card"><div class="metric-lbl">Status</div><div class="metric-val" style="color:{status_color}; font-size:1.1rem;">{status_text}</div></div>', unsafe_allow_html=True)
 col2.markdown(f'<div class="metric-card"><div class="metric-lbl">Battery Reserve</div><div class="metric-val">{st.session_state.info["battery"]}%</div></div>', unsafe_allow_html=True)
@@ -395,7 +408,7 @@ with tab_telemetry:
 
 with tab_benchmark:
     st.markdown("### 🏆 MULTI-AGENT MONTE CARLO BENCHMARK ARENA")
-    st.markdown("Statistical evaluation across **25 randomized trials** under Gaussian sensor noise ($\sigma=0.1$) and hazard debris fields.")
+    st.markdown(r"Statistical evaluation across **25 randomized trials** under Gaussian sensor noise ($\sigma=0.1$) and hazard debris fields.")
 
     # Load precomputed or live benchmark results
     bench_file = "benchmark_results.json"
