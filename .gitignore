@@ -1,4 +1,5 @@
 venv/
 __pycache__/
 .pytest_cache/
-temp_web_config.json
+temp_web_config.json
+docs/

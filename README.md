@@ -67,10 +67,6 @@ D:\Projs\VinnovateIT\WallE_Eve\
 │   ├── test_environment.py         # Gymnasium interface & boundary collision unit tests
 │   ├── test_agents.py              # Agent lifecycle & state estimation tests
 │   └── test_simulation_integration.py # Multi-step end-to-end integration tests
-├── docs/
-│   ├── INTERVIEW_DEFENSE_CHEAT_SHEET.md # Master interview guide with 25+ questions & answers
-│   ├── ARCHITECTURE_DEEP_DIVE.md        # Mathematical derivations, POMDP formulation, Mermaid diagrams
-│   └── DEPLOYMENT_AND_DEMO_GUIDE.md     # Local execution & 1-click cloud hosting runbook
 └── requirements.txt                # Production dependency freeze
 ```
 
@@ -122,10 +118,3 @@ $$P(z \mid (x, y)) = \exp\left( -\frac{(z - \hat{z}(x, y))^2}{2\sigma^2} \right)
 $$H(B) = -\sum_{x=0}^{M-1} \sum_{y=0}^{N-1} B(x, y) \log_2(B(x, y))$$
 * **Prior Uncertainty:** $H_{init} = \log_2(100) \approx 6.64$ bits.
 * **Posterior Uncertainty:** $H_{final} \approx 0.00$ bits upon target localization.
-
----
-
-## 📚 Detailed Documentation
-- [Interview Defense Cheat Sheet](docs/INTERVIEW_DEFENSE_CHEAT_SHEET.md)
-- [System Architecture Deep Dive](docs/ARCHITECTURE_DEEP_DIVE.md)
-- [Deployment & Demo Runbook](docs/DEPLOYMENT_AND_DEMO_GUIDE.md)
