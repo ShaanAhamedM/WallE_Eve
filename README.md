@@ -4,11 +4,24 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 🎥 Webots 3D Simulation Video Demonstration
+> **Video File Location:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) *(included directly in the repository for immediate viewing)*.  
+> Demonstrates the physical e-puck robot executing dynamic target triangulation, symmetry breaking, and navigating the direct shortest path to EVE in Webots R2025a.
+
+---
+
 ## 📌 Project Overview
 
 This project is an autonomous robotics and AI framework designed for target search-and-rescue under partial observability (**POMDP**). 
 
-The robot (**WALL-E**) is deployed into a 10x10 arena with obstacles and strict battery limits. WALL-E cannot directly observe where the target (**EVE**) is located. Instead, WALL-E receives noisy radio signal pings from an onboard transceiver, tracks spatial uncertainty using recursive state estimation, and plans collision-free paths to locate EVE before running out of power.
+The robot (**WALL-E**) is deployed into an arena with obstacles, noisy radio transceiver pings, and strict battery limits. WALL-E cannot directly observe where the target (**EVE**) is located.
+
+### 💡 Engineering Methodology & Rationale
+To determine the most effective autonomous search architecture, we conducted a systematic, two-tier engineering evaluation:
+1. **Algorithmic Evaluation (2D Testbed):** We implemented and benchmarked **4 distinct AI paradigms** (Bayesian Active Inference, Cognitive Chain-of-Thought Planning, Information-Directed A\*, and Deep Reinforcement Learning) to evaluate how each handles stochastic Gaussian sensor noise ($\sigma = 0.1$), energy limits, and obstacles.
+2. **The Conclusion:** Our comparative benchmark proved that **Bayesian State Estimation** was decisively the superior paradigm—filtering out signal noise, resolving radial distance ambiguity in a single probe step, achieving the highest energy efficiency, and recording 0.0 obstacle collisions.
+3. **Physical Deployment (Webots 3D):** Based on this conclusion, we selected and deployed the Bayesian state estimation architecture into our **Webots 3D robotics digital twin** (`walle_controller.py`), bridging theoretical active inference into real continuous differential-drive motor kinematics.
 
 This repository features:
 - **Webots 3D Physics Simulation:** A physical digital twin using an **e-puck** differential-drive mobile robot with closed-loop motor kinematics, dynamic target detection, and real-time Bayesian active inference.
