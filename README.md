@@ -5,9 +5,11 @@
 ---
 
 > [!IMPORTANT]
-> ### 🎥 Webots 3D Simulation Video Demonstration
-> **Video File Location:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) *(included directly in the repository for immediate viewing)*.  
-> Demonstrates the physical e-puck robot executing dynamic target triangulation, symmetry breaking, and navigating the direct shortest path to EVE in Webots R2025a.
+> ### 🎥 Webots 3D Simulation Video Demonstrations
+> Complete full-resolution 3D physics recordings are located directly in the [`media/`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/) directory:
+> 1. 🎬 **Obstacle Avoidance & Physical Touch Demo 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) — Full simulation showing WALL-E maneuvering around red hazard blocks in 3D, triangulating grey EVE, and executing precision docking with direct physical surface contact.
+> 2. 🎬 **Obstacle Avoidance & Physical Touch Demo 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) — Alternate run showcasing real-time BFS obstacle avoidance, continuous dynamic obstacle tracking, and bumper-to-surface lock.
+> 3. 🎬 **Baseline Open-Field Run:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) — Baseline benchmark showing initial 1-step symmetry breaking and direct Manhattan navigation.
 
 ---
 
@@ -41,8 +43,10 @@ The physical simulation runs in **Webots R2025a** and brings real robot physics 
 - **Real-Time Bayesian Triangulation:** 
   1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`. Because the sensor is omnidirectional, this single reading defines a circular distance ring $r_1$ of possible locations around the robot.
   2. **1-Step Symmetry Breaking (Step 1):** WALL-E steps forward by 1 grid cell along the axis to `[1, 0]` and samples a second distance $r_2$. The intersection of the two circles $(x^2 + y^2 = r_1^2$ and $(x-1)^2 + y^2 = r_2^2)$ produces two symmetric solutions: $(x, +y)$ and $(x, -y)$. Since the arena grid is strictly bounded in the positive quadrant ($x \ge 0, y \ge 0$), the negative reflection is automatically discarded, resolving EVE's exact location in just one move.
-  3. **Direct Shortest-Path Navigation (Steps 2+):** Once EVE's coordinate is triangulated, WALL-E proceeds directly along the theoretical minimum Manhattan path (orthogonal stair-step) straight to the target—eliminating unnecessary detours, exploratory loops, or wasted battery.
-  4. **Continuous Passive Pinging:** At every tile transition, WALL-E passively samples signal strength, refining confidence to ~100% and dynamically adjusting course if EVE is moved during runtime.
+  3. **Obstacle-Aware BFS Path Planning (Steps 2+):** Once EVE is triangulated, WALL-E invokes breadth-first search (BFS) graph pathfinding to plan an optimal, collision-free trajectory avoiding all physical obstacle blocks before docking.
+  4. **Dynamic Scene-Tree Sync (Zero Hardcoding):** Obstacle blocks (`DEF OBSTACLE_1`..`5`) are styled in hazard red and EVE in sleek grey. The controller queries `get_dynamic_obstacles(robot)` every step—if you move or drag any block in the 3D viewport, WALL-E recalculates collision-free trajectories on the fly.
+  5. **Precision Docking & Physical Touch:** When entering the target zone (< 0.38m), WALL-E aligns directly with EVE's center and glides forward until direct bumper-to-surface physical contact ($d \le 0.198\text{m}$) is achieved before locking docking clamps.
+  6. **Enclosed Perimeter Standoff:** If EVE is ever completely enclosed by obstacles, WALL-E routes to the closest safe perimeter boundary, halts without colliding, and logs a standoff alert.
 
 ### 🎮 Webots Simulation Controls
 
@@ -51,9 +55,12 @@ The physical simulation runs in **Webots R2025a** and brings real robot physics 
 | **Play** | ▶️ | Starts the physics engine and runs the autonomous controller. |
 | **Fast-Forward** | ⏩ | Accelerates simulation speed for rapid testing. |
 | **Pause** | ⏸️ | Freezes the simulation to inspect robot coordinates and console telemetry. |
-| **Reset** | ⏮️ | Restores WALL-E to `[0, 0]` and resets the step clock. |
+| **Reset / Reload** | ⏮️ / `Ctrl+Shift+T` | Restores the world, re-reads scene tree nodes, and resets step clock. |
 
-- **Simulation Video:** A full video recording of WALL-E navigating the Webots arena is available at [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4).
+- **Simulation Video Demonstrations:**
+  - 🎥 **Obstacle Avoidance & Physical Touch Demo 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) *(Full obstacle avoidance run + physical docking)*
+  - 🎥 **Obstacle Avoidance & Physical Touch Demo 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) *(Dynamic obstacle avoidance alternate angle)*
+  - 🎥 **Baseline Demo:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) *(Direct shortest-path navigation)*
 
 
 
