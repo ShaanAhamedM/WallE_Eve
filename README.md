@@ -33,22 +33,12 @@ The physical simulation runs in **Webots R2025a** and brings real robot physics 
 
 ### 🎮 Webots Simulation Controls
 
-| Action | Toolbar Button | Keyboard Shortcut | Description |
-| :--- | :---: | :---: | :--- |
-| **Play** | ▶️ | `Space` | Starts the physics engine and runs the autonomous controller. |
-| **Fast-Forward** | ⏩ | `Ctrl + 4` | Accelerates simulation speed for rapid testing. |
-| **Pause** | ⏸️ | `Space` | Freezes the simulation to inspect robot coordinates and console telemetry. |
-| **Reset** | ⏮️ | `Ctrl + Shift + T` | Restores WALL-E to `[0, 0]` and resets the step clock. |
-
-### 📐 Spatial Coordinate Mapping
-
-The Webots arena is a $3.0\text{ m} \times 3.0\text{ m}$ continuous physics floor mapped to our discrete $10 \times 10$ AI grid:
-
-$$\text{grid}_x = \left\lfloor \frac{x_{\text{phys}} + 1.5}{0.3} \right\rfloor, \quad \text{grid}_y = \left\lfloor \frac{y_{\text{phys}} + 1.5}{0.3} \right\rfloor$$
-
-- **WALL-E Start:** Continuous `[-1.35, -1.35, 0.0]` $\longrightarrow$ Grid `[0, 0]`.
-- **EVE Default:** Continuous `[0.75, 1.05, 0.15]` $\longrightarrow$ Grid `[7, 8]`.
-- **Custom Placements:** Moving EVE to continuous `[0.75, -0.23, 0.15]` instantly maps to Grid `[7, 4]`.
+| Action | Toolbar Button | Description |
+| :--- | :---: | :--- |
+| **Play** | ▶️ | Starts the physics engine and runs the autonomous controller. |
+| **Fast-Forward** | ⏩ | Accelerates simulation speed for rapid testing. |
+| **Pause** | ⏸️ | Freezes the simulation to inspect robot coordinates and console telemetry. |
+| **Reset** | ⏮️ | Restores WALL-E to `[0, 0]` and resets the step clock. |
 
 - **Simulation Video:** A full video recording of WALL-E navigating the Webots arena is available at [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4).
 
