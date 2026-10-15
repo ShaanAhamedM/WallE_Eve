@@ -193,19 +193,3 @@ WallE_Eve/
 ├── requirements.txt                # Project dependencies
 └── pytest.ini                      # Pytest configuration
 ```
-
----
-
-## 💡 How the Concepts Work (In Simple Terms)
-
-- **Why One Scan Isn't Enough (Triangulation):**  
-  A single signal scan at `[0, 0]` only tells WALL-E: *"EVE is about 8 units away."* That defines a circle of about 15 possible squares. Scanning again from the exact same spot gives the exact same circle. But if WALL-E moves a few squares to the East and scans again, he gets a second circle. Two overlapping circles intersect at only 1 or 2 squares—instantly pinpointing EVE.
-
-- **Bayesian Probability Grid:**  
-  Think of the 10x10 map as a grid of 100 tiles. At first, each tile has a 1% chance. When a scan happens, we ask: *"If EVE was here, would we have received this signal strength?"* Tiles that match get boosted; tiles that don't match fade away. After normalizing so all tiles add up to 100%, the peak tile shows WALL-E's best guess.
-
-- **Shannon Entropy (The "Confusion Meter"):**  
-  Claude Shannon's Information Entropy formula measures how spread out probabilities are:
-  - At the start, probabilities are flat across all 100 tiles $\rightarrow$ **High Entropy (~6.64 bits)**: maximum confusion.
-  - When WALL-E pinpoints EVE to a single tile with 100% certainty $\rightarrow$ **Zero Entropy (0.00 bits)**: zero confusion.
-  Tracking entropy over time shows the robot actively clearing up its uncertainty.
