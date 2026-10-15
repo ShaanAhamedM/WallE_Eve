@@ -1,7 +1,6 @@
 # 🤖 WALL-E & EVE: Autonomous Search & Rescue
 
-**Author:** Shaan Ahamed M (25BCE2196)  
-**Submission:** VinnovateIT Technical Recruitment Challenge  
+**Author:** Shaan Ahamed M
 
 ---
 
