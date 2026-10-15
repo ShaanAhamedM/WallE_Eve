@@ -6,17 +6,26 @@
 
 ## 📌 Project Overview
 
-This project is a simulation of an autonomous search-and-rescue robot (**WALL-E**) trying to locate a hidden target (**EVE**) inside a 10x10 grid arena. 
+This project is an autonomous robotics and AI framework designed for target search-and-rescue under partial observability (**POMDP**). 
 
-The core challenge is that WALL-E **cannot see the map** or know EVE's location in advance (a problem known in robotics as a *Partially Observable Markov Decision Process*, or POMDP). Instead, WALL-E has to rely on a noisy radio sensor that detects signal strength, balance a strict battery budget, avoid scattered debris obstacles, and optionally recharge at solar pods.
+The robot (**WALL-E**) is deployed into a 10x10 arena with obstacles and strict battery limits. WALL-E cannot directly observe where the target (**EVE**) is located. Instead, WALL-E receives noisy radio signal pings from an onboard transceiver, tracks spatial uncertainty using recursive state estimation, and plans collision-free paths to locate EVE before running out of power.
 
-To solve this challenge, I designed, implemented, and benchmarked **four different algorithmic approaches**:
-1. **Bayesian Active Inference** (Probability grid + Shannon entropy reduction)
-2. **Cognitive CoT Planner** (Step-by-step reasoning logic for hazard assessment and energy management)
-3. **Information A\*** (Graph pathfinding guided by information gain)
-4. **Deep Reinforcement Learning** (Proximal Policy Optimization via PyTorch & Stable-Baselines3)
+This repository features:
+- **Webots 3D Physics Simulation:** A physical digital twin using an **e-puck** differential-drive mobile robot with continuous motor kinematics and PyTorch closed-loop control.
+- **Gymnasium POMDP Environment:** Full simulation of battery expenditure, hazard debris collisions, solar recharging pods, Gaussian sensor noise, and optional dynamic target drifting.
+- **Multi-Paradigm Benchmark Suite:** Direct empirical comparison of **4 search algorithms** (Bayesian Active Inference, Cognitive CoT Planning, Information A*, and Deep RL).
+- **Tactical Telemetry Visualizer:** Native Matplotlib dashboard plotting live probability heatmaps, robot trajectory trails, and Shannon entropy reduction curves.
 
-The project also includes an **interactive Streamlit Web HUD** (featuring real-time 2D radar and 3D probability terrain), a **live terminal visualizer**, and a **Webots 3D physics simulation** with a differential-drive robot.
+---
+
+## 🤖 Webots 3D Physics Simulation
+
+The physical simulation runs in **Webots R2025a** and bridges abstract mathematical path planning into realistic robot kinematics:
+
+- **Robot Model:** **e-puck** two-wheeled differential-drive mobile robot.
+- **Kinematics & Control:** The supervisor controller (`controllers/walle_controller/walle_controller.py`) commands left and right wheel velocities ($v = 6.28\text{ rad/s}$), applies rotational quaternions to align headings (North, East, South, West), and dead-reckons movement across physical coordinates.
+- **Spatial Mapping:** Maps the 3x3 meter continuous physics floor ($[-1.5\text{m}, +1.5\text{m}]$) to the discrete $10 \times 10$ algorithmic grid.
+- **Neural Integration:** Connects directly to our trained PyTorch neural policy (`ppo_walle_model.zip` / `ppo_walle_advanced.zip`), passing live physical coordinates and sensor data to predict motor actions in real time.
 
 ---
 
@@ -88,79 +97,64 @@ All four approaches were benchmarked under identical random seeds on a 10x10 map
 
 ---
 
-## 🖥️ Applications & Interfaces
+## ⚡ Quickstart & Execution Guide
 
-### 1. Interactive Web Mission Control HUD (`app.py`)
-Built with Streamlit and Plotly for a modern, responsive interface:
-- **2D Tactical Radar:** Interactive top-down view showing WALL-E's live position, movement trajectory trail, EVE's marker, obstacle blocks, and solar stations.
-- **3D Probability Surface:** Plots the Bayesian belief distribution as a continuous 3D elevation mesh that sharpens into a peak as scans are taken.
-- **Telemetry Charts:** Real-time line graphs showing Shannon Entropy reduction (bits of uncertainty) and battery consumption over time.
-- **Benchmark Arena:** Interactive bar charts comparing all 4 methods.
-- **Controls:** Step-by-step button (`⏯️ Step`), full simulation run (`🚀 Run Full`), adjustable sensor noise slider, and obstacle toggles.
-
-### 2. Dual-Panel Terminal Visualizer (`main_enhanced.py`)
-A Matplotlib-based real-time dashboard:
-- Left panel shows the 2D probability heatmap, robot trail, and peak coordinates.
-- Right panel plots Shannon Entropy and battery percentage on synchronized dual axes with a live decision log.
-- Supports `--headless` mode for automated running without popping up a GUI window.
-
-### 3. Webots 3D Physics Simulation (`controllers/walle_controller/`)
-- Integrates with the open-source **Webots R2025a** robotics simulator.
-- Models an **e-puck** two-wheeled differential drive mobile robot.
-- Converts continuous 3D physics coordinates into the discrete grid space and uses wheel motor velocity control to physically navigate the arena.
-
----
-
-## ⚡ Quickstart & How to Run
-
-### Setup Virtual Environment
+### 1. Setup Virtual Environment
 ```powershell
 # In PowerShell:
 .\venv\Scripts\Activate
 ```
 
-### 1. Run the Streamlit Web HUD
-```powershell
-streamlit run app.py
-```
-Open `http://localhost:8501` in your browser.
+### 2. Run the Webots 3D Physics Simulation
+1. Open the **Webots** application.
+2. Open the world file:
+   ```
+   D:\Projs\VinnovateIT\WallE_Eve\worlds\walle_webots.wbt
+   ```
+3. Set your Python interpreter in **Tools > Preferences > General > Python command**:
+   ```
+   D:\Projs\VinnovateIT\WallE_Eve\venv\Scripts\python.exe
+   ```
+4. Press the **Play (▶️)** button. WALL-E will physically steer, scan, and navigate toward EVE using the PyTorch neural network.
 
-### 2. Run the Matplotlib Operations Visualizer
+### 3. Run the Tactical Operations Visualizer (Matplotlib GUI)
+Launch the dual-panel desktop visualizer:
 ```powershell
-# Run with Bayesian Search:
+# Bayesian Active Inference Agent:
 python main_enhanced.py --agent bayesian
 
-# Run with Cognitive Planner:
+# Cognitive CoT Planner:
 python main_enhanced.py --agent cot
 
-# Run with Reinforcement Learning (PPO):
+# Reinforcement Learning (PPO):
 python main_enhanced.py --agent drl
 
-# Run with Information A*:
+# Information A*:
 python main_enhanced.py --agent astar
 
 # Optional flags:
 # --random    (randomize EVE's starting position)
+# --delay 0.1 (adjust animation playback speed)
 # --headless  (run in terminal without GUI window)
 ```
 
-### 3. Run the Monte Carlo Benchmark
+### 4. Run the Monte Carlo Benchmark
 ```powershell
 python benchmark.py
 ```
-Runs 25 randomized episodes across all agents and outputs summary statistics.
+Runs 25 randomized trials across all agents and outputs summary statistics to the terminal and `benchmark_results.json`.
 
-### 4. Run the Automated Unit Tests
+### 5. Run the Automated Unit Tests
 ```powershell
 pytest -v
 ```
-Verifies environment physics, boundary collisions, solar rechargers, Shannon entropy calculations, and agent lifecycles (12/12 passing).
+Runs the full test suite (12/12 passing).
 
-### 5. Train the Generalized Reinforcement Learning Model
+### 6. Train the Generalized Reinforcement Learning Model
 ```powershell
 python train_advanced.py
 ```
-Uses vectorized environments and GPU acceleration (CUDA) to train a generalized PPO agent with domain randomization.
+Trains a generalized PPO model using vectorized parallel environments and GPU acceleration (CUDA).
 
 ---
 
@@ -168,7 +162,6 @@ Uses vectorized environments and GPU acceleration (CUDA) to train a generalized 
 
 ```
 WallE_Eve/
-├── app.py                          # Streamlit interactive web dashboard
 ├── super_environment.py            # Enhanced Gymnasium POMDP environment (Obstacles, Solar Rechargers)
 ├── main_enhanced.py                # Dual-panel Matplotlib visualizer with live telemetry
 ├── benchmark.py                    # 25-episode Monte Carlo evaluation script
