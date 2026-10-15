@@ -85,7 +85,8 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         steps_history.append(step_count)
 
         act_text = action_names.get(action, "UNKNOWN")
-        print(f"[Step {step_count:02d}] Battery: {info['battery']:3d}% | {act_text} | Sensor: {sensor_val:.3f} | Entropy: {current_entropy:.2f} bits")
+        reasoning_snippet = telemetry.get("last_reasoning", "")
+        print(f"[Step {step_count:02d}] Battery: {info['battery']:3d}% | {act_text} | Sensor: {sensor_val:.3f} | Entropy: {current_entropy:.2f} bits | Reasoning: {reasoning_snippet}")
 
         # ==========================================
         # LEFT PANEL: TACTICAL HEATMAP & RADAR
@@ -146,7 +147,6 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         ax_batt.set_ylim(-5, 105)
 
         # AI Thought Banner below
-        reasoning_snippet = telemetry.get("last_reasoning", "")
         if len(reasoning_snippet) > 85:
             reasoning_snippet = reasoning_snippet[:82] + "..."
         reasoning_text_obj.set_text(f"AI Reasoning: {reasoning_snippet}")
@@ -155,27 +155,41 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
             plt.pause(speed_delay)
 
     # ==========================================
-    # MISSION DEBRIEF
+    # FINAL MISSION REPORT (Core Requirement 5)
     # ==========================================
     success = np.array_equal(info["location"], info["eve_location"])
     if success:
         final_title = "MISSION ACCOMPLISHED: TARGET SECURED"
         final_color = 'lime'
+        next_step = "Initiate docking clamp payload transfer and recharge protocol."
     elif info["battery"] <= 0:
         final_title = "MISSION FAILED: CRITICAL BATTERY DEPLETION"
         final_color = 'crimson'
+        next_step = "Deploy emergency solar beacon and await recovery."
     else:
         final_title = "MISSION FAILED: TIMEOUT (STEP LIMIT REACHED)"
         final_color = 'orange'
+        next_step = "Expand search perimeter with auxiliary scanning sweeps."
 
     # Set suptitle in the dedicated top headroom (y=0.96) so it never touches subplots
     fig.suptitle(f"{final_title}  |  Final Battery: {info['battery']}%  |  Steps: {step_count}",
                  fontsize=13, fontweight='bold', color=final_color, y=0.96)
     plt.draw()
     plt.ioff()
+
+    inferred_loc = telemetry.get("most_likely_target", info["location"])
+    confidence = telemetry.get("max_confidence", 1.0) * 100
+
     print("\n" + "=" * 65)
-    print(f"DEBRIEF: {final_title}")
-    print(f"Total Steps: {step_count} | Remaining Battery: {info['battery']}%")
+    print("                     FINAL MISSION REPORT")
+    print("=" * 65)
+    print(f"• Mission Status:         {final_title}")
+    print(f"• Evidence Gathered:      {step_count} telemetry pings / clues processed")
+    print(f"• Inferred EVE Location:  {inferred_loc} (Actual: {info['eve_location']})")
+    print(f"• Estimated Confidence:   {confidence:.1f}%")
+    print(f"• Resource Status:        {info['battery']}% battery remaining ({step_count} steps taken)")
+    print(f"• Recommended Next Step:  {next_step}")
+    print("=" * 65)
     if not headless:
         plt.show()
     else:
