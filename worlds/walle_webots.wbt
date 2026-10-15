@@ -23,6 +23,31 @@ DEF EVE SolidBox {
   translation 0.75 -0.23 0.15
   size 0.3 0.3 0.3
 }
+SolidBox {
+  translation -0.45 -0.45 0.15
+  name "obstacle_1"
+  size 0.28 0.28 0.3
+}
+SolidBox {
+  translation -0.45 -0.15 0.15
+  name "obstacle_2"
+  size 0.28 0.28 0.3
+}
+SolidBox {
+  translation -0.15 -0.45 0.15
+  name "obstacle_3"
+  size 0.28 0.28 0.3
+}
+SolidBox {
+  translation 0.45 0.45 0.15
+  name "obstacle_4"
+  size 0.28 0.28 0.3
+}
+SolidBox {
+  translation 0.45 0.75 0.15
+  name "obstacle_5"
+  size 0.28 0.28 0.3
+}
 E-puck {
   translation -1.35 -1.35 0
   rotation 0 0 1 1.5708
