@@ -22,31 +22,61 @@ RectangleArena {
 DEF EVE SolidBox {
   translation 0.75 -0.23 0.15
   size 0.3 0.3 0.3
+  appearance PBRAppearance {
+    baseColor 0.7 0.7 0.75
+    roughness 0.3
+    metalness 0.2
+  }
 }
 SolidBox {
   translation -0.45 -0.45 0.15
   name "obstacle_1"
   size 0.28 0.28 0.3
+  appearance PBRAppearance {
+    baseColor 0.9 0.15 0.15
+    roughness 0.5
+    metalness 0
+  }
 }
 SolidBox {
   translation -0.45 -0.15 0.15
   name "obstacle_2"
   size 0.28 0.28 0.3
+  appearance PBRAppearance {
+    baseColor 0.9 0.15 0.15
+    roughness 0.5
+    metalness 0
+  }
 }
 SolidBox {
   translation -0.15 -0.45 0.15
   name "obstacle_3"
   size 0.28 0.28 0.3
+  appearance PBRAppearance {
+    baseColor 0.9 0.15 0.15
+    roughness 0.5
+    metalness 0
+  }
 }
 SolidBox {
   translation 0.45 0.45 0.15
   name "obstacle_4"
   size 0.28 0.28 0.3
+  appearance PBRAppearance {
+    baseColor 0.9 0.15 0.15
+    roughness 0.5
+    metalness 0
+  }
 }
 SolidBox {
   translation 0.45 0.75 0.15
   name "obstacle_5"
   size 0.28 0.28 0.3
+  appearance PBRAppearance {
+    baseColor 0.9 0.15 0.15
+    roughness 0.5
+    metalness 0
+  }
 }
 E-puck {
   translation -1.35 -1.35 0
