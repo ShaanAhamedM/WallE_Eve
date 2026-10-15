@@ -20,7 +20,7 @@ RectangleArena {
   floorSize 3 3
 }
 DEF EVE SolidBox {
-  translation 0.75 1.05 0.15
+  translation 0.75 -0.23 0.15
   size 0.3 0.3 0.3
 }
 E-puck {

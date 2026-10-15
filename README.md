@@ -20,12 +20,20 @@ This repository features:
 
 ## 🤖 Webots 3D Physics Simulation
 
-The physical simulation runs in **Webots R2025a** and bridges abstract mathematical path planning into realistic robot kinematics:
+The physical simulation runs in **Webots R2025a** and brings real robot physics and spatial reasoning to life:
 
-- **Robot Model:** **e-puck** two-wheeled differential-drive mobile robot.
-- **Kinematics & Control:** The supervisor controller (`controllers/walle_controller/walle_controller.py`) commands left and right wheel velocities ($v = 6.28\text{ rad/s}$), applies rotational quaternions to align headings (North, East, South, West), and dead-reckons movement across physical coordinates.
-- **Spatial Mapping:** Maps the 3x3 meter continuous physics floor ($[-1.5\text{m}, +1.5\text{m}]$) to the discrete $10 \times 10$ algorithmic grid.
-- **Neural Integration:** Connects directly to our trained PyTorch neural policy (`ppo_walle_model.zip` / `ppo_walle_advanced.zip`), passing live physical coordinates and sensor data to predict motor actions in real time.
+- **Robot Model:** **e-puck** two-wheeled differential-drive mobile robot equipped with rotational velocity control and dead-reckoning movement.
+- **Supervisor Controller:** [`controllers/walle_controller/walle_controller.py`](file:///D:/Projs/VinnovateIT/WallE_Eve/controllers/walle_controller/walle_controller.py) reads continuous positions, converts physical coordinates into discrete grid indices, and commands wheel velocities ($v = 6.28\text{ rad/s}$) to step precisely from tile to tile.
+- **Dynamic Target Spawning:** EVE is an interactive physical solid box (`DEF EVE SolidBox`). You can drag or translate EVE anywhere across the 3x3 meter arena in the Webots GUI, and WALL-E's supervisor will automatically detect the new position at runtime.
+- **Real-Time Bayesian Triangulation:** 
+  1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`, establishing a distance ring around itself.
+  2. **1-Step Symmetry Breaking (Step 1):** WALL-E takes a single probe step along the axis. By measuring the signal gradient between these two points, the intersection of the two distance circles mathematically breaks radial symmetry, immediately collapsing the probability map onto EVE's true coordinates.
+  3. **Direct Shortest-Path Navigation (Steps 2+):** WALL-E proceeds directly toward EVE along the minimum Manhattan path (orthogonal stair-step) with zero unnecessary detours or looping.
+  4. **Continuous Passive Pinging:** At every tile transition, WALL-E passively samples signal strength, refining its confidence to ~100% and dynamically adjusting course if the target moves.
+
+- **Simulation Video:** A full video recording of WALL-E navigating the Webots arena is available at [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4).
+
+
 
 ---
 
@@ -106,16 +114,44 @@ All four approaches were benchmarked under identical random seeds on a 10x10 map
 ```
 
 ### 2. Run the Webots 3D Physics Simulation
-1. Open the **Webots** application.
-2. Open the world file:
+
+#### Step 1: Open the World
+1. Launch **Webots**.
+2. Go to **File > Open World...** and select:
    ```
    D:\Projs\VinnovateIT\WallE_Eve\worlds\walle_webots.wbt
    ```
-3. Set your Python interpreter in **Tools > Preferences > General > Python command**:
-   ```
-   D:\Projs\VinnovateIT\WallE_Eve\venv\Scripts\python.exe
-   ```
-4. Press the **Play (▶️)** button. WALL-E will physically steer, scan, and navigate toward EVE using the PyTorch neural network.
+
+#### Step 2: Set Python Interpreter (One-Time Setup)
+1. In Webots, open **Tools > Preferences > General**.
+2. In the **Python command** field, make sure it points to your Python environment (for example, `python` or your virtual environment path like `D:\Miniconda3\envs\pytorchCourse\python.exe`).
+3. Click **OK**.
+
+#### Step 3: Move EVE Anywhere You Want (Interactive Testing)
+You can test the robot's dynamic triangulation by placing EVE anywhere in the arena:
+- **Option A (Interactive Dragging):** In the 3D viewport, click on the **EVE** solid box (`DEF EVE SolidBox`). Colored 3D translation arrows will appear. Drag the red (X) or green (Y) arrows to move EVE to any spot on the arena floor.
+- **Option B (Direct Coordinates):** In the left-hand Scene Tree, click the arrow next to `DEF EVE SolidBox`, click on `translation`, and enter any custom coordinates (e.g., `0.75 -0.23 0.15` or `1.05 0.75 0.15`). Keep the Z coordinate at `0.15`.
+- Save the world with `Ctrl+S` if you want to keep the new position.
+
+#### Step 4: Run the Simulation
+1. Click the **Play (▶️)** button on the top toolbar (or **Fast-Forward (⏩)** for faster playback).
+2. Look at the Webots console output:
+   - **Step 01:** WALL-E conducts an initial RF signal scan from its starting cell `[0, 0]`.
+   - **Step 02:** WALL-E takes 1 probe move along the axis; this resolves the 2-circle radial ambiguity and immediately triangulates EVE's exact coordinates.
+   - **Step 03+:** WALL-E navigates directly along the shortest Manhattan path straight to EVE, with continuous signal updates after every single tile move.
+   - **Target Secured:** When WALL-E arrives at EVE, motors stop cleanly, and the terminal displays:
+     ```
+     =======================================================
+     >>> MISSION ACCOMPLISHED: TARGET SECURED!
+     >>> Final Location: [7, 4] | Target (EVE): [7, 4]
+     >>> Remaining Battery: 78% | Total Steps: 11
+     =======================================================
+     ```
+
+#### Step 5: Resetting the Simulation
+- Click the **Reset (⏮️)** button on the toolbar anytime to return WALL-E to `[0, 0]`.
+- Move EVE to a completely different corner, press **Play (▶️)**, and watch WALL-E adapt and track to the new location!
+
 
 ### 3. Run the Tactical Operations Visualizer (Matplotlib GUI)
 Launch the dual-panel desktop visualizer:
@@ -179,6 +215,8 @@ WallE_Eve/
 │       └── walle_controller.py     # Webots 3D robot supervisor controller
 ├── worlds/
 │   └── walle_webots.wbt            # Webots 3D physics arena and e-puck robot model
+├── media/
+│   └── walle_webots.mp4            # Webots 3D simulation video recording
 ├── tests/
 │   ├── test_environment.py         # Gymnasium interface, boundary, and recharge tests
 │   ├── test_agents.py              # Agent lifecycle and belief update tests

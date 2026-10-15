@@ -72,28 +72,18 @@ class WebotsBayesianBrain:
         current_grid = list(current_grid)
         target = self.get_target_guess()
 
-        # Step 1: Initial scan to paint first distance ring
+        # Step 1: Initial scan to establish distance ring
         if self.scans_taken == 0:
-            return 0
+            return 0  # SCAN
         
-        # Step 2: If 1 scan taken, move along baseline to create triangulation parallax
+        # Step 2: 1 single probe step along X-axis to break radial symmetry
         if self.scans_taken == 1:
-            first_loc = self.scan_locs[0]
-            if math.dist(current_grid, first_loc) < 2.5:
-                # Drive East or North to build triangulation baseline
-                if current_grid[0] < self.grid_x - 1 and current_grid[0] <= first_loc[0] + 1:
-                    return 2  # East
-                elif current_grid[1] < self.grid_y - 1:
-                    return 1  # North
-                elif current_grid[0] < self.grid_x - 1:
-                    return 2
-                else:
-                    return 1
+            if current_grid[0] < self.grid_x - 1:
+                return 2  # East
             else:
-                # Baseline achieved! Take second scan to intersect rings
-                return 0
+                return 1  # North
 
-        # Step 3: We have 2+ scans -> circles intersect at true target. Drive straight to target!
+        # Step 3+: Target is triangulated. Drive direct shortest path to target
         cx, cy = current_grid
         tx, ty = target
 
@@ -102,16 +92,12 @@ class WebotsBayesianBrain:
 
         dx = tx - cx
         dy = ty - cy
-        if abs(dx) >= abs(dy):
-            if dx > 0: return 2   # East
-            elif dx < 0: return 4 # West
-            elif dy > 0: return 1 # North
-            elif dy < 0: return 3 # South
-        else:
-            if dy > 0: return 1   # North
-            elif dy < 0: return 3 # South
-            elif dx > 0: return 2 # East
-            elif dx < 0: return 4 # West
+        if abs(dx) >= abs(dy) and dx != 0:
+            return 2 if dx > 0 else 4  # East / West
+        elif dy != 0:
+            return 1 if dy > 0 else 3  # North / South
+        elif dx != 0:
+            return 2 if dx > 0 else 4
             
         return 0
 
@@ -209,6 +195,20 @@ while robot.step(timestep) != -1:
         # Stop motors cleanly to prevent drift before next step
         left_motor.setVelocity(0.0)
         right_motor.setVelocity(0.0)
+
+        # Continuous Bayesian State Estimation: Passive beacon ping after every move
+        current_pos = walle_node.getPosition()
+        grid_loc = get_grid_coords(current_pos)
+        if eve_node:
+            eve_pos = eve_node.getPosition()
+            dist = math.dist([current_pos[0], current_pos[1]], [eve_pos[0], eve_pos[1]])
+            max_phys_dist = math.dist([-1.5, -1.5], [1.5, 1.5])
+            true_signal = max(0.0, 1.0 - (dist / max_phys_dist))
+            noisy_reading = round(float(np.clip(true_signal + np.random.normal(0, 0.03), 0.0, 1.0)), 3)
+            brain.update_scan(grid_loc, noisy_reading)
+            hypo = brain.get_target_guess()
+            conf = float(np.max(brain.belief)) * 100
+            print(f"      [Signal Ping] Grid {grid_loc} | Signal: {noisy_reading:.3f} | Triangulated Target: {hypo} (Confidence: {conf:.1f}%)")
 
     # Check Battery Status
     if battery <= 0:
