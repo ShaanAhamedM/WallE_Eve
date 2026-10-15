@@ -28,7 +28,7 @@ DEF EVE SolidBox {
     metalness 0.2
   }
 }
-SolidBox {
+DEF OBSTACLE_1 SolidBox {
   translation -0.45 -0.45 0.15
   name "obstacle_1"
   size 0.28 0.28 0.3
@@ -38,7 +38,7 @@ SolidBox {
     metalness 0
   }
 }
-SolidBox {
+DEF OBSTACLE_2 SolidBox {
   translation -0.45 -0.15 0.15
   name "obstacle_2"
   size 0.28 0.28 0.3
@@ -48,7 +48,7 @@ SolidBox {
     metalness 0
   }
 }
-SolidBox {
+DEF OBSTACLE_3 SolidBox {
   translation -0.15 -0.45 0.15
   name "obstacle_3"
   size 0.28 0.28 0.3
@@ -58,7 +58,7 @@ SolidBox {
     metalness 0
   }
 }
-SolidBox {
+DEF OBSTACLE_4 SolidBox {
   translation 0.45 0.45 0.15
   name "obstacle_4"
   size 0.28 0.28 0.3
@@ -68,7 +68,7 @@ SolidBox {
     metalness 0
   }
 }
-SolidBox {
+DEF OBSTACLE_5 SolidBox {
   translation 0.45 0.75 0.15
   name "obstacle_5"
   size 0.28 0.28 0.3
