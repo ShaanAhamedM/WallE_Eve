@@ -53,10 +53,19 @@ class InformationAStarAgent(BaseSearchAgent):
         obstacles = set(tuple(o) for o in info.get("obstacles", [])) if info else set()
         max_prob = float(np.max(self.belief_state))
 
-        # Scan if we don't have enough signal resolution
-        if self.scans_taken < 1 or (max_prob < 0.10 and battery > 10):
-            self.last_reasoning = f"A* Planner requesting scan (target uncertainty high: {max_prob*100:.1f}%)"
+        # Scan if we have zero scans
+        if self.scans_taken < 1:
+            self.last_reasoning = "A* Planner initial scan to determine distance heuristic."
             return 0
+
+        # Probe move to break symmetry
+        if self.scans_taken == 1:
+            self.last_reasoning = "A* Planner taking 1-step displacement to break circle symmetry."
+            cx, cy = current_loc
+            if (cx + 1, cy) not in obstacles and cx + 1 < self.grid_x:
+                return 2  # East probe
+            elif (cx, cy + 1) not in obstacles and cy + 1 < self.grid_y:
+                return 1  # North probe
 
         # Plan or continue A* path to target peak
         if not self.planned_path or self.planned_path[0] == tuple(current_loc):

@@ -40,6 +40,9 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         plt.ion()
     plt.style.use('dark_background')
     fig, (ax_map, ax_telemetry) = plt.subplots(1, 2, figsize=(14, 7), gridspec_kw={'width_ratios': [1.2, 1]})
+    ax_batt = ax_telemetry.twinx()
+    fig.subplots_adjust(top=0.86, bottom=0.12, left=0.08, right=0.92, wspace=0.28)
+
     if not headless:
         fig.canvas.manager.set_window_title(f'Operation Axiom: {agent.name}')
 
@@ -56,6 +59,7 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
     steps_history = [0]
 
     action_names = {0: "SCAN", 1: "MOVE NORTH", 2: "MOVE EAST", 3: "MOVE SOUTH", 4: "MOVE WEST"}
+    reasoning_text_obj = fig.text(0.5, 0.03, "", ha='center', fontsize=9, color='#00e5ff', style='italic')
 
     while not (terminated or truncated):
         step_count += 1
@@ -66,12 +70,13 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         action = agent.choose_action(curr_loc, battery, info)
         obs, reward, terminated, truncated, info = env.step(action)
 
-        path_x.append(info["location"][0])
-        path_y.append(info["location"][1])
+        new_loc = info["location"]
+        path_x.append(new_loc[0])
+        path_y.append(new_loc[1])
 
-        # Telemetry ingestion
+        # Telemetry ingestion: observe sensor reading at robot's current position
         sensor_val = obs[3] if len(obs) > 3 else info.get("last_reading", 0.0)
-        agent.update_observation(curr_loc, sensor_val, info)
+        agent.update_observation(new_loc, sensor_val, info)
 
         telemetry = agent.get_telemetry()
         current_entropy = telemetry.get("entropy", 0.0)
@@ -87,8 +92,8 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         # ==========================================
         ax_map.clear()
         ax_map.set_title(
-            f"Tactical Grid | Step {step_count} | Battery: {info['battery']}%\n{act_text}",
-            fontsize=11, fontweight='bold', color='cyan'
+            f"Tactical Grid  |  Step {step_count}  |  Battery: {info['battery']}%\nAction: {act_text}",
+            fontsize=11, fontweight='bold', color='cyan', pad=10
         )
 
         belief_matrix = telemetry.get("belief_state", np.zeros(grid_size))
@@ -106,7 +111,7 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
 
         # Draw WALL-E Trajectory
         ax_map.plot(path_x, path_y, color='deepskyblue', linestyle='-', linewidth=2.5, alpha=0.8, label="Trajectory")
-        ax_map.plot(curr_loc[0], curr_loc[1], 'o', color='cyan', markersize=12, markeredgecolor='white', markeredgewidth=2, label="WALL-E")
+        ax_map.plot(new_loc[0], new_loc[1], 'o', color='cyan', markersize=12, markeredgecolor='white', markeredgewidth=2, label="WALL-E")
         ax_map.plot(env.eve_loc[0], env.eve_loc[1], '*', color='lime', markersize=16, label="EVE Target")
 
         # Peak Probability Coordinate annotation
@@ -123,7 +128,8 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         # RIGHT PANEL: SHANNON ENTROPY & TELEMETRY
         # ==========================================
         ax_telemetry.clear()
-        ax_telemetry.set_title("Information Theory Telemetry & Energy", fontsize=11, fontweight='bold', color='lime')
+        ax_batt.clear()
+        ax_telemetry.set_title("Information Theory Telemetry & Energy", fontsize=11, fontweight='bold', color='lime', pad=10)
 
         # Plot Shannon Entropy on primary axis
         color_entropy = 'mediumspringgreen'
@@ -133,22 +139,19 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
         ax_telemetry.tick_params(axis='y', labelcolor=color_entropy)
         ax_telemetry.grid(color='gray', linestyle=':', linewidth=0.5, alpha=0.3)
 
-        # Plot Battery on secondary twin axis
-        ax_batt = ax_telemetry.twinx()
+        # Plot Battery on secondary twin axis (pre-allocated)
         ax_batt.plot(steps_history, battery_history, color='orange', linestyle='--', linewidth=1.5, label="Battery %")
         ax_batt.set_ylabel("Battery %", color='orange', fontsize=10)
         ax_batt.tick_params(axis='y', labelcolor='orange')
         ax_batt.set_ylim(-5, 105)
 
-        # AI Thought Box below
+        # AI Thought Banner below
         reasoning_snippet = telemetry.get("last_reasoning", "")
-        if len(reasoning_snippet) > 60:
-            reasoning_snippet = reasoning_snippet[:58] + "..."
-        ax_telemetry.text(0.5, -0.18, f"AI CoT: {reasoning_snippet}", transform=ax_telemetry.transAxes,
-                          ha='center', fontsize=8, color='cyan', wrap=True)
+        if len(reasoning_snippet) > 85:
+            reasoning_snippet = reasoning_snippet[:82] + "..."
+        reasoning_text_obj.set_text(f"AI Reasoning: {reasoning_snippet}")
 
         if not headless:
-            plt.tight_layout()
             plt.pause(speed_delay)
 
     # ==========================================
@@ -164,8 +167,10 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
     else:
         final_title = "MISSION FAILED: TIMEOUT (STEP LIMIT REACHED)"
         final_color = 'orange'
-    fig.suptitle(f"{final_title} | Final Battery: {info['battery']}% | Steps: {step_count}",
-                 fontsize=14, fontweight='bold', color=final_color)
+
+    # Set suptitle in the dedicated top headroom (y=0.96) so it never touches subplots
+    fig.suptitle(f"{final_title}  |  Final Battery: {info['battery']}%  |  Steps: {step_count}",
+                 fontsize=13, fontweight='bold', color=final_color, y=0.96)
     plt.draw()
     plt.ioff()
     print("\n" + "=" * 65)

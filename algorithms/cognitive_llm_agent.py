@@ -16,6 +16,7 @@ class CognitiveLLMAgent(BaseSearchAgent):
     def reset(self):
         self.belief_state = np.ones((self.grid_x, self.grid_y), dtype=np.float64) / (self.grid_x * self.grid_y)
         self.scans_taken = 0
+        self.scanned_locations = set()
         self.thought_history = []
         self.last_reasoning = "Cognitive CoT Engine initialized."
         self.estimated_target = [self.grid_x // 2, self.grid_y // 2]
@@ -58,73 +59,81 @@ class CognitiveLLMAgent(BaseSearchAgent):
         last_reading = info.get("last_reading", 0.0) if info else 0.0
         max_prob = float(np.max(self.belief_state))
 
+        dist_to_hypo = math.dist(current_loc, self.estimated_target)
+
         # Chain-of-Thought Step 1: Energy & Environmental Assessment
-        if battery <= 20 and recharge_stations:
+        if battery <= 18 and (dist_to_hypo * 2.5 > battery) and recharge_stations:
             closest_stn = min(recharge_stations, key=lambda s: math.dist(current_loc, s))
-            self.last_reasoning = (
-                f"[CoT Assessment]: Battery critically low at {battery}%. "
-                f"Halting search to execute energy harvest protocol at {closest_stn}."
-            )
-            return self._navigate_step(current_loc, closest_stn, obstacles)
+            if list(current_loc) != list(closest_stn):
+                self.last_reasoning = (
+                    f"[CoT Assessment]: Battery at {battery}%. Target distance is {dist_to_hypo:.1f}. "
+                    f"Recharging at {closest_stn} to guarantee sufficient energy."
+                )
+                return self._navigate_step(current_loc, closest_stn, obstacles)
 
         # Chain-of-Thought Step 2: Information Ambiguity Assessment
         if self.scans_taken < 1:
             self.last_reasoning = (
-                "[CoT Reasoning]: Step 1: Initial state is blind (uniform distribution). "
-                "Step 2: Driving blind has high negative expected value. "
+                "[CoT Reasoning]: Initial state is blind (uniform prior). "
                 "Decision: Execute omnidirectional SCAN to establish baseline signal."
             )
             return 0
 
         # Chain-of-Thought Step 3: Triangulation Disambiguation
-        dist_to_hypo = math.dist(current_loc, self.estimated_target)
-        if max_prob < 0.12 and battery > 12:
+        if self.scans_taken == 1:
+            cx, cy = current_loc
             self.last_reasoning = (
-                f"[CoT Reasoning]: Hypothesis peak confidence is diffuse ({max_prob*100:.1f}%). "
-                f"Triangulation circle has high radial uncertainty. "
-                "Decision: Trigger secondary SCAN to intersect probability rings."
+                "[CoT Reasoning]: 1 scan completed (radial distance known). "
+                "Stepping forward along open axis to intersect distance rings and pinpoint target."
             )
-            return 0
+            if (cx + 1, cy) not in obstacles and cx + 1 < self.grid_x:
+                return 2  # East probe
+            elif (cx, cy + 1) not in obstacles and cy + 1 < self.grid_y:
+                return 1  # North probe
+
+        # Arrived at estimated target
+        if list(current_loc) == list(self.estimated_target):
+            if tuple(current_loc) not in self.scanned_locations:
+                self.scanned_locations.add(tuple(current_loc))
+                self.last_reasoning = f"[CoT Reasoning]: Reached target hypothesis {self.estimated_target}. Verifying target."
+                return 0
+            else:
+                flat_order = np.argsort(self.belief_state.flatten())[::-1]
+                for idx in flat_order:
+                    candidate = list(np.unravel_index(idx, self.belief_state.shape))
+                    if candidate != list(current_loc):
+                        self.estimated_target = candidate
+                        break
 
         # Chain-of-Thought Step 4: Spatial Path Planning
         self.last_reasoning = (
-            f"[CoT Reasoning]: Strong Bayesian attractor detected at {self.estimated_target} "
+            f"[CoT Reasoning]: Target triangulated at {self.estimated_target} "
             f"(Confidence: {max_prob*100:.1f}%, Est. Distance: {dist_to_hypo:.1f} units). "
-            f"Formulating collision-free vector avoiding {len(obstacles)} hazard zones."
+            f"Formulating collision-free vector avoiding hazard zones."
         )
         return self._navigate_step(current_loc, self.estimated_target, obstacles)
 
     def _navigate_step(self, start, target, obstacles):
-        cx, cy = start
-        tx, ty = target
-        dx = tx - cx
-        dy = ty - cy
+        start = tuple(start)
+        goal = tuple(target)
+        if start == goal:
+            return 0
 
-        # Prioritize axis with largest distance
-        preferred_moves = []
-        if abs(dy) >= abs(dx):
-            preferred_moves.extend([1 if dy > 0 else 3, 2 if dx > 0 else 4])
-        else:
-            preferred_moves.extend([2 if dx > 0 else 4, 1 if dy > 0 else 3])
+        queue = [(start, [])]
+        visited = {start}
+        dirs = [(0, 1, 1), (1, 0, 2), (0, -1, 3), (-1, 0, 4)]  # (dx, dy, action)
 
-        # Add remaining alternatives
-        for act in [1, 2, 3, 4]:
-            if act not in preferred_moves:
-                preferred_moves.append(act)
+        while queue:
+            curr, path = queue.pop(0)
+            if curr == goal:
+                return path[0] if path else 0
 
-        act_to_delta = {
-            1: (0, 1),
-            2: (1, 0),
-            3: (0, -1),
-            4: (-1, 0)
-        }
-
-        for act in preferred_moves:
-            delta = act_to_delta[act]
-            nx, ny = cx + delta[0], cy + delta[1]
-            if 0 <= nx < self.grid_x and 0 <= ny < self.grid_y:
-                if (nx, ny) not in obstacles:
-                    return act
+            for dx, dy, action in dirs:
+                nxt = (curr[0] + dx, curr[1] + dy)
+                if 0 <= nxt[0] < self.grid_x and 0 <= nxt[1] < self.grid_y:
+                    if nxt not in obstacles and nxt not in visited:
+                        visited.add(nxt)
+                        queue.append((nxt, path + [action]))
 
         return 0  # Fallback scan
 

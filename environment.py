@@ -51,6 +51,7 @@ class WallEEnv(gym.Env):
         else:            
             self.battery -= self.costs['move']
             self._move_agent(action)
+            self.last_reading = self._generate_noisy_reading()
 
         if np.array_equal(self.agent_loc, self.eve_loc):
             reward = 100.0  # Massive payout for success

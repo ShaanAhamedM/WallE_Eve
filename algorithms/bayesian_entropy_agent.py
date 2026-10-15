@@ -22,6 +22,7 @@ class BayesianEntropyAgent(BaseSearchAgent):
         self.entropy_history = []
         self.confidence_history = []
         self.scans_taken = 0
+        self.scanned_locations = set()
         self.last_reasoning = "Initialized uniform prior belief state."
         self.target_peak = [0, 0]
 
@@ -95,31 +96,45 @@ class BayesianEntropyAgent(BaseSearchAgent):
         entropy = self.get_entropy()
         self.target_peak = self.get_most_likely_location()
 
-        # Low battery survival protocol: divert to recharge station if nearby
-        if battery <= 22 and recharge_stations:
+        dist_to_peak = math.dist(current_loc, self.target_peak)
+
+        # Low battery survival protocol: only divert if battery cannot reach target and station is reachable
+        if battery <= 18 and (dist_to_peak * 2.5 > battery) and recharge_stations:
             closest_station = min(recharge_stations, key=lambda r: math.dist(current_loc, r))
             if list(current_loc) != list(closest_station):
                 self.last_reasoning = f"LOW BATTERY ({battery}%): Diverting to Solar Station at {closest_station}"
                 return self._pathfind_action(current_loc, closest_station, obstacles)
 
-        # Initial scan if we have zero or 1 scan
+        # Initial scan if we have zero scans
         if self.scans_taken < 1:
-            self.last_reasoning = "Initial reconnaissance scan to paint first probability ring."
+            self.last_reasoning = "Initial scan to establish distance radius."
             return 0
 
-        # Disambiguation scan if uncertainty remains high and we arrived near peak
-        dist_to_peak = math.dist(current_loc, self.target_peak)
-        if dist_to_peak <= 1.5 and max_prob < 0.40 and battery > 15:
-            self.last_reasoning = f"Arrived in proximity of target zone {self.target_peak}. Triggering pinpoint scan."
-            return 0
+        # Step 2: 1-step probe to establish triangulation baseline
+        if self.scans_taken == 1:
+            self.last_reasoning = "Stepping forward along axis to break radial circle symmetry."
+            cx, cy = current_loc
+            if (cx + 1, cy) not in obstacles and cx + 1 < self.grid_x:
+                return 2  # East probe
+            elif (cx, cy + 1) not in obstacles and cy + 1 < self.grid_y:
+                return 1  # North probe
 
-        # If confidence is too low to drive reliably, trigger scan
-        if max_prob < self.confidence_threshold and battery > 10:
-            self.last_reasoning = f"Confidence low ({max_prob*100:.1f}% < {self.confidence_threshold*100:.1f}%). Triggering scan."
-            return 0
+        # Arrived right at target peak: trigger scan to verify
+        if list(current_loc) == list(self.target_peak):
+            if tuple(current_loc) not in self.scanned_locations:
+                self.scanned_locations.add(tuple(current_loc))
+                self.last_reasoning = f"Arrived at estimated target {self.target_peak}. Verifying target."
+                return 0
+            else:
+                flat_order = np.argsort(self.belief_state.flatten())[::-1]
+                for idx in flat_order:
+                    candidate = list(np.unravel_index(idx, self.belief_state.shape))
+                    if candidate != list(current_loc):
+                        self.target_peak = candidate
+                        break
 
         # Confident enough to exploit: move towards peak
-        self.last_reasoning = f"Exploitation mode: Navigating to peak belief {self.target_peak} (Confidence: {max_prob*100:.1f}%)"
+        self.last_reasoning = f"Navigating to peak belief {self.target_peak} (Confidence: {max_prob*100:.1f}%)"
         return self._pathfind_action(current_loc, self.target_peak, obstacles)
 
     def _pathfind_action(self, start, goal, obstacles):

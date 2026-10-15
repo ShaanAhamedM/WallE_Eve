@@ -125,6 +125,7 @@ class EnhancedWallEEnv(gym.Env):
         else:  # MOVE
             self.battery -= self.costs.get('move', 2)
             collision = self._move_agent(action)
+            self.last_reading = self._generate_noisy_reading()
             if collision:
                 reward -= 5.0  # Harsh penalty for colliding into obstacles
                 self.battery -= 3  # Impact damage drain
