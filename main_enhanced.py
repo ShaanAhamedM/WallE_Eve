@@ -189,7 +189,10 @@ def run_tactical_mission(agent_type="bayesian", speed_delay=0.15, randomize=Fals
     print(f"• Estimated Confidence:   {confidence:.1f}%")
     print(f"• Resource Status:        {info['battery']}% battery remaining ({step_count} steps taken)")
     print(f"• Recommended Next Step:  {next_step}")
-    print("=" * 65)
+    if save_path:
+        fig.savefig(save_path, dpi=300, facecolor=fig.get_facecolor(), bbox_inches='tight')
+        print(f"Tactical dashboard visualization saved to: {save_path}")
+
     if not headless:
         plt.show()
     else:
@@ -201,7 +204,8 @@ if __name__ == "__main__":
     parser.add_argument("--delay", type=float, default=0.15, help="Simulation step delay in seconds")
     parser.add_argument("--random", action="store_true", help="Randomize EVE starting location")
     parser.add_argument("--headless", action="store_true", help="Run in headless terminal mode without GUI popup")
+    parser.add_argument("--save", type=str, default=None, help="File path to save the final tactical visualization snapshot (e.g. outputs/mission.png)")
     args = parser.parse_args()
 
-    run_tactical_mission(agent_type=args.agent, speed_delay=args.delay, randomize=args.random, headless=args.headless)
+    run_tactical_mission(agent_type=args.agent, speed_delay=args.delay, randomize=args.random, headless=args.headless, save_path=args.save)
 

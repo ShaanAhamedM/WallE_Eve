@@ -1,0 +1,5 @@
+agent,total_episodes,success_rate_pct,mean_battery_remaining,std_battery_remaining,mean_steps,std_steps,mean_collisions,std_collisions
+Bayesian Active Inference,25,96.0,54.44,30.68126464147135,23.08,11.810729585141358,0.0,0.0
+Cognitive CoT Planner,25,96.0,54.44,30.68126464147135,23.08,11.810729585141358,0.0,0.0
+Information A* (IDA*),25,80.0,40.4,28.80104164782934,25.36,9.767633626762763,0.0,0.0
+PPO Neural Policy,25,16.0,11.08,32.598466221587785,31.56,11.004090148667448,9.08,4.08166632639171
