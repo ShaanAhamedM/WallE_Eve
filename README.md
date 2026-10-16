@@ -21,11 +21,13 @@
 > Everything requested by the organizers is ready and verified:
 > 
 > 1. **Simulation Physics:** Review the 3D physics recordings in [`media/`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/) to inspect continuous e-puck kinematics, dynamic target triangulation, and obstacle collision avoidance.
+> 
 > 2. **Master Deliverables Generator:** Run the master script to train the neural network, plot all loss curves and 3D path maps, and generate all logs from scratch in ~35 seconds:
-> ```powershell
-> python generate_outputs.py
-> ```
-> *This single command generates all 14 visual assets, loss curves, and prediction datasets into the [`outputs/`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/) directory.*
+>    ```powershell
+>    python generate_outputs.py
+>    ```
+>    *This single command generates all 14 visual assets, loss curves, and prediction datasets into the [`outputs/`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/) directory.*
+> 
 > 3. **Direct Inspection:** All generated high-resolution 3D maps, loss curves, benchmark charts, and execution logs are pre-rendered and embedded directly below in this README.
 
 ---
