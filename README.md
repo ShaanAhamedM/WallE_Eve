@@ -1,58 +1,58 @@
-# 🤖 WALL-E & EVE: Autonomous Search & Rescue
+# WALL-E & EVE: Autonomous Search & Rescue
 
-**Author:** Shaan Ahamed M  
+**Author:** Shaan Ahamed M 
 **Project:** Operation Axiom (VinnovateIT Recruitment Technical Submission)
 
 ---
 
 > [!IMPORTANT]
-> ### 🎥 Webots 3D Simulation Video Demonstrations
+> ### Webots 3D Simulation Video Demonstrations
 > Complete full-resolution 3D physics recordings are located directly in the [`media/`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/) directory:
-> 1. 🎬 **Obstacle Avoidance & Precision Physical Docking 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) — Complete 3D physics simulation demonstrating WALL-E maneuvering around red hazard blocks in 3D, triangulating grey EVE, and executing precision docking with direct physical surface contact.
-> 2. 🎬 **Dynamic Obstacle Avoidance & Tracking 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) — Alternate run showcasing real-time BFS obstacle avoidance, continuous dynamic obstacle tracking, and bumper-to-surface lock.
-> 3. 🎬 **Baseline Open-Field Navigation:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) — Baseline benchmark showing initial 1-step symmetry breaking and direct Manhattan navigation.
+> 1. **Obstacle Avoidance & Precision Physical Docking 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) — Complete 3D physics simulation demonstrating WALL-E maneuvering around red hazard blocks in 3D, triangulating grey EVE, and executing precision docking with direct physical surface contact.
+> 2. **Dynamic Obstacle Avoidance & Tracking 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) — Alternate run showcasing real-time BFS obstacle avoidance, continuous dynamic obstacle tracking, and bumper-to-surface lock.
+> 3. **Baseline Open-Field Navigation:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) — Baseline benchmark showing initial 1-step symmetry breaking and direct Manhattan navigation.
 
 ---
 
-## ⚡ Evaluator Quickstart & One-Click Deliverables Generator
+## Evaluator Quickstart & One-Click Deliverables Generator
 
 > [!TIP]
-> ### 🚀 Quick Review for Evaluators & Organizers
+> ### Quick Review for Evaluators & Organizers
 > Everything requested by the organizers is ready and verified:
 > 
-> 1. **🎬 Simulation Physics:** Review the 3D physics recordings in [`media/`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/) to inspect continuous e-puck kinematics, dynamic target triangulation, and obstacle collision avoidance.
-> 2. **⚡ Master Deliverables Generator:** Run the master script to train the neural network, plot all loss curves and 3D path maps, and generate all logs from scratch in ~35 seconds:
->    ```powershell
->    python generate_outputs.py
->    ```
->    *This single command generates all 14 visual assets, loss curves, and prediction datasets into the [`outputs/`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/) directory.*
-> 3. **📊 Direct Inspection:** All generated high-resolution 3D maps, loss curves, benchmark charts, and execution logs are pre-rendered and embedded directly below in this README.
+> 1. **Simulation Physics:** Review the 3D physics recordings in [`media/`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/) to inspect continuous e-puck kinematics, dynamic target triangulation, and obstacle collision avoidance.
+> 2. **Master Deliverables Generator:** Run the master script to train the neural network, plot all loss curves and 3D path maps, and generate all logs from scratch in ~35 seconds:
+> ```powershell
+> python generate_outputs.py
+> ```
+> *This single command generates all 14 visual assets, loss curves, and prediction datasets into the [`outputs/`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/) directory.*
+> 3. **Direct Inspection:** All generated high-resolution 3D maps, loss curves, benchmark charts, and execution logs are pre-rendered and embedded directly below in this README.
 
 ---
 
-## 🗺️ Generated Path Visualizations (3D Map & Multi-Agent Graphs)
+## Generated Path Visualizations (3D Map & Multi-Agent Graphs)
 
 > [!IMPORTANT]
-> ### 🧭 Spatial Path Representations (Beyond JSON Coordinates)
+> ### Spatial Path Representations (Beyond JSON Coordinates)
 > As required for comprehensive evaluation, search paths are visualized across both **continuous 3D space-time coordinate systems** and **comparative 2D graph representations**—demonstrating obstacle clearance vectors, energy harvesting waypoints, and docking precision:
 
-| 🗺️ Isometric 3D Space-Time Trajectory Map | 📊 Multi-Agent Path Graph Comparison |
+| Isometric 3D Space-Time Trajectory Map | Multi-Agent Path Graph Comparison |
 | :---: | :---: |
 | ![3D Trajectory Map](outputs/path_visualization_3d.png) | ![Path Graph Comparison](outputs/path_visualization_graph.png) |
 | *3D isometric arena projection showing obstacle hazard pillars (red), solar recharging pads (gold), ground shadow projection, and WALL-E's 3D search trajectory.* | *Comparative 2D graph representation showing directional vectors, collision-free obstacle maneuvers, and step counts across all 4 paradigms.* |
 
-- 🗺️ **High-Resolution 3D Trajectory Map:** [`outputs/path_visualization_3d.png`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/path_visualization_3d.png)
-- 📊 **Multi-Agent Path Graph:** [`outputs/path_visualization_graph.png`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/path_visualization_graph.png)
+- **High-Resolution 3D Trajectory Map:** [`outputs/path_visualization_3d.png`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/path_visualization_3d.png)
+- **Multi-Agent Path Graph:** [`outputs/path_visualization_graph.png`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/path_visualization_graph.png)
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project is an autonomous robotics and AI framework designed for target search-and-rescue under partial observability (**POMDP**). 
 
 The robot (**WALL-E**) is deployed into an arena with obstacles, noisy radio transceiver pings, and strict battery limits. WALL-E cannot directly observe where the target (**EVE**) is located.
 
-### 💡 Engineering Methodology & Rationale
+### Engineering Methodology & Rationale
 To determine the most effective autonomous search architecture, we conducted a systematic, two-tier engineering evaluation:
 1. **Algorithmic Evaluation (2D Testbed):** We implemented and benchmarked **4 distinct AI paradigms** (Bayesian Active Inference, Cognitive Chain-of-Thought Planning, Information-Directed A\*, and Deep Reinforcement Learning) to evaluate how each handles stochastic Gaussian sensor noise ($\sigma = 0.1$), energy limits, and obstacles.
 2. **The Conclusion:** Our comparative benchmark proved that **Bayesian State Estimation** was decisively the superior paradigm—filtering out signal noise, resolving radial distance ambiguity in a single probe step, achieving the highest energy efficiency, and recording 0.0 obstacle collisions.
@@ -66,7 +66,7 @@ This repository features:
 
 ---
 
-## 🤖 Webots 3D Physics Simulation
+## Webots 3D Physics Simulation
 
 The physical simulation runs in **Webots R2025a** and brings real robot physics and spatial reasoning to life:
 
@@ -74,50 +74,50 @@ The physical simulation runs in **Webots R2025a** and brings real robot physics 
 - **Supervisor Controller:** [`controllers/walle_controller/walle_controller.py`](file:///D:/Projs/VinnovateIT/WallE_Eve/controllers/walle_controller/walle_controller.py) reads continuous positions, converts physical coordinates into discrete grid indices, and commands wheel velocities ($v = 6.28\text{ rad/s}$) to step precisely from tile to tile.
 - **Dynamic Target Spawning:** EVE is an interactive physical solid box (`DEF EVE SolidBox`). You can drag or translate EVE anywhere across the 3x3 meter arena in the Webots GUI, and WALL-E's supervisor will automatically detect the new position at runtime.
 - **Real-Time Bayesian Triangulation:** 
-  1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`. Because the sensor is omnidirectional, this single reading defines a circular distance ring $r_1$ of possible locations around the robot.
-  2. **1-Step Symmetry Breaking (Step 1):** WALL-E steps forward by 1 grid cell along the axis to `[1, 0]` and samples a second distance $r_2$. The intersection of the two circles $(x^2 + y^2 = r_1^2$ and $(x-1)^2 + y^2 = r_2^2)$ produces two symmetric solutions: $(x, +y)$ and $(x, -y)$. Since the arena grid is strictly bounded in the positive quadrant ($x \ge 0, y \ge 0$), the negative reflection is automatically discarded, resolving EVE's exact location in just one move.
-  3. **Obstacle-Aware BFS Path Planning (Steps 2+):** Once EVE is triangulated, WALL-E invokes breadth-first search (BFS) graph pathfinding to plan an optimal, collision-free trajectory avoiding all physical obstacle blocks before docking.
-  4. **Dynamic Scene-Tree Sync (Zero Hardcoding):** Obstacle blocks (`DEF OBSTACLE_1`..`5`) are styled in hazard red and EVE in sleek grey. The controller queries `get_dynamic_obstacles(robot)` every step—if you move or drag any block in the 3D viewport, WALL-E recalculates collision-free trajectories on the fly.
-  5. **Precision Docking & Physical Touch:** When entering the target zone (< 0.38m), WALL-E aligns directly with EVE's center and glides forward until direct bumper-to-surface physical contact ($d \le 0.198\text{m}$) is achieved before locking docking clamps.
-  6. **Enclosed Perimeter Standoff:** If EVE is ever completely enclosed by obstacles, WALL-E routes to the closest safe perimeter boundary, halts without colliding, and logs a standoff alert.
+ 1. **Initial RF Scan (Step 0):** WALL-E takes an initial radio frequency scan from its starting position `[0, 0]`. Because the sensor is omnidirectional, this single reading defines a circular distance ring $r_1$ of possible locations around the robot.
+ 2. **1-Step Symmetry Breaking (Step 1):** WALL-E steps forward by 1 grid cell along the axis to `[1, 0]` and samples a second distance $r_2$. The intersection of the two circles $(x^2 + y^2 = r_1^2$ and $(x-1)^2 + y^2 = r_2^2)$ produces two symmetric solutions: $(x, +y)$ and $(x, -y)$. Since the arena grid is strictly bounded in the positive quadrant ($x \ge 0, y \ge 0$), the negative reflection is automatically discarded, resolving EVE's exact location in just one move.
+ 3. **Obstacle-Aware BFS Path Planning (Steps 2+):** Once EVE is triangulated, WALL-E invokes breadth-first search (BFS) graph pathfinding to plan an optimal, collision-free trajectory avoiding all physical obstacle blocks before docking.
+ 4. **Dynamic Scene-Tree Sync (Zero Hardcoding):** Obstacle blocks (`DEF OBSTACLE_1`..`5`) are styled in hazard red and EVE in sleek grey. The controller queries `get_dynamic_obstacles(robot)` every step—if you move or drag any block in the 3D viewport, WALL-E recalculates collision-free trajectories on the fly.
+ 5. **Precision Docking & Physical Touch:** When entering the target zone (< 0.38m), WALL-E aligns directly with EVE's center and glides forward until direct bumper-to-surface physical contact ($d \le 0.198\text{m}$) is achieved before locking docking clamps.
+ 6. **Enclosed Perimeter Standoff:** If EVE is ever completely enclosed by obstacles, WALL-E routes to the closest safe perimeter boundary, halts without colliding, and logs a standoff alert.
 
-### 🎮 Webots Simulation Controls
+### Webots Simulation Controls
 
 | Action | Toolbar Button | Description |
 | :--- | :---: | :--- |
-| **Play** | ▶️ | Starts the physics engine and runs the autonomous controller. |
-| **Fast-Forward** | ⏩ | Accelerates simulation speed for rapid testing. |
-| **Pause** | ⏸️ | Freezes the simulation to inspect robot coordinates and console telemetry. |
-| **Reset / Reload** | ⏮️ / `Ctrl+Shift+T` | Restores the world, re-reads scene tree nodes, and resets step clock. |
+| **Play** | Play | Starts the physics engine and runs the autonomous controller. |
+| **Fast-Forward** | Fast-Forward | Accelerates simulation speed for rapid testing. |
+| **Pause** | Pause | Freezes the simulation to inspect robot coordinates and console telemetry. |
+| **Reset / Reload** | Reset / `Ctrl+Shift+T` | Restores the world, re-reads scene tree nodes, and resets step clock. |
 
 - **Simulation Video Demonstrations:**
-  - 🎥 **Obstacle Avoidance & Physical Touch Demo 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) *(Full obstacle avoidance run + physical docking)*
-  - 🎥 **Obstacle Avoidance & Physical Touch Demo 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) *(Dynamic obstacle avoidance alternate angle)*
-  - 🎥 **Baseline Demo:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) *(Direct shortest-path navigation)*
+ - **Obstacle Avoidance & Physical Touch Demo 1:** [`media/walle_webots_1.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_1.mp4) *(Full obstacle avoidance run + physical docking)*
+ - **Obstacle Avoidance & Physical Touch Demo 2:** [`media/walle_webots_2.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots_2.mp4) *(Dynamic obstacle avoidance alternate angle)*
+ - **Baseline Demo:** [`media/walle_webots.mp4`](file:///D:/Projs/VinnovateIT/WallE_Eve/media/walle_webots.mp4) *(Direct shortest-path navigation)*
 
 
 
 ---
 
-## 🎮 The Rules & Mechanics
+## The Rules & Mechanics
 
 The simulation operates on a 10x10 discrete coordinate grid with realistic constraints:
 
 - **Starting Positions:** WALL-E starts at `[0, 0]`. EVE is placed either at a fixed position `[7, 8]` or randomly spawned anywhere on the map.
 - **Battery Budget:** WALL-E starts with **100% battery**.
 - **Action Space:**
-  - `0: SCAN` — Triggers the radio sensor to read signal strength from the current spot. Costs **5% battery**.
-  - `1: MOVE NORTH` (Up), `2: MOVE EAST` (Right), `3: MOVE SOUTH` (Down), `4: MOVE WEST` (Left) — Moves 1 grid square. Costs **2% battery**.
+ - `0: SCAN` — Triggers the radio sensor to read signal strength from the current spot. Costs **5% battery**.
+ - `1: MOVE NORTH` (Up), `2: MOVE EAST` (Right), `3: MOVE SOUTH` (Down), `4: MOVE WEST` (Left) — Moves 1 grid square. Costs **2% battery**.
 - **Signal Sensor:** Emits a reading between `0.0` (far away) and `1.0` (right on top of EVE) based on Euclidean distance, with added random Gaussian noise ($\sigma = 0.1$).
 - **Obstacles (Asteroids / Debris):** Walls and debris scattered on the grid (e.g., `[3, 3]`, `[3, 4]`, `[4, 3]`, `[6, 6]`, `[6, 7]`). If WALL-E bumps into one, he bounces back, takes a battery damage penalty (-3%), and loses points.
 - **Solar Recharge Pods:** Designated tiles (e.g., `[2, 7]` and `[7, 2]`). Stepping on a recharge pod restores **+25% battery**, allowing the robot to survive longer search missions.
 - **Mission Outcomes:**
-  - **Success:** WALL-E steps onto the exact tile where EVE is located.
-  - **Failure:** Battery reaches 0%, or the step limit (60 steps) expires.
+ - **Success:** WALL-E steps onto the exact tile where EVE is located.
+ - **Failure:** Battery reaches 0%, or the step limit (60 steps) expires.
 
 ---
 
-## 🧠 The 4 Algorithmic Approaches
+## The 4 Algorithmic Approaches
 
 ### 1. Bayesian Active Inference (`bayesian_entropy_agent.py`)
 - **How it works:** WALL-E maintains a 10x10 grid of probabilities (called a *belief state*). Initially, every cell has an equal chance ($1/100 = 0.01$).
@@ -127,17 +127,17 @@ The simulation operates on a 10x10 discrete coordinate grid with realistic const
 
 ### 2. Cognitive Chain-of-Thought (CoT) Planner (`cognitive_llm_agent.py`)
 - **How it works:** Simulates a structured deliberation cycle at every step before acting:
-  1. *Battery Check:* If battery drops below 20%, it temporarily pauses the hunt and navigates to the nearest solar station.
-  2. *Signal Ambiguity Check:* If no scans have been taken yet, take an initial baseline scan.
-  3. *Triangulation Check:* If the candidate location has low confidence, trigger a scan to resolve the distance ring.
-  4. *Obstacle-Free Vector:* Plans a multi-step heading that avoids known hazard tiles.
+ 1. *Battery Check:* If battery drops below 20%, it temporarily pauses the hunt and navigates to the nearest solar station.
+ 2. *Signal Ambiguity Check:* If no scans have been taken yet, take an initial baseline scan.
+ 3. *Triangulation Check:* If the candidate location has low confidence, trigger a scan to resolve the distance ring.
+ 4. *Obstacle-Free Vector:* Plans a multi-step heading that avoids known hazard tiles.
 - **Advantage:** Highly explainable decisions with a live reasoning log recorded at every step.
 
 ### 3. Information-Directed A* (`heuristic_astar_agent.py`)
 - **How it works:** Adapts the classic A* search algorithm from game development:
-  - Total Cost $f(n) = g(n) + h(n)$
-  - $g(n)$: The cumulative battery cost spent so far (2% per step).
-  - $h(n)$: The Manhattan distance to the most likely target coordinate.
+ - Total Cost $f(n) = g(n) + h(n)$
+ - $g(n)$: The cumulative battery cost spent so far (2% per step).
+ - $h(n)$: The Manhattan distance to the most likely target coordinate.
 - **Obstacle Awareness:** Uses a priority queue (min-heap) to automatically route around all obstacles without collisions.
 - **Scanning Trigger:** If the target location is too uncertain, it stops to scan before committing to a long path.
 
@@ -147,41 +147,41 @@ The simulation operates on a 10x10 discrete coordinate grid with realistic const
 - **Reward Shaping (PBRS):** Receives positive rewards (+120) for finding EVE, large penalties (-60) for running out of battery, small step penalties (-0.5) to encourage fast routes, and potential-based distance rewards to steer toward the signal gradient.
 - **Domain Randomization:** In `train_advanced.py`, EVE is randomly spawned across hundreds of thousands of episodes so the policy learns to search rather than memorize a single coordinate.
 
-#### 📉 Model Training Metrics & Loss Graphs
+#### Model Training Metrics & Loss Graphs
 
 > [!NOTE]
 > Below are the empirical loss curves and policy convergence graphs logged during 60,000 timesteps of vectorized Actor-Critic optimization:
 
-| 📉 Actor-Critic Loss Curves (PPO) | 🎯 Reward & Episode Duration Convergence |
+| Actor-Critic Loss Curves (PPO) | Reward & Episode Duration Convergence |
 | :---: | :---: |
 | ![Training Loss Curves](outputs/training_loss_curves.png) | ![Training Reward Metrics](outputs/training_reward_metrics.png) |
 | *Policy gradient loss ($L^{CLIP}$), Critic Value function MSE, Policy Entropy bonus, and Approx KL divergence.* | *Cumulative episodic return convergence (PBRS shaping) and steps taken to target over 60,000 timesteps.* |
 
-- 📋 **Full Training Execution Log:** [`outputs/training.log`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/training.log)
-- 📊 **Tabular Training Loss Metrics (CSV):** [`outputs/training_metrics.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/training_metrics.csv)
+- **Full Training Execution Log:** [`outputs/training.log`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/training.log)
+- **Tabular Training Loss Metrics (CSV):** [`outputs/training_metrics.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/training_metrics.csv)
 
 ---
 
-## 📊 Benchmark Results (25 Randomized Trials)
+## Benchmark Results (25 Randomized Trials)
 
 All four approaches were benchmarked under identical random seeds on a 10x10 map with active obstacles and 10% Gaussian sensor noise:
 
 | Method | Success Rate | Mean Battery Left | Mean Steps | Obstacle Collisions | Compute / Episode |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **🛰️ Bayesian Active Inference** | **96.0%** | **54.4%** | **23.1** | **0.0** | ~7.7 ms |
-| **🧠 Cognitive CoT Planner** | **96.0%** | **54.4%** | **23.1** | **0.0** | ~3.9 ms |
-| **⚡ Information A* (IDA*)** | 80.0% | 40.4% | 25.4 | **0.0** | **~3.0 ms** |
-| **🤖 PPO Neural Network** | 16.0% | 11.1% | 31.6 | 9.1 | ~13.5 ms |
+| **Bayesian Active Inference** | **96.0%** | **54.4%** | **23.1** | **0.0** | ~7.7 ms |
+| **Cognitive CoT Planner** | **96.0%** | **54.4%** | **23.1** | **0.0** | ~3.9 ms |
+| **Information A* (IDA*)** | 80.0% | 40.4% | 25.4 | **0.0** | **~3.0 ms** |
+| **PPO Neural Network** | 16.0% | 11.1% | 31.6 | 9.1 | ~13.5 ms |
 
-### 📈 Evaluation Benchmark Visualizations & Trade-Off Radar
+### Evaluation Benchmark Visualizations & Trade-Off Radar
 
-| 📊 Multi-Metric Benchmark Comparison | 🕸️ Paradigm Trade-Off Radar Analysis |
+| Multi-Metric Benchmark Comparison | Paradigm Trade-Off Radar Analysis |
 | :---: | :---: |
 | ![Benchmark Metrics](outputs/evaluation_benchmark_metrics.png) | ![Radar Chart](outputs/evaluation_radar_chart.png) |
 | *Comparative bar plots with standard deviation error bars across Success Rate, Battery, Steps, and Collisions.* | *5-axis radar chart showing normalized performance across Accuracy, Energy, Speed, Safety, and Latency.* |
 
-- 📄 **Tabular Benchmark Summary:** [`outputs/benchmark_summary.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/benchmark_summary.csv)
-- 📄 **Raw Monte Carlo JSON Data:** [`benchmark_results.json`](file:///D:/Projs/VinnovateIT/WallE_Eve/benchmark_results.json)
+- **Tabular Benchmark Summary:** [`outputs/benchmark_summary.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/benchmark_summary.csv)
+- **Raw Monte Carlo JSON Data:** [`benchmark_results.json`](file:///D:/Projs/VinnovateIT/WallE_Eve/benchmark_results.json)
 
 ### Key Takeaways from the Data:
 1. **Classical & Reasoning Planners Outperform Unregularized RL:** The baseline PPO model had a high win rate when EVE was always placed at fixed coordinates, but its success dropped to 16% with heavy collisions on random maps. This demonstrates why pure RL fails under partial observability without explicit spatial priors.
@@ -190,7 +190,7 @@ All four approaches were benchmarked under identical random seeds on a 10x10 map
 
 ---
 
-## ⚡ Quickstart & Execution Guide
+## Quickstart & Execution Guide
 
 ### 1. Setup Virtual Environment
 ```powershell
@@ -209,9 +209,9 @@ pip install -r requirements.txt
 #### Step 1: Open the World
 1. Launch **Webots**.
 2. Go to **File > Open World...** and select:
-   ```
-   D:\Projs\VinnovateIT\WallE_Eve\worlds\walle_webots.wbt
-   ```
+ ```
+ D:\Projs\VinnovateIT\WallE_Eve\worlds\walle_webots.wbt
+ ```
 
 #### Step 2: Set Python Interpreter (One-Time Setup)
 1. In Webots, open **Tools > Preferences > General**.
@@ -225,23 +225,23 @@ You can test the robot's dynamic triangulation by placing EVE anywhere in the ar
 - Save the world with `Ctrl+S` if you want to keep the new position.
 
 #### Step 4: Run the Simulation
-1. Click the **Play (▶️)** button on the top toolbar (or **Fast-Forward (⏩)** for faster playback).
+1. Click the **Play** button on the top toolbar (or **Fast-Forward** for faster playback).
 2. Look at the Webots console output:
-   - **Step 01:** WALL-E conducts an initial RF signal scan from its starting cell `[0, 0]`.
-   - **Step 02:** WALL-E takes 1 probe move along the axis; this resolves the 2-circle radial ambiguity and immediately triangulates EVE's exact coordinates.
-   - **Step 03+:** WALL-E navigates directly along the shortest Manhattan path straight to EVE, with continuous signal updates after every single tile move.
-   - **Target Secured:** When WALL-E arrives at EVE, motors stop cleanly, and the terminal displays:
-     ```
-     =======================================================
-     >>> MISSION ACCOMPLISHED: TARGET SECURED!
-     >>> Final Location: [7, 4] | Target (EVE): [7, 4]
-     >>> Remaining Battery: 78% | Total Steps: 11
-     =======================================================
-     ```
+ - **Step 01:** WALL-E conducts an initial RF signal scan from its starting cell `[0, 0]`.
+ - **Step 02:** WALL-E takes 1 probe move along the axis; this resolves the 2-circle radial ambiguity and immediately triangulates EVE's exact coordinates.
+ - **Step 03+:** WALL-E navigates directly along the shortest Manhattan path straight to EVE, with continuous signal updates after every single tile move.
+ - **Target Secured:** When WALL-E arrives at EVE, motors stop cleanly, and the terminal displays:
+ ```
+ =======================================================
+ >>> MISSION ACCOMPLISHED: TARGET SECURED!
+ >>> Final Location: [7, 4] | Target (EVE): [7, 4]
+ >>> Remaining Battery: 78% | Total Steps: 11
+ =======================================================
+ ```
 
 #### Step 5: Resetting the Simulation
-- Click the **Reset (⏮️)** button on the toolbar anytime to return WALL-E to `[0, 0]`.
-- Move EVE to a completely different corner, press **Play (▶️)**, and watch WALL-E adapt and track to the new location!
+- Click the **Reset** button on the toolbar anytime to return WALL-E to `[0, 0]`.
+- Move EVE to a completely different corner, press **Play**, and watch WALL-E adapt and track to the new location!
 
 
 ### 3. Run the Tactical Operations Visualizer (Matplotlib GUI)
@@ -260,21 +260,21 @@ python main_enhanced.py --agent drl
 python main_enhanced.py --agent astar
 
 # Optional flags:
-# --random    (randomize EVE's starting position)
+# --random (randomize EVE's starting position)
 # --delay 0.1 (adjust animation playback speed)
-# --headless  (run in terminal without GUI window)
+# --headless (run in terminal without GUI window)
 # --save outputs/my_mission.png (save high-res dashboard snapshot)
 ```
 
-#### 🛰️ Tactical Operations Visualizations & Telemetry Logs
+#### Tactical Operations Visualizations & Telemetry Logs
 
-| 🛰️ Bayesian Active Inference Heatmap | 📉 Shannon Entropy Reduction Comparison |
+| Bayesian Active Inference Heatmap | Shannon Entropy Reduction Comparison |
 | :---: | :---: |
 | ![Tactical Bayesian](outputs/tactical_visualization_bayesian.png) | ![Shannon Entropy Decay](outputs/shannon_entropy_decay.png) |
 | *Dual-panel tactical display showing 2D posterior belief surface $P(S)$ peaked on EVE and BFS collision-free path.* | *Empirical Shannon entropy decay $H(B)$ showing uncertainty reduction from 6.64 bits down to 0 bits.* |
 
-- 📋 **Step-by-Step Model Prediction Dataset (CSV):** [`outputs/model_predictions_telemetry.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/model_predictions_telemetry.csv)
-- 📝 **Live Mission Execution Telemetry Log:** [`outputs/mission_telemetry.log`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/mission_telemetry.log)
+- **Step-by-Step Model Prediction Dataset (CSV):** [`outputs/model_predictions_telemetry.csv`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/model_predictions_telemetry.csv)
+- **Live Mission Execution Telemetry Log:** [`outputs/mission_telemetry.log`](file:///D:/Projs/VinnovateIT/WallE_Eve/outputs/mission_telemetry.log)
 
 ### 4. Run the Monte Carlo Benchmark
 ```powershell
@@ -302,7 +302,7 @@ One-click master pipeline that trains/evaluates the policy, plots all loss curve
 
 ---
 
-## 📂 Codebase File Map
+## Codebase File Map
 
 ```
 WallE_Eve/
