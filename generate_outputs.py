@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import time
+import shutil
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -22,15 +23,30 @@ from algorithms import (
 )
 
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# Dedicated model directories
+DIR_BAYESIAN = os.path.join(OUTPUT_DIR, "1_bayesian_active_inference")
+DIR_PPO = os.path.join(OUTPUT_DIR, "2_deep_reinforcement_learning_ppo")
+DIR_COT = os.path.join(OUTPUT_DIR, "3_cognitive_cot_planner")
+DIR_ASTAR = os.path.join(OUTPUT_DIR, "4_heuristic_astar")
+DIR_BENCHMARKS = os.path.join(OUTPUT_DIR, "comparative_benchmarks")
+
+for d in [OUTPUT_DIR, DIR_BAYESIAN, DIR_PPO, DIR_COT, DIR_ASTAR, DIR_BENCHMARKS]:
+    os.makedirs(d, exist_ok=True)
+
+def safe_copy(src, dst):
+    try:
+        shutil.copyfile(src, dst)
+    except Exception as e:
+        pass
 
 # ==============================================================================
-# 1. EVALUATION BENCHMARK METRICS & CHARTS
+# 1. EVALUATION BENCHMARK METRICS & CHARTS (comparative_benchmarks/)
 # ==============================================================================
 
 def generate_evaluation_charts(benchmark_json_path="benchmark_results.json"):
     print("\n" + "=" * 65)
-    print(">>> [1/4] GENERATING EVALUATION BENCHMARK METRIC CHARTS...")
+    print(">>> [1/5] GENERATING EVALUATION BENCHMARK METRIC CHARTS...")
     print("=" * 65)
 
     if not os.path.exists(benchmark_json_path):
@@ -54,8 +70,9 @@ def generate_evaluation_charts(benchmark_json_path="benchmark_results.json"):
         std_collisions=("collisions", "std")
     ).reset_index()
 
-    summary_csv_path = os.path.join(OUTPUT_DIR, "benchmark_summary.csv")
+    summary_csv_path = os.path.join(DIR_BENCHMARKS, "benchmark_summary.csv")
     summary_df.to_csv(summary_csv_path, index=False)
+    safe_copy(summary_csv_path, os.path.join(OUTPUT_DIR, "benchmark_summary.csv"))
     print(f"Saved benchmark summary table to {summary_csv_path}")
 
     # Set aesthetic dark theme
@@ -125,8 +142,9 @@ def generate_evaluation_charts(benchmark_json_path="benchmark_results.json"):
                  fontsize=15, fontweight='bold', color='white', y=0.98)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    chart_path = os.path.join(OUTPUT_DIR, "evaluation_benchmark_metrics.png")
+    chart_path = os.path.join(DIR_BENCHMARKS, "evaluation_benchmark_metrics.png")
     fig.savefig(chart_path, dpi=300, facecolor=fig.get_facecolor(), edgecolor='none')
+    safe_copy(chart_path, os.path.join(OUTPUT_DIR, "evaluation_benchmark_metrics.png"))
     plt.close(fig)
     print(f"Saved evaluation benchmark chart to {chart_path}")
 
@@ -141,7 +159,6 @@ def generate_evaluation_charts(benchmark_json_path="benchmark_results.json"):
     radar_fig.patch.set_facecolor('#0d1117')
     ax_radar.set_facecolor('#161b22')
 
-    # Normalized metrics (0 to 100)
     agent_radar_data = {
         "Bayesian Active Inference": [96.0, (54.4/100)*100, max(0, 100 - (23.1/60)*100), 100.0, 90.0],
         "Cognitive CoT Planner":     [96.0, (54.4/100)*100, max(0, 100 - (23.1/60)*100), 100.0, 95.0],
@@ -164,14 +181,15 @@ def generate_evaluation_charts(benchmark_json_path="benchmark_results.json"):
     ax_radar.legend(loc='upper right', bbox_to_anchor=(1.25, 1.1), fontsize=9)
     ax_radar.set_title("Multi-Paradigm Performance Trade-Off Analysis", fontsize=13, fontweight='bold', color='cyan', pad=20)
 
-    radar_path = os.path.join(OUTPUT_DIR, "evaluation_radar_chart.png")
+    radar_path = os.path.join(DIR_BENCHMARKS, "evaluation_radar_chart.png")
     radar_fig.savefig(radar_path, dpi=300, facecolor=radar_fig.get_facecolor(), bbox_inches='tight')
+    safe_copy(radar_path, os.path.join(OUTPUT_DIR, "evaluation_radar_chart.png"))
     plt.close(radar_fig)
     print(f"Saved radar chart to {radar_path}")
 
 
 # ==============================================================================
-# 2. MODEL TRAINING LOSS GRAPHS & TRAINING METRICS
+# 2. MODEL TRAINING LOSS GRAPHS & TRAINING METRICS (2_deep_reinforcement_learning_ppo/)
 # ==============================================================================
 
 class AdvancedTrainingCallback(BaseCallback):
@@ -209,7 +227,7 @@ class AdvancedTrainingCallback(BaseCallback):
 
 def generate_training_artifacts(total_timesteps=60000):
     print("\n" + "=" * 65)
-    print(f">>> [2/4] TRAINING MODEL & RECORDING LOSS CURVES ({total_timesteps:,} STEPS)...")
+    print(f">>> [2/5] TRAINING PPO MODEL & RECORDING LOSS CURVES ({total_timesteps:,} STEPS)...")
     print("=" * 65)
 
     def env_fn():
@@ -240,7 +258,7 @@ def generate_training_artifacts(total_timesteps=60000):
     training_duration = time.time() - start_t
     print(f"Training completed in {training_duration:.2f} seconds.")
 
-    # Save model
+    # Save updated model
     model.save("ppo_walle_advanced")
     print("Saved updated weights to ppo_walle_advanced.zip")
 
@@ -248,12 +266,13 @@ def generate_training_artifacts(total_timesteps=60000):
     loss_df = pd.DataFrame(callback.loss_records)
     ep_df = pd.DataFrame(callback.episode_records)
 
-    metrics_csv_path = os.path.join(OUTPUT_DIR, "training_metrics.csv")
+    metrics_csv_path = os.path.join(DIR_PPO, "training_metrics.csv")
     loss_df.to_csv(metrics_csv_path, index=False)
+    safe_copy(metrics_csv_path, os.path.join(OUTPUT_DIR, "training_metrics.csv"))
     print(f"Saved training loss metrics to {metrics_csv_path}")
 
     # Export Training Log File
-    log_file_path = os.path.join(OUTPUT_DIR, "training.log")
+    log_file_path = os.path.join(DIR_PPO, "training.log")
     with open(log_file_path, "w") as f:
         f.write("=" * 75 + "\n")
         f.write("        OPERATION AXIOM: PPO REINFORCEMENT LEARNING TRAINING LOG\n")
@@ -274,16 +293,16 @@ def generate_training_artifacts(total_timesteps=60000):
         if callback.episode_records:
             final_rewards = [e['reward'] for e in callback.episode_records[-50:]]
             f.write(f"Mean Reward (Last 50 Episodes): {np.mean(final_rewards):.2f}\n")
+    safe_copy(log_file_path, os.path.join(OUTPUT_DIR, "training.log"))
     print(f"Saved training execution log to {log_file_path}")
 
-    # Plot 1: Training Loss Curves (4 subplots)
+    # Plot 1: Training Loss Curves
     plt.style.use('dark_background')
     fig, axes = plt.subplots(2, 2, figsize=(14, 9))
     fig.patch.set_facecolor('#0d1117')
 
     steps = loss_df["step"].values
 
-    # Subplot 1: Policy Gradient Loss
     ax1 = axes[0, 0]
     ax1.set_facecolor('#161b22')
     ax1.plot(steps, loss_df["policy_loss"].values, color='#00e5ff', linewidth=1.8, marker='o', markersize=4)
@@ -292,7 +311,6 @@ def generate_training_artifacts(total_timesteps=60000):
     ax1.set_ylabel("L^{CLIP} Loss", fontsize=9, color='white')
     ax1.grid(True, linestyle='--', alpha=0.3, color='gray')
 
-    # Subplot 2: Critic Value Loss
     ax2 = axes[0, 1]
     ax2.set_facecolor('#161b22')
     ax2.plot(steps, loss_df["value_loss"].values, color='#f59e0b', linewidth=1.8, marker='s', markersize=4)
@@ -301,7 +319,6 @@ def generate_training_artifacts(total_timesteps=60000):
     ax2.set_ylabel("MSE Loss", fontsize=9, color='white')
     ax2.grid(True, linestyle='--', alpha=0.3, color='gray')
 
-    # Subplot 3: Policy Entropy Loss
     ax3 = axes[1, 0]
     ax3.set_facecolor('#161b22')
     ax3.plot(steps, loss_df["entropy_loss"].values, color='#10b981', linewidth=1.8, marker='^', markersize=4)
@@ -310,7 +327,6 @@ def generate_training_artifacts(total_timesteps=60000):
     ax3.set_ylabel("Entropy Bonus", fontsize=9, color='white')
     ax3.grid(True, linestyle='--', alpha=0.3, color='gray')
 
-    # Subplot 4: Approximate KL Divergence
     ax4 = axes[1, 1]
     ax4.set_facecolor('#161b22')
     ax4.plot(steps, loss_df["approx_kl"].values, color='#a855f7', linewidth=1.8, marker='d', markersize=4)
@@ -323,8 +339,9 @@ def generate_training_artifacts(total_timesteps=60000):
                  fontsize=14, fontweight='bold', color='white', y=0.98)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    loss_chart_path = os.path.join(OUTPUT_DIR, "training_loss_curves.png")
+    loss_chart_path = os.path.join(DIR_PPO, "training_loss_curves.png")
     fig.savefig(loss_chart_path, dpi=300, facecolor=fig.get_facecolor())
+    safe_copy(loss_chart_path, os.path.join(OUTPUT_DIR, "training_loss_curves.png"))
     plt.close(fig)
     print(f"Saved training loss graphs to {loss_chart_path}")
 
@@ -337,12 +354,10 @@ def generate_training_artifacts(total_timesteps=60000):
         ep_rewards = ep_df["reward"].values
         ep_lengths = ep_df["length"].values
 
-        # Rolling window averages
         window = min(30, max(5, len(ep_df)//10))
         rolling_rewards = pd.Series(ep_rewards).rolling(window=window, min_periods=1).mean().values
         rolling_lengths = pd.Series(ep_lengths).rolling(window=window, min_periods=1).mean().values
 
-        # Reward plot
         ax_rew.set_facecolor('#161b22')
         ax_rew.scatter(ep_steps, ep_rewards, color='#00e5ff', alpha=0.25, s=15, label='Raw Episode Return')
         ax_rew.plot(ep_steps, rolling_rewards, color='#00e5ff', linewidth=2.2, label=f'Moving Avg (Window={window})')
@@ -353,7 +368,6 @@ def generate_training_artifacts(total_timesteps=60000):
         ax_rew.legend(loc='lower right', fontsize=9)
         ax_rew.grid(True, linestyle='--', alpha=0.3, color='gray')
 
-        # Length plot
         ax_len.set_facecolor('#161b22')
         ax_len.scatter(ep_steps, ep_lengths, color='#10b981', alpha=0.25, s=15, label='Raw Episode Steps')
         ax_len.plot(ep_steps, rolling_lengths, color='#10b981', linewidth=2.2, label=f'Moving Avg (Window={window})')
@@ -367,22 +381,27 @@ def generate_training_artifacts(total_timesteps=60000):
                   fontsize=13, fontweight='bold', color='white', y=0.98)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    reward_chart_path = os.path.join(OUTPUT_DIR, "training_reward_metrics.png")
+    reward_chart_path = os.path.join(DIR_PPO, "training_reward_metrics.png")
     fig2.savefig(reward_chart_path, dpi=300, facecolor=fig2.get_facecolor())
+    safe_copy(reward_chart_path, os.path.join(OUTPUT_DIR, "training_reward_metrics.png"))
     plt.close(fig2)
     print(f"Saved training reward metrics to {reward_chart_path}")
 
 
 # ==============================================================================
-# 3. TACTICAL MISSION VISUALIZATIONS & ENTROPY DECAY PLOTS
+# 3. TACTICAL MISSION VISUALIZATIONS FOR ALL 4 MODELS
 # ==============================================================================
 
-def render_and_save_mission(agent_type="bayesian", save_name="tactical_visualization_bayesian.png", seed=42):
+def render_and_save_mission(agent_type="bayesian", save_path="tactical_visualization.png", seed=42):
     env = EnhancedWallEEnv(config_path="config_advanced.json", randomize_target=False)
     grid_size = env.grid_size
 
     if agent_type == "bayesian":
         agent = BayesianEntropyAgent(grid_size)
+    elif agent_type == "cot":
+        agent = CognitiveLLMAgent(grid_size)
+    elif agent_type == "astar":
+        agent = InformationAStarAgent(grid_size)
     else:
         agent = DRLAgent(grid_size)
 
@@ -397,8 +416,6 @@ def render_and_save_mission(agent_type="bayesian", save_name="tactical_visualiza
     entropy_history = []
     battery_history = [info["battery"]]
     steps_history = [0]
-
-    action_names = {0: "SCAN", 1: "MOVE NORTH", 2: "MOVE EAST", 3: "MOVE SOUTH", 4: "MOVE WEST"}
 
     while not (terminated or truncated):
         step_count += 1
@@ -476,21 +493,35 @@ def render_and_save_mission(agent_type="bayesian", save_name="tactical_visualiza
     status_str = "MISSION ACCOMPLISHED: TARGET SECURED" if success else "MISSION FAILED"
     status_color = 'lime' if success else 'crimson'
 
-    fig.suptitle(f"{status_str} | Agent: {agent.name.upper()} | Steps: {step_count} | Battery: {info['battery']}%",
+    fig.suptitle(f"{status_str} | Model: {agent.name.upper()} | Steps: {step_count} | Battery: {info['battery']}%",
                  fontsize=13, fontweight='bold', color=status_color, y=0.96)
 
-    fig_path = os.path.join(OUTPUT_DIR, save_name)
-    fig.savefig(fig_path, dpi=300, facecolor=fig.get_facecolor())
+    fig.savefig(save_path, dpi=300, facecolor=fig.get_facecolor())
     plt.close(fig)
-    print(f"Saved tactical visualization to {fig_path}")
+    print(f"Saved tactical visualization to {save_path}")
 
-def generate_entropy_comparison_plot():
+def generate_tactical_visualizations_all_models():
     print("\n" + "=" * 65)
-    print(">>> [3/4] GENERATING TACTICAL MISSION VISUALIZATIONS & ENTROPY DECAY...")
+    print(">>> [3/5] GENERATING TACTICAL MISSION VISUALIZATIONS FOR ALL 4 MODELS...")
     print("=" * 65)
 
-    render_and_save_mission(agent_type="bayesian", save_name="tactical_visualization_bayesian.png", seed=42)
-    render_and_save_mission(agent_type="drl", save_name="tactical_visualization_drl.png", seed=42)
+    # 1. Bayesian
+    b_path = os.path.join(DIR_BAYESIAN, "tactical_visualization.png")
+    render_and_save_mission(agent_type="bayesian", save_path=b_path, seed=42)
+    safe_copy(b_path, os.path.join(OUTPUT_DIR, "tactical_visualization_bayesian.png"))
+
+    # 2. PPO DRL
+    ppo_path = os.path.join(DIR_PPO, "tactical_visualization.png")
+    render_and_save_mission(agent_type="drl", save_path=ppo_path, seed=42)
+    safe_copy(ppo_path, os.path.join(OUTPUT_DIR, "tactical_visualization_drl.png"))
+
+    # 3. Cognitive CoT
+    cot_path = os.path.join(DIR_COT, "tactical_visualization.png")
+    render_and_save_mission(agent_type="cot", save_path=cot_path, seed=42)
+
+    # 4. Information A*
+    astar_path = os.path.join(DIR_ASTAR, "tactical_visualization.png")
+    render_and_save_mission(agent_type="astar", save_path=astar_path, seed=42)
 
     # Multi-agent Shannon Entropy Reduction Comparison
     env = EnhancedWallEEnv(config_path="config_advanced.json", randomize_target=False)
@@ -534,48 +565,59 @@ def generate_entropy_comparison_plot():
     ax.grid(True, linestyle='--', alpha=0.3, color='gray')
     ax.legend(loc="upper right", fontsize=9, framealpha=0.7)
 
-    entropy_path = os.path.join(OUTPUT_DIR, "shannon_entropy_decay.png")
+    entropy_path = os.path.join(DIR_BENCHMARKS, "shannon_entropy_decay.png")
     fig.savefig(entropy_path, dpi=300, facecolor=fig.get_facecolor(), bbox_inches='tight')
+    safe_copy(entropy_path, os.path.join(OUTPUT_DIR, "shannon_entropy_decay.png"))
     plt.close(fig)
     print(f"Saved entropy comparison curve to {entropy_path}")
 
 
 # ==============================================================================
-# 4. PREDICTIONS & TELEMETRY OUTPUT LOGS
+# 4. PREDICTIONS & TELEMETRY OUTPUT LOGS FOR EACH MODEL
 # ==============================================================================
 
 def generate_predictions_and_logs():
     print("\n" + "=" * 65)
-    print(">>> [4/4] GENERATING MODEL PREDICTION RECORDS & TELEMETRY LOGS...")
+    print(">>> [4/5] GENERATING PREDICTION DATASETS & LOGS PER MODEL...")
     print("=" * 65)
 
     env = EnhancedWallEEnv(config_path="config_advanced.json", randomize_target=False)
     grid_size = env.grid_size
 
-    agents = [
-        ("Bayesian Active Inference", BayesianEntropyAgent(grid_size)),
-        ("PPO Neural Policy", DRLAgent(grid_size))
+    model_configs = [
+        ("Bayesian Active Inference", BayesianEntropyAgent(grid_size), DIR_BAYESIAN),
+        ("PPO Neural Policy", DRLAgent(grid_size), DIR_PPO),
+        ("Cognitive CoT Planner", CognitiveLLMAgent(grid_size), DIR_COT),
+        ("Information A* (IDA*)", InformationAStarAgent(grid_size), DIR_ASTAR)
     ]
 
     action_names = {0: "SCAN", 1: "MOVE NORTH", 2: "MOVE EAST", 3: "MOVE SOUTH", 4: "MOVE WEST"}
-    prediction_records = []
+    all_prediction_records = []
 
-    telemetry_log_path = os.path.join(OUTPUT_DIR, "mission_telemetry.log")
-    log_f = open(telemetry_log_path, "w")
-    log_f.write("=" * 80 + "\n")
-    log_f.write("         OPERATION AXIOM: DETAILED MISSION EXECUTION & TELEMETRY LOG\n")
-    log_f.write("=" * 80 + "\n")
-    log_f.write(f"Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-    log_f.write(f"Environment: 10x10 Discrete POMDP Arena with 5 Obstacles & 2 Solar Pods\n")
-    log_f.write("=" * 80 + "\n\n")
+    master_log_path = os.path.join(OUTPUT_DIR, "mission_telemetry.log")
+    master_log_f = open(master_log_path, "w")
+    master_log_f.write("=" * 80 + "\n")
+    master_log_f.write("         OPERATION AXIOM: DETAILED MISSION EXECUTION & TELEMETRY LOG\n")
+    master_log_f.write("=" * 80 + "\n")
+    master_log_f.write(f"Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+    master_log_f.write(f"Environment: 10x10 Discrete POMDP Arena with 5 Obstacles & 2 Solar Pods\n")
+    master_log_f.write("=" * 80 + "\n\n")
 
-    for agent_name, agent in agents:
-        log_f.write(f"\n{'='*30} AGENT: {agent_name.upper()} {'='*30}\n")
+    for agent_name, agent, model_dir in model_configs:
         obs, info = env.reset(seed=42)
         agent.reset()
         terminated = False
         truncated = False
         step = 0
+
+        model_log_path = os.path.join(model_dir, "mission_execution.log")
+        m_log = open(model_log_path, "w")
+        m_log.write(f"==================== {agent_name.upper()} MISSION EXECUTION LOG ====================\n")
+        m_log.write(f"Execution Date: {time.strftime('%Y-%m-%d %H:%M:%S')} | Target: {info['eve_location']}\n")
+        m_log.write("-" * 75 + "\n")
+
+        master_log_f.write(f"\n{'='*30} AGENT: {agent_name.upper()} {'='*30}\n")
+        agent_records = []
 
         while not (terminated or truncated):
             step += 1
@@ -595,6 +637,7 @@ def generate_predictions_and_logs():
             confidence = telemetry.get("max_confidence", 1.0)
             entropy = telemetry.get("entropy", 0.0)
             act_name = action_names.get(action, "UNKNOWN")
+            reasoning = telemetry.get("last_reasoning", "")
 
             event_type = "TRAVERSAL"
             if action == 0:
@@ -606,7 +649,7 @@ def generate_predictions_and_logs():
             elif info.get("collision", False):
                 event_type = "COLLISION"
 
-            prediction_records.append({
+            row_data = {
                 "agent": agent_name,
                 "step": step,
                 "robot_x": int(curr_loc[0]),
@@ -622,23 +665,36 @@ def generate_predictions_and_logs():
                 "shannon_entropy_bits": round(float(entropy), 4),
                 "battery_pct": battery,
                 "step_reward": round(float(reward), 2),
-                "event": event_type
-            })
+                "event": event_type,
+                "reasoning_trace": reasoning
+            }
+            agent_records.append(row_data)
+            all_prediction_records.append(row_data)
 
-            log_f.write(f"[{agent_name[:8]}] Step {step:02d} | Loc: {list(curr_loc)} -> {list(new_loc)} | Act: {act_name:<10} | Sensor: {sensor_val:.3f} | Inferred Target: {inferred_coord} ({confidence*100:.1f}%) | Entropy: {entropy:.2f}b | Batt: {battery}%\n")
+            log_line = f"Step {step:02d} | Loc: {list(curr_loc)} -> {list(new_loc)} | Act: {act_name:<10} | Sensor: {sensor_val:.3f} | Inferred: {inferred_coord} ({confidence*100:.1f}%) | Entropy: {entropy:.2f}b | Batt: {battery}%\n"
+            m_log.write(log_line)
+            master_log_f.write(f"[{agent_name[:8]}] " + log_line)
 
         success = np.array_equal(info["location"], info["eve_location"])
-        status = "SUCCESS: DOCKED" if success else "FAILED"
-        log_f.write(f"\n>>> FINAL STATUS: {status} | Total Steps: {step} | Final Battery: {info['battery']}%\n")
+        status = "SUCCESS: TARGET DOCKED" if success else "FAILED / DEPLETED"
+        summary_line = f"\n>>> FINAL STATUS: {status} | Steps: {step} | Final Battery: {info['battery']}%\n"
+        m_log.write(summary_line)
+        master_log_f.write(summary_line)
+        m_log.close()
 
-    log_f.close()
-    print(f"Saved execution log to {telemetry_log_path}")
+        # Save model-specific predictions CSV
+        model_csv = os.path.join(model_dir, "predictions_telemetry.csv")
+        pd.DataFrame(agent_records).to_csv(model_csv, index=False)
+        print(f"Saved {agent_name} predictions to {model_csv}")
 
-    # Export Predictions CSV
-    pred_df = pd.DataFrame(prediction_records)
-    predictions_csv_path = os.path.join(OUTPUT_DIR, "model_predictions_telemetry.csv")
-    pred_df.to_csv(predictions_csv_path, index=False)
-    print(f"Saved predictions telemetry dataset to {predictions_csv_path}")
+    master_log_f.close()
+    print(f"Saved master telemetry log to {master_log_path}")
+
+    # Master Predictions CSV
+    pred_df = pd.DataFrame(all_prediction_records)
+    master_csv_path = os.path.join(OUTPUT_DIR, "model_predictions_telemetry.csv")
+    pred_df.to_csv(master_csv_path, index=False)
+    print(f"Saved master prediction telemetry dataset to {master_csv_path}")
 
 
 # ==============================================================================
@@ -690,7 +746,7 @@ def generate_3d_and_2d_path_visualizations(seed=42):
         }
 
     # -------------------------------------------------------------
-    # 1. 3D TRAJECTORY & ELEVATION MAP (Axes3D)
+    # 1. 3D TRAJECTORY & ELEVATION MAP (Axes3D) -> 1_bayesian_active_inference/
     # -------------------------------------------------------------
     from mpl_toolkits.mplot3d import Axes3D
 
@@ -699,35 +755,26 @@ def generate_3d_and_2d_path_visualizations(seed=42):
     ax_3d = fig_3d.add_subplot(111, projection='3d')
     ax_3d.set_facecolor('#0d1117')
 
-    # Floor grid
     X_grid, Y_grid = np.meshgrid(range(env.max_x), range(env.max_y))
     Z_grid = np.zeros_like(X_grid)
     ax_3d.plot_wireframe(X_grid, Y_grid, Z_grid, color='#30363d', linewidth=0.6, linestyle=':', alpha=0.6)
 
-    # 3D Obstacle Pillars
     for ox, oy in env.obstacles:
         ax_3d.bar3d(ox - 0.4, oy - 0.4, 0, 0.8, 0.8, 4.0, color='#ff3366', alpha=0.85, edgecolor='#ff0044', shade=True)
 
-    # 3D Solar Recharge Station Pads
     for rx, ry in env.recharge_stations:
         ax_3d.bar3d(rx - 0.4, ry - 0.4, 0, 0.8, 0.8, 0.4, color='#ffd700', alpha=0.9, edgecolor='#ffaa00', shade=True)
 
-    # Bayesian Agent Trajectory in 3D
     b_path = agent_paths["Bayesian Active Inference"]["path"]
     num_pts = len(b_path)
     z_pts = np.linspace(0.2, 5.0, num_pts)
 
-    # Ground shadow projection (Z=0)
     ax_3d.plot(b_path[:, 0], b_path[:, 1], np.zeros(num_pts), color='#005577', linestyle='--', linewidth=1.8, label="Ground Path Projection (Z=0)")
-
-    # 3D trajectory curve
     ax_3d.plot(b_path[:, 0], b_path[:, 1], z_pts, color='#00e5ff', linewidth=3.0, marker='o', markersize=5, label="3D Search Trajectory")
 
-    # Vertical drop lines
     for i in range(0, num_pts, max(1, num_pts // 8)):
         ax_3d.plot([b_path[i, 0], b_path[i, 0]], [b_path[i, 1], b_path[i, 1]], [0, z_pts[i]], color='#00e5ff', linestyle=':', alpha=0.5)
 
-    # Markers for Start and Target
     ax_3d.scatter([0], [0], [0.2], color='#00e5ff', s=120, edgecolors='white', depthshade=False, label="Start [0, 0]")
     ax_3d.scatter([env.eve_loc[0]], [env.eve_loc[1]], [z_pts[-1]], color='#10b981', s=200, marker='*', edgecolors='white', depthshade=False, label=f"EVE Target [{env.eve_loc[0]}, {env.eve_loc[1]}]")
 
@@ -744,13 +791,14 @@ def generate_3d_and_2d_path_visualizations(seed=42):
     ax_3d.set_title("Operation Axiom: 3D Trajectory & Obstacle Avoidance Map\n(Bayesian Active Inference Path to Target)",
                     fontsize=13, fontweight='bold', color='cyan', pad=15)
 
-    path_3d_file = os.path.join(OUTPUT_DIR, "path_visualization_3d.png")
+    path_3d_file = os.path.join(DIR_BAYESIAN, "path_visualization_3d.png")
     fig_3d.savefig(path_3d_file, dpi=300, facecolor=fig_3d.get_facecolor(), bbox_inches='tight')
+    safe_copy(path_3d_file, os.path.join(OUTPUT_DIR, "path_visualization_3d.png"))
     plt.close(fig_3d)
     print(f"Saved 3D path visualization to {path_3d_file}")
 
     # -------------------------------------------------------------
-    # 2. 2D MULTI-AGENT PATH COMPARISON GRAPH
+    # 2. 2D MULTI-AGENT PATH COMPARISON GRAPH -> comparative_benchmarks/
     # -------------------------------------------------------------
     fig_2d, axes_2d = plt.subplots(2, 2, figsize=(14, 13))
     fig_2d.patch.set_facecolor('#0d1117')
@@ -763,24 +811,19 @@ def generate_3d_and_2d_path_visualizations(seed=42):
         info_dict = agent_paths[name]
         p = info_dict["path"]
 
-        # Grid lines
         for x in range(env.max_x + 1):
             ax.axvline(x - 0.5, color='#30363d', linestyle=':', linewidth=0.6)
         for y in range(env.max_y + 1):
             ax.axhline(y - 0.5, color='#30363d', linestyle=':', linewidth=0.6)
 
-        # Obstacles
         for ox, oy in env.obstacles:
             ax.add_patch(plt.Rectangle((ox - 0.45, oy - 0.45), 0.9, 0.9, color='#ff3366', alpha=0.85, zorder=2))
 
-        # Recharge stations
         for rx, ry in env.recharge_stations:
             ax.add_patch(plt.Circle((rx, ry), 0.35, color='#ffd700', alpha=0.85, zorder=2))
 
-        # Trajectory path line
         ax.plot(p[:, 0], p[:, 1], color=color, linewidth=2.5, marker='o', markersize=6, alpha=0.9, zorder=3, label="Planned Path")
 
-        # Arrows
         for s_idx in range(len(p) - 1):
             dx = p[s_idx + 1, 0] - p[s_idx, 0]
             dy = p[s_idx + 1, 1] - p[s_idx, 1]
@@ -788,7 +831,6 @@ def generate_3d_and_2d_path_visualizations(seed=42):
                 ax.annotate("", xy=(p[s_idx + 1, 0], p[s_idx + 1, 1]), xytext=(p[s_idx, 0], p[s_idx, 1]),
                             arrowprops=dict(arrowstyle="-|>", color=color, lw=2, mutation_scale=12), zorder=4)
 
-        # Markers
         ax.plot(0, 0, 'o', color='white', markersize=12, markeredgecolor=color, markeredgewidth=2.5, zorder=5, label="Start [0,0]")
         ax.plot(env.eve_loc[0], env.eve_loc[1], '*', color='#10b981', markersize=18, markeredgecolor='white', markeredgewidth=1.5, zorder=5, label=f"EVE Target [{env.eve_loc[0]},{env.eve_loc[1]}]")
 
@@ -808,8 +850,9 @@ def generate_3d_and_2d_path_visualizations(seed=42):
                     fontsize=14, fontweight='bold', color='white', y=0.98)
     plt.tight_layout(rect=[0, 0.02, 1, 0.96])
 
-    path_2d_file = os.path.join(OUTPUT_DIR, "path_visualization_graph.png")
+    path_2d_file = os.path.join(DIR_BENCHMARKS, "path_visualization_graph.png")
     fig_2d.savefig(path_2d_file, dpi=300, facecolor=fig_2d.get_facecolor(), edgecolor='none')
+    safe_copy(path_2d_file, os.path.join(OUTPUT_DIR, "path_visualization_graph.png"))
     plt.close(fig_2d)
     print(f"Saved 2D path comparison graph to {path_2d_file}")
 
@@ -825,11 +868,16 @@ if __name__ == "__main__":
 
     generate_evaluation_charts()
     generate_training_artifacts(total_timesteps=60000)
-    generate_entropy_comparison_plot()
+    generate_tactical_visualizations_all_models()
     generate_predictions_and_logs()
     generate_3d_and_2d_path_visualizations()
 
     print("\n" + "=" * 65)
     print("[SUCCESS] ALL ARTIFACTS, VISUALIZATIONS, LOSS GRAPHS, PATHS, & LOGS GENERATED!")
-    print(f"Directory: {OUTPUT_DIR}")
+    print(f"Master Outputs Directory: {OUTPUT_DIR}")
+    print(f"  • Bayesian Active Inference:       {DIR_BAYESIAN}")
+    print(f"  • Deep Reinforcement Learning PPO: {DIR_PPO}")
+    print(f"  • Cognitive CoT Planner:           {DIR_COT}")
+    print(f"  • Heuristic Information A*:        {DIR_ASTAR}")
+    print(f"  • Comparative Benchmarks:          {DIR_BENCHMARKS}")
     print("=" * 65)

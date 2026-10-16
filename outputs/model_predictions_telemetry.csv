@@ -1,64 +1,120 @@
-agent,step,robot_x,robot_y,target_x,target_y,rf_sensor_reading,predicted_action_id,predicted_action_name,inferred_target_x,inferred_target_y,model_confidence,shannon_entropy_bits,battery_pct,step_reward,event
-Bayesian Active Inference,1,0,0,6,3,0.414,0,SCAN,2,8,0.0237,5.9363,100,-1.0,RF_SCAN
-Bayesian Active Inference,2,0,0,6,3,0.62,2,MOVE EAST,7,2,0.0405,5.5301,95,0.82,TRAVERSAL
-Bayesian Active Inference,3,1,0,6,3,0.647,1,MOVE NORTH,6,3,0.047,5.2326,93,0.17,TRAVERSAL
-Bayesian Active Inference,4,1,1,6,3,0.74,1,MOVE NORTH,4,5,0.0626,4.9375,91,-0.07,TRAVERSAL
-Bayesian Active Inference,5,1,2,6,3,0.588,1,MOVE NORTH,6,3,0.0829,4.8245,89,-0.35,TRAVERSAL
-Bayesian Active Inference,6,1,3,6,3,0.665,2,MOVE EAST,6,3,0.0904,4.718,87,1.0,TRAVERSAL
-Bayesian Active Inference,7,2,3,6,3,0.651,3,MOVE SOUTH,6,3,0.0871,4.6429,85,-0.68,TRAVERSAL
-Bayesian Active Inference,8,2,2,6,3,0.684,2,MOVE EAST,6,4,0.0855,4.6021,83,0.94,TRAVERSAL
-Bayesian Active Inference,9,3,2,6,3,0.581,2,MOVE EAST,2,7,0.1161,4.382,81,0.89,TRAVERSAL
-Bayesian Active Inference,10,4,2,6,3,0.871,4,MOVE WEST,4,6,0.1128,4.4741,79,-1.89,TRAVERSAL
-Bayesian Active Inference,11,3,2,6,3,0.924,2,MOVE EAST,6,4,0.1333,4.0441,77,0.89,TRAVERSAL
-Bayesian Active Inference,12,4,2,6,3,0.748,2,MOVE EAST,5,5,0.1604,3.9614,75,0.73,TRAVERSAL
-Bayesian Active Inference,13,5,2,6,3,0.886,1,MOVE NORTH,5,5,0.193,3.7754,73,0.12,TRAVERSAL
-Bayesian Active Inference,14,5,3,6,3,0.826,1,MOVE NORTH,5,5,0.1561,3.8394,71,-1.12,TRAVERSAL
-Bayesian Active Inference,15,5,4,6,3,0.772,1,MOVE NORTH,7,2,0.1701,3.7688,69,-1.73,TRAVERSAL
-Bayesian Active Inference,16,5,5,6,3,0.645,2,MOVE EAST,7,2,0.2384,3.2417,67,-0.15,TRAVERSAL
-Bayesian Active Inference,17,6,5,6,3,0.779,2,MOVE EAST,7,2,0.298,3.062,65,-0.85,TRAVERSAL
-Bayesian Active Inference,18,7,5,6,3,0.96,3,MOVE SOUTH,7,2,0.4527,2.5041,63,0.73,TRAVERSAL
-Bayesian Active Inference,19,7,4,6,3,1.0,3,MOVE SOUTH,7,2,0.5091,2.0905,61,0.12,TRAVERSAL
-Bayesian Active Inference,20,7,3,6,3,0.939,3,MOVE SOUTH,7,2,0.4704,2.129,59,2.88,SOLAR_HARVEST
-Bayesian Active Inference,21,7,2,6,3,0.912,0,SCAN,7,2,0.3802,2.2706,82,3.0,RF_SCAN
-Bayesian Active Inference,22,7,2,6,3,0.878,1,MOVE NORTH,7,2,0.43,2.3453,100,0.12,TRAVERSAL
-Bayesian Active Inference,23,7,3,6,3,0.84,3,MOVE SOUTH,7,3,0.2381,2.6743,98,2.88,SOLAR_HARVEST
-Bayesian Active Inference,24,7,2,6,3,1.0,1,MOVE NORTH,7,3,0.3344,2.4441,100,0.12,TRAVERSAL
-Bayesian Active Inference,25,7,3,6,3,0.958,0,SCAN,7,3,0.3436,2.3516,98,-1.0,RF_SCAN
-Bayesian Active Inference,26,7,3,6,3,0.836,3,MOVE SOUTH,7,3,0.3818,2.4169,93,2.88,SOLAR_HARVEST
-Bayesian Active Inference,27,7,2,6,3,0.827,1,MOVE NORTH,6,3,0.2629,2.6895,100,0.12,TRAVERSAL
-Bayesian Active Inference,28,7,3,6,3,0.984,4,MOVE WEST,6,3,0.3235,2.4772,98,120.0,TARGET_DOCKING
-PPO Neural Policy,1,0,0,6,3,0.442,1,MOVE NORTH,5,7,0.0198,6.1506,100,0.08,TRAVERSAL
-PPO Neural Policy,2,0,1,6,3,0.602,1,MOVE NORTH,4,6,0.0203,6.2357,98,-0.14,TRAVERSAL
-PPO Neural Policy,3,0,2,6,3,0.604,1,MOVE NORTH,4,7,0.0194,6.2747,96,-0.38,TRAVERSAL
-PPO Neural Policy,4,0,3,6,3,0.671,1,MOVE NORTH,2,0,0.0192,6.2349,94,-0.62,TRAVERSAL
-PPO Neural Policy,5,0,4,6,3,0.495,1,MOVE NORTH,6,1,0.0209,6.1823,92,-0.86,TRAVERSAL
-PPO Neural Policy,6,0,5,6,3,0.473,1,MOVE NORTH,7,3,0.0208,6.1346,90,-1.08,TRAVERSAL
-PPO Neural Policy,7,0,6,6,3,0.531,2,MOVE EAST,4,0,0.0198,6.1903,88,0.82,TRAVERSAL
-PPO Neural Policy,8,1,6,6,3,0.554,2,MOVE EAST,0,0,0.0195,6.1999,86,0.75,TRAVERSAL
-PPO Neural Policy,9,2,6,6,3,0.439,2,MOVE EAST,8,0,0.0409,5.6295,84,0.64,TRAVERSAL
-PPO Neural Policy,10,3,6,6,3,0.741,1,MOVE NORTH,0,5,0.0173,6.3753,82,-1.64,TRAVERSAL
-PPO Neural Policy,11,3,7,6,3,0.765,2,MOVE EAST,1,6,0.0166,6.3755,80,0.29,TRAVERSAL
-PPO Neural Policy,12,4,7,6,3,0.556,2,MOVE EAST,3,1,0.0199,6.2159,78,0.02,TRAVERSAL
-PPO Neural Policy,13,5,7,6,3,0.666,2,MOVE EAST,1,5,0.0158,6.447,76,-5.5,COLLISION
-PPO Neural Policy,14,5,7,6,3,0.634,2,MOVE EAST,0,6,0.0166,6.4143,71,-5.5,COLLISION
-PPO Neural Policy,15,5,7,6,3,0.638,2,MOVE EAST,0,6,0.0165,6.42,66,-5.5,COLLISION
-PPO Neural Policy,16,5,7,6,3,0.494,2,MOVE EAST,1,1,0.0258,5.9474,61,-5.5,COLLISION
-PPO Neural Policy,17,5,7,6,3,0.646,2,MOVE EAST,0,7,0.0163,6.4299,56,-5.5,COLLISION
-PPO Neural Policy,18,5,7,6,3,0.836,3,MOVE SOUTH,3,5,0.0179,6.3277,51,0.94,TRAVERSAL
-PPO Neural Policy,19,5,6,6,3,0.964,1,MOVE NORTH,4,7,0.0402,5.5799,49,-1.94,TRAVERSAL
-PPO Neural Policy,20,5,7,6,3,0.816,3,MOVE SOUTH,3,4,0.0166,6.3861,47,0.94,TRAVERSAL
-PPO Neural Policy,21,5,6,6,3,0.854,3,MOVE SOUTH,3,5,0.0184,6.3615,45,0.89,TRAVERSAL
-PPO Neural Policy,22,5,5,6,3,0.725,1,MOVE NORTH,1,6,0.0142,6.5218,43,-1.89,TRAVERSAL
-PPO Neural Policy,23,5,6,6,3,0.782,3,MOVE SOUTH,2,4,0.0143,6.5316,41,0.89,TRAVERSAL
-PPO Neural Policy,24,5,5,6,3,0.871,1,MOVE NORTH,3,6,0.0209,6.2027,39,-1.89,TRAVERSAL
-PPO Neural Policy,25,5,6,6,3,0.871,3,MOVE SOUTH,3,5,0.0199,6.2993,37,0.89,TRAVERSAL
-PPO Neural Policy,26,5,5,6,3,0.736,4,MOVE WEST,1,3,0.0133,6.5613,35,-1.39,TRAVERSAL
-PPO Neural Policy,27,4,5,6,3,0.74,3,MOVE SOUTH,1,2,0.0134,6.561,33,0.39,TRAVERSAL
-PPO Neural Policy,28,4,4,6,3,0.784,1,MOVE NORTH,1,5,0.0143,6.5289,31,-1.39,TRAVERSAL
-PPO Neural Policy,29,4,5,6,3,0.789,3,MOVE SOUTH,1,4,0.0145,6.5218,29,0.39,TRAVERSAL
-PPO Neural Policy,30,4,4,6,3,0.841,4,MOVE WEST,2,3,0.0173,6.4035,27,-5.5,COLLISION
-PPO Neural Policy,31,4,4,6,3,0.819,3,MOVE SOUTH,2,2,0.0157,6.4633,22,-5.5,COLLISION
-PPO Neural Policy,32,4,4,6,3,0.881,3,MOVE SOUTH,3,3,0.0209,6.259,17,-5.5,COLLISION
-PPO Neural Policy,33,4,4,6,3,0.715,3,MOVE SOUTH,0,4,0.0133,6.5557,12,-5.5,COLLISION
-PPO Neural Policy,34,4,4,6,3,0.951,3,MOVE SOUTH,3,4,0.0338,5.9081,7,-5.5,COLLISION
-PPO Neural Policy,35,4,4,6,3,1.0,3,MOVE SOUTH,4,4,0.0536,5.6057,2,-60.0,COLLISION
+agent,step,robot_x,robot_y,target_x,target_y,rf_sensor_reading,predicted_action_id,predicted_action_name,inferred_target_x,inferred_target_y,model_confidence,shannon_entropy_bits,battery_pct,step_reward,event,reasoning_trace
+Bayesian Active Inference,1,0,0,6,3,0.414,0,SCAN,2,8,0.0237,5.9363,100,-1.0,RF_SCAN,"Scan #1: Entropy dropped to 5.94 bits | Peak prob at [np.int64(2), np.int64(8)]: 2.4%"
+Bayesian Active Inference,2,0,0,6,3,0.62,2,MOVE EAST,7,2,0.0405,5.5301,95,0.82,TRAVERSAL,"Scan #2: Entropy dropped to 5.53 bits | Peak prob at [np.int64(7), np.int64(2)]: 4.0%"
+Bayesian Active Inference,3,1,0,6,3,0.647,1,MOVE NORTH,6,3,0.047,5.2326,93,0.17,TRAVERSAL,"Scan #3: Entropy dropped to 5.23 bits | Peak prob at [np.int64(6), np.int64(3)]: 4.7%"
+Bayesian Active Inference,4,1,1,6,3,0.74,1,MOVE NORTH,4,5,0.0626,4.9375,91,-0.07,TRAVERSAL,"Scan #4: Entropy dropped to 4.94 bits | Peak prob at [np.int64(4), np.int64(5)]: 6.3%"
+Bayesian Active Inference,5,1,2,6,3,0.588,1,MOVE NORTH,6,3,0.0829,4.8245,89,-0.35,TRAVERSAL,"Scan #5: Entropy dropped to 4.82 bits | Peak prob at [np.int64(6), np.int64(3)]: 8.3%"
+Bayesian Active Inference,6,1,3,6,3,0.665,2,MOVE EAST,6,3,0.0904,4.718,87,1.0,TRAVERSAL,"Scan #6: Entropy dropped to 4.72 bits | Peak prob at [np.int64(6), np.int64(3)]: 9.0%"
+Bayesian Active Inference,7,2,3,6,3,0.651,3,MOVE SOUTH,6,3,0.0871,4.6429,85,-0.68,TRAVERSAL,"Scan #7: Entropy dropped to 4.64 bits | Peak prob at [np.int64(6), np.int64(3)]: 8.7%"
+Bayesian Active Inference,8,2,2,6,3,0.684,2,MOVE EAST,6,4,0.0855,4.6021,83,0.94,TRAVERSAL,"Scan #8: Entropy dropped to 4.60 bits | Peak prob at [np.int64(6), np.int64(4)]: 8.5%"
+Bayesian Active Inference,9,3,2,6,3,0.581,2,MOVE EAST,2,7,0.1161,4.382,81,0.89,TRAVERSAL,"Scan #9: Entropy dropped to 4.38 bits | Peak prob at [np.int64(2), np.int64(7)]: 11.6%"
+Bayesian Active Inference,10,4,2,6,3,0.871,4,MOVE WEST,4,6,0.1128,4.4741,79,-1.89,TRAVERSAL,"Scan #10: Entropy dropped to 4.47 bits | Peak prob at [np.int64(4), np.int64(6)]: 11.3%"
+Bayesian Active Inference,11,3,2,6,3,0.924,2,MOVE EAST,6,4,0.1333,4.0441,77,0.89,TRAVERSAL,"Scan #11: Entropy dropped to 4.04 bits | Peak prob at [np.int64(6), np.int64(4)]: 13.3%"
+Bayesian Active Inference,12,4,2,6,3,0.748,2,MOVE EAST,5,5,0.1604,3.9614,75,0.73,TRAVERSAL,"Scan #12: Entropy dropped to 3.96 bits | Peak prob at [np.int64(5), np.int64(5)]: 16.0%"
+Bayesian Active Inference,13,5,2,6,3,0.886,1,MOVE NORTH,5,5,0.193,3.7754,73,0.12,TRAVERSAL,"Scan #13: Entropy dropped to 3.78 bits | Peak prob at [np.int64(5), np.int64(5)]: 19.3%"
+Bayesian Active Inference,14,5,3,6,3,0.826,1,MOVE NORTH,5,5,0.1561,3.8394,71,-1.12,TRAVERSAL,"Scan #14: Entropy dropped to 3.84 bits | Peak prob at [np.int64(5), np.int64(5)]: 15.6%"
+Bayesian Active Inference,15,5,4,6,3,0.772,1,MOVE NORTH,7,2,0.1701,3.7688,69,-1.73,TRAVERSAL,"Scan #15: Entropy dropped to 3.77 bits | Peak prob at [np.int64(7), np.int64(2)]: 17.0%"
+Bayesian Active Inference,16,5,5,6,3,0.645,2,MOVE EAST,7,2,0.2384,3.2417,67,-0.15,TRAVERSAL,"Scan #16: Entropy dropped to 3.24 bits | Peak prob at [np.int64(7), np.int64(2)]: 23.8%"
+Bayesian Active Inference,17,6,5,6,3,0.779,2,MOVE EAST,7,2,0.298,3.062,65,-0.85,TRAVERSAL,"Scan #17: Entropy dropped to 3.06 bits | Peak prob at [np.int64(7), np.int64(2)]: 29.8%"
+Bayesian Active Inference,18,7,5,6,3,0.96,3,MOVE SOUTH,7,2,0.4527,2.5041,63,0.73,TRAVERSAL,"Scan #18: Entropy dropped to 2.50 bits | Peak prob at [np.int64(7), np.int64(2)]: 45.3%"
+Bayesian Active Inference,19,7,4,6,3,1.0,3,MOVE SOUTH,7,2,0.5091,2.0905,61,0.12,TRAVERSAL,"Scan #19: Entropy dropped to 2.09 bits | Peak prob at [np.int64(7), np.int64(2)]: 50.9%"
+Bayesian Active Inference,20,7,3,6,3,0.939,3,MOVE SOUTH,7,2,0.4704,2.129,59,2.88,SOLAR_HARVEST,"Scan #20: Entropy dropped to 2.13 bits | Peak prob at [np.int64(7), np.int64(2)]: 47.0%"
+Bayesian Active Inference,21,7,2,6,3,0.912,0,SCAN,7,2,0.3802,2.2706,82,3.0,RF_SCAN,"Scan #21: Entropy dropped to 2.27 bits | Peak prob at [np.int64(7), np.int64(2)]: 38.0%"
+Bayesian Active Inference,22,7,2,6,3,0.878,1,MOVE NORTH,7,2,0.43,2.3453,100,0.12,TRAVERSAL,"Scan #22: Entropy dropped to 2.35 bits | Peak prob at [np.int64(7), np.int64(2)]: 43.0%"
+Bayesian Active Inference,23,7,3,6,3,0.84,3,MOVE SOUTH,7,3,0.2381,2.6743,98,2.88,SOLAR_HARVEST,"Scan #23: Entropy dropped to 2.67 bits | Peak prob at [np.int64(7), np.int64(3)]: 23.8%"
+Bayesian Active Inference,24,7,2,6,3,1.0,1,MOVE NORTH,7,3,0.3344,2.4441,100,0.12,TRAVERSAL,"Scan #24: Entropy dropped to 2.44 bits | Peak prob at [np.int64(7), np.int64(3)]: 33.4%"
+Bayesian Active Inference,25,7,3,6,3,0.958,0,SCAN,7,3,0.3436,2.3516,98,-1.0,RF_SCAN,"Scan #25: Entropy dropped to 2.35 bits | Peak prob at [np.int64(7), np.int64(3)]: 34.4%"
+Bayesian Active Inference,26,7,3,6,3,0.836,3,MOVE SOUTH,7,3,0.3818,2.4169,93,2.88,SOLAR_HARVEST,"Scan #26: Entropy dropped to 2.42 bits | Peak prob at [np.int64(7), np.int64(3)]: 38.2%"
+Bayesian Active Inference,27,7,2,6,3,0.827,1,MOVE NORTH,6,3,0.2629,2.6895,100,0.12,TRAVERSAL,"Scan #27: Entropy dropped to 2.69 bits | Peak prob at [np.int64(6), np.int64(3)]: 26.3%"
+Bayesian Active Inference,28,7,3,6,3,0.984,4,MOVE WEST,6,3,0.3235,2.4772,98,120.0,TARGET_DOCKING,"Scan #28: Entropy dropped to 2.48 bits | Peak prob at [np.int64(6), np.int64(3)]: 32.4%"
+PPO Neural Policy,1,0,0,6,3,0.442,1,MOVE NORTH,5,7,0.0198,6.1506,100,0.08,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,2,0,1,6,3,0.602,1,MOVE NORTH,4,6,0.0203,6.2357,98,-0.14,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,3,0,2,6,3,0.604,1,MOVE NORTH,4,7,0.0194,6.2747,96,-0.38,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,4,0,3,6,3,0.671,1,MOVE NORTH,2,0,0.0192,6.2349,94,-0.62,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,5,0,4,6,3,0.495,1,MOVE NORTH,6,1,0.0209,6.1823,92,-0.86,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,6,0,5,6,3,0.473,1,MOVE NORTH,7,3,0.0208,6.1346,90,-1.08,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,7,0,6,6,3,0.531,2,MOVE EAST,4,0,0.0198,6.1903,88,0.82,TRAVERSAL,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,8,1,6,6,3,0.554,2,MOVE EAST,0,0,0.0195,6.1999,86,0.75,TRAVERSAL,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,9,2,6,6,3,0.439,2,MOVE EAST,8,0,0.0409,5.6295,84,0.64,TRAVERSAL,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,10,3,6,6,3,0.741,1,MOVE NORTH,0,5,0.0173,6.3753,82,-1.64,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,11,3,7,6,3,0.765,2,MOVE EAST,1,6,0.0166,6.3755,80,0.29,TRAVERSAL,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,12,4,7,6,3,0.556,2,MOVE EAST,3,1,0.0199,6.2159,78,0.02,TRAVERSAL,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,13,5,7,6,3,0.666,2,MOVE EAST,1,5,0.0158,6.447,76,-5.5,COLLISION,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,14,5,7,6,3,0.634,2,MOVE EAST,0,6,0.0166,6.4143,71,-5.5,COLLISION,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,15,5,7,6,3,0.638,2,MOVE EAST,0,6,0.0165,6.42,66,-5.5,COLLISION,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,16,5,7,6,3,0.494,2,MOVE EAST,1,1,0.0258,5.9474,61,-5.5,COLLISION,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,17,5,7,6,3,0.646,2,MOVE EAST,0,7,0.0163,6.4299,56,-5.5,COLLISION,PPO Neural Policy: Action 2 (MOVE EAST)
+PPO Neural Policy,18,5,7,6,3,0.836,3,MOVE SOUTH,3,5,0.0179,6.3277,51,0.94,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,19,5,6,6,3,0.964,1,MOVE NORTH,4,7,0.0402,5.5799,49,-1.94,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,20,5,7,6,3,0.816,3,MOVE SOUTH,3,4,0.0166,6.3861,47,0.94,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,21,5,6,6,3,0.854,3,MOVE SOUTH,3,5,0.0184,6.3615,45,0.89,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,22,5,5,6,3,0.725,1,MOVE NORTH,1,6,0.0142,6.5218,43,-1.89,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,23,5,6,6,3,0.782,3,MOVE SOUTH,2,4,0.0143,6.5316,41,0.89,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,24,5,5,6,3,0.871,1,MOVE NORTH,3,6,0.0209,6.2027,39,-1.89,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,25,5,6,6,3,0.871,3,MOVE SOUTH,3,5,0.0199,6.2993,37,0.89,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,26,5,5,6,3,0.736,4,MOVE WEST,1,3,0.0133,6.5613,35,-1.39,TRAVERSAL,PPO Neural Policy: Action 4 (MOVE WEST)
+PPO Neural Policy,27,4,5,6,3,0.74,3,MOVE SOUTH,1,2,0.0134,6.561,33,0.39,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,28,4,4,6,3,0.784,1,MOVE NORTH,1,5,0.0143,6.5289,31,-1.39,TRAVERSAL,PPO Neural Policy: Action 1 (MOVE NORTH)
+PPO Neural Policy,29,4,5,6,3,0.789,3,MOVE SOUTH,1,4,0.0145,6.5218,29,0.39,TRAVERSAL,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,30,4,4,6,3,0.841,4,MOVE WEST,2,3,0.0173,6.4035,27,-5.5,COLLISION,PPO Neural Policy: Action 4 (MOVE WEST)
+PPO Neural Policy,31,4,4,6,3,0.819,3,MOVE SOUTH,2,2,0.0157,6.4633,22,-5.5,COLLISION,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,32,4,4,6,3,0.881,3,MOVE SOUTH,3,3,0.0209,6.259,17,-5.5,COLLISION,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,33,4,4,6,3,0.715,3,MOVE SOUTH,0,4,0.0133,6.5557,12,-5.5,COLLISION,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,34,4,4,6,3,0.951,3,MOVE SOUTH,3,4,0.0338,5.9081,7,-5.5,COLLISION,PPO Neural Policy: Action 3 (MOVE SOUTH)
+PPO Neural Policy,35,4,4,6,3,1.0,3,MOVE SOUTH,4,4,0.0536,5.6057,2,-60.0,COLLISION,PPO Neural Policy: Action 3 (MOVE SOUTH)
+Cognitive CoT Planner,1,0,0,6,3,0.414,0,SCAN,2,8,0.0265,5.8113,100,-1.0,RF_SCAN,[CoT Reasoning]: Initial state is blind (uniform prior). Decision: Execute omnidirectional SCAN to establish baseline signal.
+Cognitive CoT Planner,2,0,0,6,3,0.62,2,MOVE EAST,7,2,0.0488,5.3314,95,0.82,TRAVERSAL,[CoT Reasoning]: 1 scan completed (radial distance known). Stepping forward along open axis to intersect distance rings and pinpoint target.
+Cognitive CoT Planner,3,1,0,6,3,0.647,1,MOVE NORTH,6,3,0.0557,5.0314,93,0.17,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 4.9%, Est. Distance: 6.3 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,4,1,1,6,3,0.74,1,MOVE NORTH,4,5,0.0759,4.7166,91,-0.07,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(3)] (Confidence: 5.6%, Est. Distance: 5.4 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,5,1,2,6,3,0.588,1,MOVE NORTH,6,3,0.1072,4.5586,89,-0.35,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(4), np.int64(5)] (Confidence: 7.6%, Est. Distance: 4.2 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,6,1,3,6,3,0.665,2,MOVE EAST,6,3,0.117,4.4296,87,1.0,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(3)] (Confidence: 10.7%, Est. Distance: 5.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,7,2,3,6,3,0.651,3,MOVE SOUTH,6,3,0.1096,4.3792,85,-0.68,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(3)] (Confidence: 11.7%, Est. Distance: 4.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,8,2,2,6,3,0.684,2,MOVE EAST,6,4,0.1065,4.3855,83,0.94,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(3)] (Confidence: 11.0%, Est. Distance: 4.1 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,9,3,2,6,3,0.581,2,MOVE EAST,2,7,0.1501,4.033,81,0.89,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(4)] (Confidence: 10.6%, Est. Distance: 3.6 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,10,4,2,6,3,0.871,4,MOVE WEST,4,6,0.1494,4.2399,79,-1.89,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(2), np.int64(7)] (Confidence: 15.0%, Est. Distance: 5.4 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,11,3,2,6,3,0.924,2,MOVE EAST,6,4,0.1687,3.7896,77,0.89,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(4), np.int64(6)] (Confidence: 14.9%, Est. Distance: 4.1 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,12,4,2,6,3,0.748,2,MOVE EAST,5,5,0.2107,3.6623,75,0.73,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(4)] (Confidence: 16.9%, Est. Distance: 2.8 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,13,5,2,6,3,0.886,1,MOVE NORTH,5,5,0.2572,3.4251,73,0.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(5), np.int64(5)] (Confidence: 21.1%, Est. Distance: 3.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,14,5,3,6,3,0.826,1,MOVE NORTH,5,5,0.1987,3.5894,71,-1.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(5), np.int64(5)] (Confidence: 25.7%, Est. Distance: 2.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,15,5,4,6,3,0.772,1,MOVE NORTH,7,2,0.2178,3.4605,69,-1.73,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(5), np.int64(5)] (Confidence: 19.9%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,16,5,5,6,3,0.645,2,MOVE EAST,7,2,0.2985,2.8249,67,-0.15,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 21.8%, Est. Distance: 3.6 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,17,6,5,6,3,0.779,2,MOVE EAST,7,2,0.3839,2.6027,65,-0.85,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 29.8%, Est. Distance: 3.2 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,18,7,5,6,3,0.96,3,MOVE SOUTH,7,2,0.585,1.977,63,0.73,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 38.4%, Est. Distance: 3.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,19,7,4,6,3,1.0,3,MOVE SOUTH,7,2,0.6263,1.6283,61,0.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 58.5%, Est. Distance: 2.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,20,7,3,6,3,0.939,3,MOVE SOUTH,7,2,0.5728,1.7305,59,2.88,SOLAR_HARVEST,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 62.6%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,21,7,2,6,3,0.912,0,SCAN,7,2,0.4494,1.9497,82,3.0,RF_SCAN,"[CoT Reasoning]: Reached target hypothesis [np.int64(7), np.int64(2)]. Verifying target."
+Cognitive CoT Planner,22,7,2,6,3,0.878,1,MOVE NORTH,7,2,0.5379,2.0014,100,0.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(3)] (Confidence: 44.9%, Est. Distance: 0.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,23,7,3,6,3,0.84,3,MOVE SOUTH,7,3,0.2686,2.5068,98,2.88,SOLAR_HARVEST,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 53.8%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,24,7,2,6,3,1.0,1,MOVE NORTH,7,3,0.3968,2.1847,100,0.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(3)] (Confidence: 26.9%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,25,7,3,6,3,0.958,0,SCAN,7,3,0.4023,2.0864,98,-1.0,RF_SCAN,"[CoT Reasoning]: Reached target hypothesis [np.int64(7), np.int64(3)]. Verifying target."
+Cognitive CoT Planner,26,7,3,6,3,0.836,3,MOVE SOUTH,7,3,0.4673,2.0894,93,2.88,SOLAR_HARVEST,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(2)] (Confidence: 40.2%, Est. Distance: 0.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,27,7,2,6,3,0.827,1,MOVE NORTH,6,3,0.3058,2.4626,100,0.12,TRAVERSAL,"[CoT Reasoning]: Target triangulated at [np.int64(7), np.int64(3)] (Confidence: 46.7%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Cognitive CoT Planner,28,7,3,6,3,0.984,4,MOVE WEST,6,3,0.3819,2.1995,98,120.0,TARGET_DOCKING,"[CoT Reasoning]: Target triangulated at [np.int64(6), np.int64(3)] (Confidence: 30.6%, Est. Distance: 1.0 units). Formulating collision-free vector avoiding hazard zones."
+Information A* (IDA*),1,0,0,6,3,0.414,0,SCAN,2,8,0.0237,5.9363,100,-1.0,RF_SCAN,A* Planner initial scan to determine distance heuristic.
+Information A* (IDA*),2,0,0,6,3,0.62,2,MOVE EAST,7,2,0.0405,5.5301,95,0.82,TRAVERSAL,A* Planner taking 1-step displacement to break circle symmetry.
+Information A* (IDA*),3,1,0,6,3,0.647,1,MOVE NORTH,6,3,0.047,5.2326,93,0.17,TRAVERSAL,"A* executing trajectory step towards (1, 1) (Target: [np.int64(7), np.int64(2)])"
+Information A* (IDA*),4,1,1,6,3,0.74,1,MOVE NORTH,4,5,0.0626,4.9375,91,-0.07,TRAVERSAL,"A* executing trajectory step towards (1, 2) (Target: [np.int64(6), np.int64(3)])"
+Information A* (IDA*),5,1,2,6,3,0.588,1,MOVE NORTH,6,3,0.0829,4.8245,89,-0.35,TRAVERSAL,"A* executing trajectory step towards (1, 3) (Target: [np.int64(4), np.int64(5)])"
+Information A* (IDA*),6,1,3,6,3,0.665,2,MOVE EAST,6,3,0.0904,4.718,87,1.0,TRAVERSAL,"A* executing trajectory step towards (2, 3) (Target: [np.int64(6), np.int64(3)])"
+Information A* (IDA*),7,2,3,6,3,0.651,3,MOVE SOUTH,6,3,0.0871,4.6429,85,-0.68,TRAVERSAL,"A* executing trajectory step towards (2, 2) (Target: [np.int64(6), np.int64(3)])"
+Information A* (IDA*),8,2,2,6,3,0.684,2,MOVE EAST,6,4,0.0855,4.6021,83,0.94,TRAVERSAL,"A* executing trajectory step towards (3, 2) (Target: [np.int64(6), np.int64(3)])"
+Information A* (IDA*),9,3,2,6,3,0.581,2,MOVE EAST,2,7,0.1161,4.382,81,0.89,TRAVERSAL,"A* executing trajectory step towards (4, 2) (Target: [np.int64(6), np.int64(4)])"
+Information A* (IDA*),10,4,2,6,3,0.871,4,MOVE WEST,4,6,0.1128,4.4741,79,-1.89,TRAVERSAL,"A* executing trajectory step towards (3, 2) (Target: [np.int64(2), np.int64(7)])"
+Information A* (IDA*),11,3,2,6,3,0.79,4,MOVE WEST,4,6,0.1257,4.3475,77,-1.94,TRAVERSAL,"A* executing trajectory step towards (2, 2) (Target: [np.int64(4), np.int64(6)])"
+Information A* (IDA*),12,2,2,6,3,0.565,1,MOVE NORTH,6,0,0.1124,4.3465,75,-0.32,TRAVERSAL,"A* executing trajectory step towards (2, 3) (Target: [np.int64(4), np.int64(6)])"
+Information A* (IDA*),13,2,3,6,3,0.666,3,MOVE SOUTH,6,0,0.1161,4.3026,73,-0.68,TRAVERSAL,"A* executing trajectory step towards (2, 2) (Target: [np.int64(6), np.int64(0)])"
+Information A* (IDA*),14,2,2,6,3,0.61,3,MOVE SOUTH,6,4,0.0924,4.2842,71,-1.02,TRAVERSAL,"A* executing trajectory step towards (2, 1) (Target: [np.int64(6), np.int64(0)])"
+Information A* (IDA*),15,2,1,6,3,0.638,1,MOVE NORTH,6,4,0.0902,4.2421,69,0.02,TRAVERSAL,"A* executing trajectory step towards (2, 2) (Target: [np.int64(6), np.int64(4)])"
+Information A* (IDA*),16,2,2,6,3,0.562,2,MOVE EAST,5,6,0.0912,4.2414,67,0.94,TRAVERSAL,"A* executing trajectory step towards (3, 2) (Target: [np.int64(6), np.int64(4)])"
+Information A* (IDA*),17,3,2,6,3,0.779,2,MOVE EAST,7,1,0.1042,4.0346,65,0.89,TRAVERSAL,"A* executing trajectory step towards (4, 2) (Target: [np.int64(5), np.int64(6)])"
+Information A* (IDA*),18,4,2,6,3,0.86,3,MOVE SOUTH,7,1,0.1977,3.3966,63,-1.39,TRAVERSAL,"A* executing trajectory step towards (4, 1) (Target: [np.int64(7), np.int64(1)])"
+Information A* (IDA*),19,4,1,6,3,1.0,2,MOVE EAST,6,0,0.2893,2.6589,61,0.39,TRAVERSAL,"A* executing trajectory step towards (5, 1) (Target: [np.int64(7), np.int64(1)])"
+Information A* (IDA*),20,5,1,6,3,0.816,3,MOVE SOUTH,7,1,0.3156,2.6077,59,-1.89,TRAVERSAL,"A* executing trajectory step towards (5, 0) (Target: [np.int64(6), np.int64(0)])"
+Information A* (IDA*),21,5,0,6,3,0.854,1,MOVE NORTH,7,1,0.3312,2.5379,57,0.89,TRAVERSAL,"A* executing trajectory step towards (5, 1) (Target: [np.int64(7), np.int64(1)])"
+Information A* (IDA*),22,5,1,6,3,0.807,2,MOVE EAST,7,1,0.2796,2.5996,55,-0.15,TRAVERSAL,"A* executing trajectory step towards (6, 1) (Target: [np.int64(7), np.int64(1)])"
+Information A* (IDA*),23,6,1,6,3,0.782,2,MOVE EAST,7,2,0.2467,2.838,53,-0.85,TRAVERSAL,"A* executing trajectory step towards (np.int64(7), np.int64(1)) (Target: [np.int64(7), np.int64(1)])"
+Information A* (IDA*),24,7,1,6,3,0.995,1,MOVE NORTH,7,2,0.3826,2.6109,51,4.73,SOLAR_HARVEST,"A* executing trajectory step towards (np.int64(7), np.int64(2)) (Target: [np.int64(7), np.int64(2)])"
+Information A* (IDA*),25,7,2,6,3,0.929,0,SCAN,7,2,0.3496,2.6322,74,3.0,RF_SCAN,A* on target coordinate. Pinpointing scan.
+Information A* (IDA*),26,7,2,6,3,0.836,0,SCAN,7,3,0.2512,2.9019,94,3.0,RF_SCAN,A* on target coordinate. Pinpointing scan.
+Information A* (IDA*),27,7,2,6,3,0.827,1,MOVE NORTH,6,0,0.1885,2.967,100,0.12,TRAVERSAL,"A* executing trajectory step towards (np.int64(7), np.int64(3)) (Target: [np.int64(7), np.int64(3)])"
+Information A* (IDA*),28,7,3,6,3,0.984,4,MOVE WEST,6,3,0.2308,2.923,98,120.0,TARGET_DOCKING,"A* executing trajectory step towards (6, 3) (Target: [np.int64(6), np.int64(0)])"

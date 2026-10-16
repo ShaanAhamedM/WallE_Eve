@@ -1,78 +1,142 @@
 ================================================================================
          OPERATION AXIOM: DETAILED MISSION EXECUTION & TELEMETRY LOG
 ================================================================================
-Timestamp: 2026-10-16 19:38:17
+Timestamp: 2026-10-16 19:47:20
 Environment: 10x10 Discrete POMDP Arena with 5 Obstacles & 2 Solar Pods
 ================================================================================
 
 
 ============================== AGENT: BAYESIAN ACTIVE INFERENCE ==============================
-[Bayesian] Step 01 | Loc: [0, 0] -> [0, 0] | Act: SCAN       | Sensor: 0.414 | Inferred Target: [2, 8] (2.4%) | Entropy: 5.94b | Batt: 100%
-[Bayesian] Step 02 | Loc: [0, 0] -> [1, 0] | Act: MOVE EAST  | Sensor: 0.620 | Inferred Target: [7, 2] (4.0%) | Entropy: 5.53b | Batt: 95%
-[Bayesian] Step 03 | Loc: [1, 0] -> [1, 1] | Act: MOVE NORTH | Sensor: 0.647 | Inferred Target: [6, 3] (4.7%) | Entropy: 5.23b | Batt: 93%
-[Bayesian] Step 04 | Loc: [1, 1] -> [1, 2] | Act: MOVE NORTH | Sensor: 0.740 | Inferred Target: [4, 5] (6.3%) | Entropy: 4.94b | Batt: 91%
-[Bayesian] Step 05 | Loc: [1, 2] -> [1, 3] | Act: MOVE NORTH | Sensor: 0.588 | Inferred Target: [6, 3] (8.3%) | Entropy: 4.82b | Batt: 89%
-[Bayesian] Step 06 | Loc: [1, 3] -> [2, 3] | Act: MOVE EAST  | Sensor: 0.665 | Inferred Target: [6, 3] (9.0%) | Entropy: 4.72b | Batt: 87%
-[Bayesian] Step 07 | Loc: [2, 3] -> [2, 2] | Act: MOVE SOUTH | Sensor: 0.651 | Inferred Target: [6, 3] (8.7%) | Entropy: 4.64b | Batt: 85%
-[Bayesian] Step 08 | Loc: [2, 2] -> [3, 2] | Act: MOVE EAST  | Sensor: 0.684 | Inferred Target: [6, 4] (8.5%) | Entropy: 4.60b | Batt: 83%
-[Bayesian] Step 09 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.581 | Inferred Target: [2, 7] (11.6%) | Entropy: 4.38b | Batt: 81%
-[Bayesian] Step 10 | Loc: [4, 2] -> [3, 2] | Act: MOVE WEST  | Sensor: 0.871 | Inferred Target: [4, 6] (11.3%) | Entropy: 4.47b | Batt: 79%
-[Bayesian] Step 11 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.924 | Inferred Target: [6, 4] (13.3%) | Entropy: 4.04b | Batt: 77%
-[Bayesian] Step 12 | Loc: [4, 2] -> [5, 2] | Act: MOVE EAST  | Sensor: 0.748 | Inferred Target: [5, 5] (16.0%) | Entropy: 3.96b | Batt: 75%
-[Bayesian] Step 13 | Loc: [5, 2] -> [5, 3] | Act: MOVE NORTH | Sensor: 0.886 | Inferred Target: [5, 5] (19.3%) | Entropy: 3.78b | Batt: 73%
-[Bayesian] Step 14 | Loc: [5, 3] -> [5, 4] | Act: MOVE NORTH | Sensor: 0.826 | Inferred Target: [5, 5] (15.6%) | Entropy: 3.84b | Batt: 71%
-[Bayesian] Step 15 | Loc: [5, 4] -> [5, 5] | Act: MOVE NORTH | Sensor: 0.772 | Inferred Target: [7, 2] (17.0%) | Entropy: 3.77b | Batt: 69%
-[Bayesian] Step 16 | Loc: [5, 5] -> [6, 5] | Act: MOVE EAST  | Sensor: 0.645 | Inferred Target: [7, 2] (23.8%) | Entropy: 3.24b | Batt: 67%
-[Bayesian] Step 17 | Loc: [6, 5] -> [7, 5] | Act: MOVE EAST  | Sensor: 0.779 | Inferred Target: [7, 2] (29.8%) | Entropy: 3.06b | Batt: 65%
-[Bayesian] Step 18 | Loc: [7, 5] -> [7, 4] | Act: MOVE SOUTH | Sensor: 0.960 | Inferred Target: [7, 2] (45.3%) | Entropy: 2.50b | Batt: 63%
-[Bayesian] Step 19 | Loc: [7, 4] -> [7, 3] | Act: MOVE SOUTH | Sensor: 1.000 | Inferred Target: [7, 2] (50.9%) | Entropy: 2.09b | Batt: 61%
-[Bayesian] Step 20 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.939 | Inferred Target: [7, 2] (47.0%) | Entropy: 2.13b | Batt: 59%
-[Bayesian] Step 21 | Loc: [7, 2] -> [7, 2] | Act: SCAN       | Sensor: 0.912 | Inferred Target: [7, 2] (38.0%) | Entropy: 2.27b | Batt: 82%
-[Bayesian] Step 22 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.878 | Inferred Target: [7, 2] (43.0%) | Entropy: 2.35b | Batt: 100%
-[Bayesian] Step 23 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.840 | Inferred Target: [7, 3] (23.8%) | Entropy: 2.67b | Batt: 98%
-[Bayesian] Step 24 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 1.000 | Inferred Target: [7, 3] (33.4%) | Entropy: 2.44b | Batt: 100%
-[Bayesian] Step 25 | Loc: [7, 3] -> [7, 3] | Act: SCAN       | Sensor: 0.958 | Inferred Target: [7, 3] (34.4%) | Entropy: 2.35b | Batt: 98%
-[Bayesian] Step 26 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.836 | Inferred Target: [7, 3] (38.2%) | Entropy: 2.42b | Batt: 93%
-[Bayesian] Step 27 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.827 | Inferred Target: [6, 3] (26.3%) | Entropy: 2.69b | Batt: 100%
-[Bayesian] Step 28 | Loc: [7, 3] -> [6, 3] | Act: MOVE WEST  | Sensor: 0.984 | Inferred Target: [6, 3] (32.4%) | Entropy: 2.48b | Batt: 98%
+[Bayesian] Step 01 | Loc: [0, 0] -> [0, 0] | Act: SCAN       | Sensor: 0.414 | Inferred: [2, 8] (2.4%) | Entropy: 5.94b | Batt: 100%
+[Bayesian] Step 02 | Loc: [0, 0] -> [1, 0] | Act: MOVE EAST  | Sensor: 0.620 | Inferred: [7, 2] (4.0%) | Entropy: 5.53b | Batt: 95%
+[Bayesian] Step 03 | Loc: [1, 0] -> [1, 1] | Act: MOVE NORTH | Sensor: 0.647 | Inferred: [6, 3] (4.7%) | Entropy: 5.23b | Batt: 93%
+[Bayesian] Step 04 | Loc: [1, 1] -> [1, 2] | Act: MOVE NORTH | Sensor: 0.740 | Inferred: [4, 5] (6.3%) | Entropy: 4.94b | Batt: 91%
+[Bayesian] Step 05 | Loc: [1, 2] -> [1, 3] | Act: MOVE NORTH | Sensor: 0.588 | Inferred: [6, 3] (8.3%) | Entropy: 4.82b | Batt: 89%
+[Bayesian] Step 06 | Loc: [1, 3] -> [2, 3] | Act: MOVE EAST  | Sensor: 0.665 | Inferred: [6, 3] (9.0%) | Entropy: 4.72b | Batt: 87%
+[Bayesian] Step 07 | Loc: [2, 3] -> [2, 2] | Act: MOVE SOUTH | Sensor: 0.651 | Inferred: [6, 3] (8.7%) | Entropy: 4.64b | Batt: 85%
+[Bayesian] Step 08 | Loc: [2, 2] -> [3, 2] | Act: MOVE EAST  | Sensor: 0.684 | Inferred: [6, 4] (8.5%) | Entropy: 4.60b | Batt: 83%
+[Bayesian] Step 09 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.581 | Inferred: [2, 7] (11.6%) | Entropy: 4.38b | Batt: 81%
+[Bayesian] Step 10 | Loc: [4, 2] -> [3, 2] | Act: MOVE WEST  | Sensor: 0.871 | Inferred: [4, 6] (11.3%) | Entropy: 4.47b | Batt: 79%
+[Bayesian] Step 11 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.924 | Inferred: [6, 4] (13.3%) | Entropy: 4.04b | Batt: 77%
+[Bayesian] Step 12 | Loc: [4, 2] -> [5, 2] | Act: MOVE EAST  | Sensor: 0.748 | Inferred: [5, 5] (16.0%) | Entropy: 3.96b | Batt: 75%
+[Bayesian] Step 13 | Loc: [5, 2] -> [5, 3] | Act: MOVE NORTH | Sensor: 0.886 | Inferred: [5, 5] (19.3%) | Entropy: 3.78b | Batt: 73%
+[Bayesian] Step 14 | Loc: [5, 3] -> [5, 4] | Act: MOVE NORTH | Sensor: 0.826 | Inferred: [5, 5] (15.6%) | Entropy: 3.84b | Batt: 71%
+[Bayesian] Step 15 | Loc: [5, 4] -> [5, 5] | Act: MOVE NORTH | Sensor: 0.772 | Inferred: [7, 2] (17.0%) | Entropy: 3.77b | Batt: 69%
+[Bayesian] Step 16 | Loc: [5, 5] -> [6, 5] | Act: MOVE EAST  | Sensor: 0.645 | Inferred: [7, 2] (23.8%) | Entropy: 3.24b | Batt: 67%
+[Bayesian] Step 17 | Loc: [6, 5] -> [7, 5] | Act: MOVE EAST  | Sensor: 0.779 | Inferred: [7, 2] (29.8%) | Entropy: 3.06b | Batt: 65%
+[Bayesian] Step 18 | Loc: [7, 5] -> [7, 4] | Act: MOVE SOUTH | Sensor: 0.960 | Inferred: [7, 2] (45.3%) | Entropy: 2.50b | Batt: 63%
+[Bayesian] Step 19 | Loc: [7, 4] -> [7, 3] | Act: MOVE SOUTH | Sensor: 1.000 | Inferred: [7, 2] (50.9%) | Entropy: 2.09b | Batt: 61%
+[Bayesian] Step 20 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.939 | Inferred: [7, 2] (47.0%) | Entropy: 2.13b | Batt: 59%
+[Bayesian] Step 21 | Loc: [7, 2] -> [7, 2] | Act: SCAN       | Sensor: 0.912 | Inferred: [7, 2] (38.0%) | Entropy: 2.27b | Batt: 82%
+[Bayesian] Step 22 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.878 | Inferred: [7, 2] (43.0%) | Entropy: 2.35b | Batt: 100%
+[Bayesian] Step 23 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.840 | Inferred: [7, 3] (23.8%) | Entropy: 2.67b | Batt: 98%
+[Bayesian] Step 24 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 1.000 | Inferred: [7, 3] (33.4%) | Entropy: 2.44b | Batt: 100%
+[Bayesian] Step 25 | Loc: [7, 3] -> [7, 3] | Act: SCAN       | Sensor: 0.958 | Inferred: [7, 3] (34.4%) | Entropy: 2.35b | Batt: 98%
+[Bayesian] Step 26 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.836 | Inferred: [7, 3] (38.2%) | Entropy: 2.42b | Batt: 93%
+[Bayesian] Step 27 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.827 | Inferred: [6, 3] (26.3%) | Entropy: 2.69b | Batt: 100%
+[Bayesian] Step 28 | Loc: [7, 3] -> [6, 3] | Act: MOVE WEST  | Sensor: 0.984 | Inferred: [6, 3] (32.4%) | Entropy: 2.48b | Batt: 98%
 
->>> FINAL STATUS: SUCCESS: DOCKED | Total Steps: 28 | Final Battery: 96%
+>>> FINAL STATUS: SUCCESS: TARGET DOCKED | Steps: 28 | Final Battery: 96%
 
 ============================== AGENT: PPO NEURAL POLICY ==============================
-[PPO Neur] Step 01 | Loc: [0, 0] -> [0, 1] | Act: MOVE NORTH | Sensor: 0.442 | Inferred Target: [5, 7] (2.0%) | Entropy: 6.15b | Batt: 100%
-[PPO Neur] Step 02 | Loc: [0, 1] -> [0, 2] | Act: MOVE NORTH | Sensor: 0.602 | Inferred Target: [4, 6] (2.0%) | Entropy: 6.24b | Batt: 98%
-[PPO Neur] Step 03 | Loc: [0, 2] -> [0, 3] | Act: MOVE NORTH | Sensor: 0.604 | Inferred Target: [4, 7] (1.9%) | Entropy: 6.27b | Batt: 96%
-[PPO Neur] Step 04 | Loc: [0, 3] -> [0, 4] | Act: MOVE NORTH | Sensor: 0.671 | Inferred Target: [2, 0] (1.9%) | Entropy: 6.23b | Batt: 94%
-[PPO Neur] Step 05 | Loc: [0, 4] -> [0, 5] | Act: MOVE NORTH | Sensor: 0.495 | Inferred Target: [6, 1] (2.1%) | Entropy: 6.18b | Batt: 92%
-[PPO Neur] Step 06 | Loc: [0, 5] -> [0, 6] | Act: MOVE NORTH | Sensor: 0.473 | Inferred Target: [7, 3] (2.1%) | Entropy: 6.13b | Batt: 90%
-[PPO Neur] Step 07 | Loc: [0, 6] -> [1, 6] | Act: MOVE EAST  | Sensor: 0.531 | Inferred Target: [4, 0] (2.0%) | Entropy: 6.19b | Batt: 88%
-[PPO Neur] Step 08 | Loc: [1, 6] -> [2, 6] | Act: MOVE EAST  | Sensor: 0.554 | Inferred Target: [0, 0] (1.9%) | Entropy: 6.20b | Batt: 86%
-[PPO Neur] Step 09 | Loc: [2, 6] -> [3, 6] | Act: MOVE EAST  | Sensor: 0.439 | Inferred Target: [8, 0] (4.1%) | Entropy: 5.63b | Batt: 84%
-[PPO Neur] Step 10 | Loc: [3, 6] -> [3, 7] | Act: MOVE NORTH | Sensor: 0.741 | Inferred Target: [0, 5] (1.7%) | Entropy: 6.38b | Batt: 82%
-[PPO Neur] Step 11 | Loc: [3, 7] -> [4, 7] | Act: MOVE EAST  | Sensor: 0.765 | Inferred Target: [1, 6] (1.7%) | Entropy: 6.38b | Batt: 80%
-[PPO Neur] Step 12 | Loc: [4, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.556 | Inferred Target: [3, 1] (2.0%) | Entropy: 6.22b | Batt: 78%
-[PPO Neur] Step 13 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.666 | Inferred Target: [1, 5] (1.6%) | Entropy: 6.45b | Batt: 76%
-[PPO Neur] Step 14 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.634 | Inferred Target: [0, 6] (1.7%) | Entropy: 6.41b | Batt: 71%
-[PPO Neur] Step 15 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.638 | Inferred Target: [0, 6] (1.6%) | Entropy: 6.42b | Batt: 66%
-[PPO Neur] Step 16 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.494 | Inferred Target: [1, 1] (2.6%) | Entropy: 5.95b | Batt: 61%
-[PPO Neur] Step 17 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.646 | Inferred Target: [0, 7] (1.6%) | Entropy: 6.43b | Batt: 56%
-[PPO Neur] Step 18 | Loc: [5, 7] -> [5, 6] | Act: MOVE SOUTH | Sensor: 0.836 | Inferred Target: [3, 5] (1.8%) | Entropy: 6.33b | Batt: 51%
-[PPO Neur] Step 19 | Loc: [5, 6] -> [5, 7] | Act: MOVE NORTH | Sensor: 0.964 | Inferred Target: [4, 7] (4.0%) | Entropy: 5.58b | Batt: 49%
-[PPO Neur] Step 20 | Loc: [5, 7] -> [5, 6] | Act: MOVE SOUTH | Sensor: 0.816 | Inferred Target: [3, 4] (1.7%) | Entropy: 6.39b | Batt: 47%
-[PPO Neur] Step 21 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.854 | Inferred Target: [3, 5] (1.8%) | Entropy: 6.36b | Batt: 45%
-[PPO Neur] Step 22 | Loc: [5, 5] -> [5, 6] | Act: MOVE NORTH | Sensor: 0.725 | Inferred Target: [1, 6] (1.4%) | Entropy: 6.52b | Batt: 43%
-[PPO Neur] Step 23 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.782 | Inferred Target: [2, 4] (1.4%) | Entropy: 6.53b | Batt: 41%
-[PPO Neur] Step 24 | Loc: [5, 5] -> [5, 6] | Act: MOVE NORTH | Sensor: 0.871 | Inferred Target: [3, 6] (2.1%) | Entropy: 6.20b | Batt: 39%
-[PPO Neur] Step 25 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.871 | Inferred Target: [3, 5] (2.0%) | Entropy: 6.30b | Batt: 37%
-[PPO Neur] Step 26 | Loc: [5, 5] -> [4, 5] | Act: MOVE WEST  | Sensor: 0.736 | Inferred Target: [1, 3] (1.3%) | Entropy: 6.56b | Batt: 35%
-[PPO Neur] Step 27 | Loc: [4, 5] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.740 | Inferred Target: [1, 2] (1.3%) | Entropy: 6.56b | Batt: 33%
-[PPO Neur] Step 28 | Loc: [4, 4] -> [4, 5] | Act: MOVE NORTH | Sensor: 0.784 | Inferred Target: [1, 5] (1.4%) | Entropy: 6.53b | Batt: 31%
-[PPO Neur] Step 29 | Loc: [4, 5] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.789 | Inferred Target: [1, 4] (1.5%) | Entropy: 6.52b | Batt: 29%
-[PPO Neur] Step 30 | Loc: [4, 4] -> [4, 4] | Act: MOVE WEST  | Sensor: 0.841 | Inferred Target: [2, 3] (1.7%) | Entropy: 6.40b | Batt: 27%
-[PPO Neur] Step 31 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.819 | Inferred Target: [2, 2] (1.6%) | Entropy: 6.46b | Batt: 22%
-[PPO Neur] Step 32 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.881 | Inferred Target: [3, 3] (2.1%) | Entropy: 6.26b | Batt: 17%
-[PPO Neur] Step 33 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.715 | Inferred Target: [0, 4] (1.3%) | Entropy: 6.56b | Batt: 12%
-[PPO Neur] Step 34 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.951 | Inferred Target: [3, 4] (3.4%) | Entropy: 5.91b | Batt: 7%
-[PPO Neur] Step 35 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 1.000 | Inferred Target: [4, 4] (5.4%) | Entropy: 5.61b | Batt: 2%
+[PPO Neur] Step 01 | Loc: [0, 0] -> [0, 1] | Act: MOVE NORTH | Sensor: 0.442 | Inferred: [5, 7] (2.0%) | Entropy: 6.15b | Batt: 100%
+[PPO Neur] Step 02 | Loc: [0, 1] -> [0, 2] | Act: MOVE NORTH | Sensor: 0.602 | Inferred: [4, 6] (2.0%) | Entropy: 6.24b | Batt: 98%
+[PPO Neur] Step 03 | Loc: [0, 2] -> [0, 3] | Act: MOVE NORTH | Sensor: 0.604 | Inferred: [4, 7] (1.9%) | Entropy: 6.27b | Batt: 96%
+[PPO Neur] Step 04 | Loc: [0, 3] -> [0, 4] | Act: MOVE NORTH | Sensor: 0.671 | Inferred: [2, 0] (1.9%) | Entropy: 6.23b | Batt: 94%
+[PPO Neur] Step 05 | Loc: [0, 4] -> [0, 5] | Act: MOVE NORTH | Sensor: 0.495 | Inferred: [6, 1] (2.1%) | Entropy: 6.18b | Batt: 92%
+[PPO Neur] Step 06 | Loc: [0, 5] -> [0, 6] | Act: MOVE NORTH | Sensor: 0.473 | Inferred: [7, 3] (2.1%) | Entropy: 6.13b | Batt: 90%
+[PPO Neur] Step 07 | Loc: [0, 6] -> [1, 6] | Act: MOVE EAST  | Sensor: 0.531 | Inferred: [4, 0] (2.0%) | Entropy: 6.19b | Batt: 88%
+[PPO Neur] Step 08 | Loc: [1, 6] -> [2, 6] | Act: MOVE EAST  | Sensor: 0.554 | Inferred: [0, 0] (1.9%) | Entropy: 6.20b | Batt: 86%
+[PPO Neur] Step 09 | Loc: [2, 6] -> [3, 6] | Act: MOVE EAST  | Sensor: 0.439 | Inferred: [8, 0] (4.1%) | Entropy: 5.63b | Batt: 84%
+[PPO Neur] Step 10 | Loc: [3, 6] -> [3, 7] | Act: MOVE NORTH | Sensor: 0.741 | Inferred: [0, 5] (1.7%) | Entropy: 6.38b | Batt: 82%
+[PPO Neur] Step 11 | Loc: [3, 7] -> [4, 7] | Act: MOVE EAST  | Sensor: 0.765 | Inferred: [1, 6] (1.7%) | Entropy: 6.38b | Batt: 80%
+[PPO Neur] Step 12 | Loc: [4, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.556 | Inferred: [3, 1] (2.0%) | Entropy: 6.22b | Batt: 78%
+[PPO Neur] Step 13 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.666 | Inferred: [1, 5] (1.6%) | Entropy: 6.45b | Batt: 76%
+[PPO Neur] Step 14 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.634 | Inferred: [0, 6] (1.7%) | Entropy: 6.41b | Batt: 71%
+[PPO Neur] Step 15 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.638 | Inferred: [0, 6] (1.6%) | Entropy: 6.42b | Batt: 66%
+[PPO Neur] Step 16 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.494 | Inferred: [1, 1] (2.6%) | Entropy: 5.95b | Batt: 61%
+[PPO Neur] Step 17 | Loc: [5, 7] -> [5, 7] | Act: MOVE EAST  | Sensor: 0.646 | Inferred: [0, 7] (1.6%) | Entropy: 6.43b | Batt: 56%
+[PPO Neur] Step 18 | Loc: [5, 7] -> [5, 6] | Act: MOVE SOUTH | Sensor: 0.836 | Inferred: [3, 5] (1.8%) | Entropy: 6.33b | Batt: 51%
+[PPO Neur] Step 19 | Loc: [5, 6] -> [5, 7] | Act: MOVE NORTH | Sensor: 0.964 | Inferred: [4, 7] (4.0%) | Entropy: 5.58b | Batt: 49%
+[PPO Neur] Step 20 | Loc: [5, 7] -> [5, 6] | Act: MOVE SOUTH | Sensor: 0.816 | Inferred: [3, 4] (1.7%) | Entropy: 6.39b | Batt: 47%
+[PPO Neur] Step 21 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.854 | Inferred: [3, 5] (1.8%) | Entropy: 6.36b | Batt: 45%
+[PPO Neur] Step 22 | Loc: [5, 5] -> [5, 6] | Act: MOVE NORTH | Sensor: 0.725 | Inferred: [1, 6] (1.4%) | Entropy: 6.52b | Batt: 43%
+[PPO Neur] Step 23 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.782 | Inferred: [2, 4] (1.4%) | Entropy: 6.53b | Batt: 41%
+[PPO Neur] Step 24 | Loc: [5, 5] -> [5, 6] | Act: MOVE NORTH | Sensor: 0.871 | Inferred: [3, 6] (2.1%) | Entropy: 6.20b | Batt: 39%
+[PPO Neur] Step 25 | Loc: [5, 6] -> [5, 5] | Act: MOVE SOUTH | Sensor: 0.871 | Inferred: [3, 5] (2.0%) | Entropy: 6.30b | Batt: 37%
+[PPO Neur] Step 26 | Loc: [5, 5] -> [4, 5] | Act: MOVE WEST  | Sensor: 0.736 | Inferred: [1, 3] (1.3%) | Entropy: 6.56b | Batt: 35%
+[PPO Neur] Step 27 | Loc: [4, 5] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.740 | Inferred: [1, 2] (1.3%) | Entropy: 6.56b | Batt: 33%
+[PPO Neur] Step 28 | Loc: [4, 4] -> [4, 5] | Act: MOVE NORTH | Sensor: 0.784 | Inferred: [1, 5] (1.4%) | Entropy: 6.53b | Batt: 31%
+[PPO Neur] Step 29 | Loc: [4, 5] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.789 | Inferred: [1, 4] (1.5%) | Entropy: 6.52b | Batt: 29%
+[PPO Neur] Step 30 | Loc: [4, 4] -> [4, 4] | Act: MOVE WEST  | Sensor: 0.841 | Inferred: [2, 3] (1.7%) | Entropy: 6.40b | Batt: 27%
+[PPO Neur] Step 31 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.819 | Inferred: [2, 2] (1.6%) | Entropy: 6.46b | Batt: 22%
+[PPO Neur] Step 32 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.881 | Inferred: [3, 3] (2.1%) | Entropy: 6.26b | Batt: 17%
+[PPO Neur] Step 33 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.715 | Inferred: [0, 4] (1.3%) | Entropy: 6.56b | Batt: 12%
+[PPO Neur] Step 34 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 0.951 | Inferred: [3, 4] (3.4%) | Entropy: 5.91b | Batt: 7%
+[PPO Neur] Step 35 | Loc: [4, 4] -> [4, 4] | Act: MOVE SOUTH | Sensor: 1.000 | Inferred: [4, 4] (5.4%) | Entropy: 5.61b | Batt: 2%
 
->>> FINAL STATUS: FAILED | Total Steps: 35 | Final Battery: -3%
+>>> FINAL STATUS: FAILED / DEPLETED | Steps: 35 | Final Battery: -3%
+
+============================== AGENT: COGNITIVE COT PLANNER ==============================
+[Cognitiv] Step 01 | Loc: [0, 0] -> [0, 0] | Act: SCAN       | Sensor: 0.414 | Inferred: [2, 8] (2.7%) | Entropy: 5.81b | Batt: 100%
+[Cognitiv] Step 02 | Loc: [0, 0] -> [1, 0] | Act: MOVE EAST  | Sensor: 0.620 | Inferred: [7, 2] (4.9%) | Entropy: 5.33b | Batt: 95%
+[Cognitiv] Step 03 | Loc: [1, 0] -> [1, 1] | Act: MOVE NORTH | Sensor: 0.647 | Inferred: [6, 3] (5.6%) | Entropy: 5.03b | Batt: 93%
+[Cognitiv] Step 04 | Loc: [1, 1] -> [1, 2] | Act: MOVE NORTH | Sensor: 0.740 | Inferred: [4, 5] (7.6%) | Entropy: 4.72b | Batt: 91%
+[Cognitiv] Step 05 | Loc: [1, 2] -> [1, 3] | Act: MOVE NORTH | Sensor: 0.588 | Inferred: [6, 3] (10.7%) | Entropy: 4.56b | Batt: 89%
+[Cognitiv] Step 06 | Loc: [1, 3] -> [2, 3] | Act: MOVE EAST  | Sensor: 0.665 | Inferred: [6, 3] (11.7%) | Entropy: 4.43b | Batt: 87%
+[Cognitiv] Step 07 | Loc: [2, 3] -> [2, 2] | Act: MOVE SOUTH | Sensor: 0.651 | Inferred: [6, 3] (11.0%) | Entropy: 4.38b | Batt: 85%
+[Cognitiv] Step 08 | Loc: [2, 2] -> [3, 2] | Act: MOVE EAST  | Sensor: 0.684 | Inferred: [6, 4] (10.6%) | Entropy: 4.39b | Batt: 83%
+[Cognitiv] Step 09 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.581 | Inferred: [2, 7] (15.0%) | Entropy: 4.03b | Batt: 81%
+[Cognitiv] Step 10 | Loc: [4, 2] -> [3, 2] | Act: MOVE WEST  | Sensor: 0.871 | Inferred: [4, 6] (14.9%) | Entropy: 4.24b | Batt: 79%
+[Cognitiv] Step 11 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.924 | Inferred: [6, 4] (16.9%) | Entropy: 3.79b | Batt: 77%
+[Cognitiv] Step 12 | Loc: [4, 2] -> [5, 2] | Act: MOVE EAST  | Sensor: 0.748 | Inferred: [5, 5] (21.1%) | Entropy: 3.66b | Batt: 75%
+[Cognitiv] Step 13 | Loc: [5, 2] -> [5, 3] | Act: MOVE NORTH | Sensor: 0.886 | Inferred: [5, 5] (25.7%) | Entropy: 3.43b | Batt: 73%
+[Cognitiv] Step 14 | Loc: [5, 3] -> [5, 4] | Act: MOVE NORTH | Sensor: 0.826 | Inferred: [5, 5] (19.9%) | Entropy: 3.59b | Batt: 71%
+[Cognitiv] Step 15 | Loc: [5, 4] -> [5, 5] | Act: MOVE NORTH | Sensor: 0.772 | Inferred: [7, 2] (21.8%) | Entropy: 3.46b | Batt: 69%
+[Cognitiv] Step 16 | Loc: [5, 5] -> [6, 5] | Act: MOVE EAST  | Sensor: 0.645 | Inferred: [7, 2] (29.8%) | Entropy: 2.82b | Batt: 67%
+[Cognitiv] Step 17 | Loc: [6, 5] -> [7, 5] | Act: MOVE EAST  | Sensor: 0.779 | Inferred: [7, 2] (38.4%) | Entropy: 2.60b | Batt: 65%
+[Cognitiv] Step 18 | Loc: [7, 5] -> [7, 4] | Act: MOVE SOUTH | Sensor: 0.960 | Inferred: [7, 2] (58.5%) | Entropy: 1.98b | Batt: 63%
+[Cognitiv] Step 19 | Loc: [7, 4] -> [7, 3] | Act: MOVE SOUTH | Sensor: 1.000 | Inferred: [7, 2] (62.6%) | Entropy: 1.63b | Batt: 61%
+[Cognitiv] Step 20 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.939 | Inferred: [7, 2] (57.3%) | Entropy: 1.73b | Batt: 59%
+[Cognitiv] Step 21 | Loc: [7, 2] -> [7, 2] | Act: SCAN       | Sensor: 0.912 | Inferred: [7, 2] (44.9%) | Entropy: 1.95b | Batt: 82%
+[Cognitiv] Step 22 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.878 | Inferred: [7, 2] (53.8%) | Entropy: 2.00b | Batt: 100%
+[Cognitiv] Step 23 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.840 | Inferred: [7, 3] (26.9%) | Entropy: 2.51b | Batt: 98%
+[Cognitiv] Step 24 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 1.000 | Inferred: [7, 3] (39.7%) | Entropy: 2.18b | Batt: 100%
+[Cognitiv] Step 25 | Loc: [7, 3] -> [7, 3] | Act: SCAN       | Sensor: 0.958 | Inferred: [7, 3] (40.2%) | Entropy: 2.09b | Batt: 98%
+[Cognitiv] Step 26 | Loc: [7, 3] -> [7, 2] | Act: MOVE SOUTH | Sensor: 0.836 | Inferred: [7, 3] (46.7%) | Entropy: 2.09b | Batt: 93%
+[Cognitiv] Step 27 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.827 | Inferred: [6, 3] (30.6%) | Entropy: 2.46b | Batt: 100%
+[Cognitiv] Step 28 | Loc: [7, 3] -> [6, 3] | Act: MOVE WEST  | Sensor: 0.984 | Inferred: [6, 3] (38.2%) | Entropy: 2.20b | Batt: 98%
+
+>>> FINAL STATUS: SUCCESS: TARGET DOCKED | Steps: 28 | Final Battery: 96%
+
+============================== AGENT: INFORMATION A* (IDA*) ==============================
+[Informat] Step 01 | Loc: [0, 0] -> [0, 0] | Act: SCAN       | Sensor: 0.414 | Inferred: [2, 8] (2.4%) | Entropy: 5.94b | Batt: 100%
+[Informat] Step 02 | Loc: [0, 0] -> [1, 0] | Act: MOVE EAST  | Sensor: 0.620 | Inferred: [7, 2] (4.0%) | Entropy: 5.53b | Batt: 95%
+[Informat] Step 03 | Loc: [1, 0] -> [1, 1] | Act: MOVE NORTH | Sensor: 0.647 | Inferred: [6, 3] (4.7%) | Entropy: 5.23b | Batt: 93%
+[Informat] Step 04 | Loc: [1, 1] -> [1, 2] | Act: MOVE NORTH | Sensor: 0.740 | Inferred: [4, 5] (6.3%) | Entropy: 4.94b | Batt: 91%
+[Informat] Step 05 | Loc: [1, 2] -> [1, 3] | Act: MOVE NORTH | Sensor: 0.588 | Inferred: [6, 3] (8.3%) | Entropy: 4.82b | Batt: 89%
+[Informat] Step 06 | Loc: [1, 3] -> [2, 3] | Act: MOVE EAST  | Sensor: 0.665 | Inferred: [6, 3] (9.0%) | Entropy: 4.72b | Batt: 87%
+[Informat] Step 07 | Loc: [2, 3] -> [2, 2] | Act: MOVE SOUTH | Sensor: 0.651 | Inferred: [6, 3] (8.7%) | Entropy: 4.64b | Batt: 85%
+[Informat] Step 08 | Loc: [2, 2] -> [3, 2] | Act: MOVE EAST  | Sensor: 0.684 | Inferred: [6, 4] (8.5%) | Entropy: 4.60b | Batt: 83%
+[Informat] Step 09 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.581 | Inferred: [2, 7] (11.6%) | Entropy: 4.38b | Batt: 81%
+[Informat] Step 10 | Loc: [4, 2] -> [3, 2] | Act: MOVE WEST  | Sensor: 0.871 | Inferred: [4, 6] (11.3%) | Entropy: 4.47b | Batt: 79%
+[Informat] Step 11 | Loc: [3, 2] -> [2, 2] | Act: MOVE WEST  | Sensor: 0.790 | Inferred: [4, 6] (12.6%) | Entropy: 4.35b | Batt: 77%
+[Informat] Step 12 | Loc: [2, 2] -> [2, 3] | Act: MOVE NORTH | Sensor: 0.565 | Inferred: [6, 0] (11.2%) | Entropy: 4.35b | Batt: 75%
+[Informat] Step 13 | Loc: [2, 3] -> [2, 2] | Act: MOVE SOUTH | Sensor: 0.666 | Inferred: [6, 0] (11.6%) | Entropy: 4.30b | Batt: 73%
+[Informat] Step 14 | Loc: [2, 2] -> [2, 1] | Act: MOVE SOUTH | Sensor: 0.610 | Inferred: [6, 4] (9.2%) | Entropy: 4.28b | Batt: 71%
+[Informat] Step 15 | Loc: [2, 1] -> [2, 2] | Act: MOVE NORTH | Sensor: 0.638 | Inferred: [6, 4] (9.0%) | Entropy: 4.24b | Batt: 69%
+[Informat] Step 16 | Loc: [2, 2] -> [3, 2] | Act: MOVE EAST  | Sensor: 0.562 | Inferred: [5, 6] (9.1%) | Entropy: 4.24b | Batt: 67%
+[Informat] Step 17 | Loc: [3, 2] -> [4, 2] | Act: MOVE EAST  | Sensor: 0.779 | Inferred: [7, 1] (10.4%) | Entropy: 4.03b | Batt: 65%
+[Informat] Step 18 | Loc: [4, 2] -> [4, 1] | Act: MOVE SOUTH | Sensor: 0.860 | Inferred: [7, 1] (19.8%) | Entropy: 3.40b | Batt: 63%
+[Informat] Step 19 | Loc: [4, 1] -> [5, 1] | Act: MOVE EAST  | Sensor: 1.000 | Inferred: [6, 0] (28.9%) | Entropy: 2.66b | Batt: 61%
+[Informat] Step 20 | Loc: [5, 1] -> [5, 0] | Act: MOVE SOUTH | Sensor: 0.816 | Inferred: [7, 1] (31.6%) | Entropy: 2.61b | Batt: 59%
+[Informat] Step 21 | Loc: [5, 0] -> [5, 1] | Act: MOVE NORTH | Sensor: 0.854 | Inferred: [7, 1] (33.1%) | Entropy: 2.54b | Batt: 57%
+[Informat] Step 22 | Loc: [5, 1] -> [6, 1] | Act: MOVE EAST  | Sensor: 0.807 | Inferred: [7, 1] (28.0%) | Entropy: 2.60b | Batt: 55%
+[Informat] Step 23 | Loc: [6, 1] -> [7, 1] | Act: MOVE EAST  | Sensor: 0.782 | Inferred: [7, 2] (24.7%) | Entropy: 2.84b | Batt: 53%
+[Informat] Step 24 | Loc: [7, 1] -> [7, 2] | Act: MOVE NORTH | Sensor: 0.995 | Inferred: [7, 2] (38.3%) | Entropy: 2.61b | Batt: 51%
+[Informat] Step 25 | Loc: [7, 2] -> [7, 2] | Act: SCAN       | Sensor: 0.929 | Inferred: [7, 2] (35.0%) | Entropy: 2.63b | Batt: 74%
+[Informat] Step 26 | Loc: [7, 2] -> [7, 2] | Act: SCAN       | Sensor: 0.836 | Inferred: [7, 3] (25.1%) | Entropy: 2.90b | Batt: 94%
+[Informat] Step 27 | Loc: [7, 2] -> [7, 3] | Act: MOVE NORTH | Sensor: 0.827 | Inferred: [6, 0] (18.9%) | Entropy: 2.97b | Batt: 100%
+[Informat] Step 28 | Loc: [7, 3] -> [6, 3] | Act: MOVE WEST  | Sensor: 0.984 | Inferred: [6, 3] (23.1%) | Entropy: 2.92b | Batt: 98%
+
+>>> FINAL STATUS: SUCCESS: TARGET DOCKED | Steps: 28 | Final Battery: 96%

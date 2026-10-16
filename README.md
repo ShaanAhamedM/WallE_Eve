@@ -313,21 +313,34 @@ WallE_Eve/
 ├── benchmark_results.json           # Detailed statistical data output from benchmark runs
 ├── train_advanced.py               # Vectorized PPO training pipeline with CUDA acceleration & loss logging
 ├── config_advanced.json            # Mission settings (grid size, battery costs, obstacle coordinates)
-├── outputs/                        # High-resolution generated visual assets, loss curves, & logs
-│   ├── path_visualization_3d.png           # Isometric 3D arena & search trajectory map
-│   ├── path_visualization_graph.png        # Comparative 2D graph representation of planned paths
-│   ├── training_loss_curves.png            # PPO Actor-Critic loss curves (Policy, Value, Entropy, KL)
-│   ├── training_reward_metrics.png         # Episodic reward and duration convergence curves
-│   ├── evaluation_benchmark_metrics.png    # 4-panel benchmark performance comparison with error bars
-│   ├── evaluation_radar_chart.png          # 5-axis paradigm trade-off radar analysis
-│   ├── tactical_visualization_bayesian.png # High-res tactical grid & belief probability heatmap
-│   ├── tactical_visualization_drl.png      # Tactical trajectory for PPO DRL policy
-│   ├── shannon_entropy_decay.png           # Shannon entropy decay trajectory across agents
-│   ├── model_predictions_telemetry.csv     # Tabular step-by-step prediction dataset
-│   ├── mission_telemetry.log               # Detailed formatted mission execution log
-│   ├── training.log                        # Complete PPO training dynamics execution log
-│   ├── training_metrics.csv                # Tabular step-by-step loss metrics dataset
-│   └── benchmark_summary.csv               # Aggregated Monte Carlo evaluation summary table
+├── outputs/                        # Clean model-categorized evaluation & training outputs
+│   ├── 1_bayesian_active_inference/        # Webots Champion Model outputs
+│   │   ├── path_visualization_3d.png       # Isometric 3D arena & search trajectory map
+│   │   ├── tactical_visualization.png      # Dual-panel belief heatmap & telemetry
+│   │   ├── predictions_telemetry.csv       # Step-by-step prediction dataset
+│   │   └── mission_execution.log           # Detailed execution log
+│   ├── 2_deep_reinforcement_learning_ppo/  # PPO Neural Network outputs
+│   │   ├── training_loss_curves.png        # Actor-Critic loss curves (Policy, Value, Entropy, KL)
+│   │   ├── training_reward_metrics.png     # Episodic return & convergence curves
+│   │   ├── tactical_visualization.png      # PPO trajectory snapshot
+│   │   ├── training.log                    # Complete PPO training dynamics log
+│   │   ├── training_metrics.csv            # Tabular loss metrics dataset
+│   │   ├── predictions_telemetry.csv       # Step-by-step PPO model action outputs
+│   │   └── mission_execution.log           # PPO execution log
+│   ├── 3_cognitive_cot_planner/            # Deliberative Chain-of-Thought Planner
+│   │   ├── tactical_visualization.png      # CoT tactical grid snapshot
+│   │   ├── predictions_telemetry.csv       # Step-by-step CoT reasoning decisions
+│   │   └── mission_execution.log           # Deliberation chain execution log
+│   ├── 4_heuristic_astar/                  # Information-Directed A* (IDA*)
+│   │   ├── tactical_visualization.png      # A* trajectory avoiding obstacles
+│   │   ├── predictions_telemetry.csv       # Step-by-step A* priority decisions
+│   │   └── mission_execution.log           # A* path traversal log
+│   └── comparative_benchmarks/             # Multi-Agent Cross-Comparison
+│       ├── path_visualization_graph.png    # 4-panel multi-agent path comparison
+│       ├── evaluation_benchmark_metrics.png# 4-panel benchmark performance comparison
+│       ├── evaluation_radar_chart.png      # 5-axis paradigm trade-off radar analysis
+│       ├── shannon_entropy_decay.png       # Shannon entropy reduction comparison curve
+│       └── benchmark_summary.csv           # Aggregated Monte Carlo evaluation summary table
 ├── algorithms/
 │   ├── base_agent.py               # Abstract base class for search agents
 │   ├── bayesian_entropy_agent.py   # Recursive Bayesian estimation & entropy minimization
