@@ -3,6 +3,11 @@
     "grid_size": [10, 10],
     "eve_location": [7, 8],
     "start_location": [0, 0],
+    "initial_signal_reading": {
+        "coordinates": [0, 0],
+        "strength": 0.414,
+        "timestamp": "2026-10-16T19:00:00Z"
+    },
     "resource_budget": {
         "battery": 100,
         "time_steps": 50
